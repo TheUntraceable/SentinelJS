@@ -1,0 +1,25 @@
+{
+  "name": "security",
+  "version": "0.7",
+  "description": "Sentinel, the discord bot guaranteed to save your server from any raid.",
+  "main": "Bot Files/SecurityMain.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheUntraceable/SentinelJS.git"
+  },
+  "keywords": [
+    "Sentinel",
+    "Security"
+  ],
+  "author": "TheUntraceable",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TheUntraceable/SentinelJS/issues"
+  },
+  "homepage": "https://github.com/TheUntraceable/SentinelJS#readme",
+  "dependencies": {
+    "@discordjs/builders": "^0.6.0",
+    "@discordjs/rest": "^0.1.0-canary.0",
+    "discord.js": "^13.2.0"
+  }
+}
