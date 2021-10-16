@@ -6,7 +6,7 @@ module.exports = {
 		.setDescription('Replies with the Clients latency!'),
 	cooldowns : new Set(),
 	cooldown : 10,
-
+	category : "status",
 	async execute(interaction) {
 		await interaction.reply({content : `Client Latency - ${interaction.client.ws.ping}ms`});
 	}

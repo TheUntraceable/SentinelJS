@@ -5,7 +5,7 @@ const fs = require('fs');
 
 client.commands = new Collection();
 
-fs.readdir(`${process.cwd()}/Bot Files/helpers/`, (err, files) => {
+fs.readdir(`${process.cwd()}/helpers/`, (err, files) => {
 	if (err) { throw err }
 	
 	for (const file of files) {
@@ -15,6 +15,7 @@ fs.readdir(`${process.cwd()}/Bot Files/helpers/`, (err, files) => {
 		require(`./helpers/${file}`)(client);
 	}
 
+	client.deploy()
 	client.loadEvents();
 	client.loadCommands();
 });

@@ -10,6 +10,7 @@ module.exports = {
                 .setDescription('The command category to view.')
                 .setRequired(false)),    
 	cooldown : 5,
+    cooldowns : new Set(),
 
     async execute(interaction) {
         
@@ -18,7 +19,7 @@ module.exports = {
             .setColor("#51ff00")
             .setDescription("This is a list of all the commands that are available to be used by almost anyone! ||(Except for the ones under Moderating which you need the correct permissions for.)||");
         for(command in interaction.client.commands) {
-            if (command.category == interaction.options.get("category") && interaction.options.get("category") != null) {
+            if (interaction.options.get("category") != null) {
                 
             }
 
