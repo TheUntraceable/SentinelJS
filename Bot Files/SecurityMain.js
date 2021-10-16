@@ -5,7 +5,7 @@ const fs = require('fs');
 
 client.commands = new Collection();
 
-fs.readdir("./helpers/", (err, files) => {
+fs.readdir(`${process.cwd()}/Bot Files/helpers/`, (err, files) => {
 	if (err) { throw err }
 	
 	for (const file of files) {

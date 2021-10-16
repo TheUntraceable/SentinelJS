@@ -7,12 +7,12 @@ module.exports = client => {
     client.loadCommands = () => {
         
         for(category of categories) {
-            const commandFiles = fs.readdirSync(`./commands/${category}`).filter(file => file.endsWith('.js'));
+            const commandFiles = fs.readdirSync(`${process.cwd()}/Bot Files/commands/${category}`).filter(file => file.endsWith('.js'));
 
             for (const file of commandFiles) {
 
                 try {
-                    const command = require(`../commands/${category}/${file}`);
+                    const command = require(`${process.cwd()}/Bot Files/commands/${category}/${file}`);
                     client.commands.set(command.data.name, command);
                     console.log(`✅ Loaded ${command.data.name}.`)
                 } catch(e) {
