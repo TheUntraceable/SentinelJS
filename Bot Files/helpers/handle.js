@@ -19,18 +19,21 @@ module.exports = client => {
         
         try {
             await command.execute(interaction);
-
+            console.log(interaction.client.data_analysis)
+            interaction.client.data_analysis[command.data.name] += 1
+            console.log(interaction.client.data_analysis[command.data.name])
+            
             command.cooldowns.add(interaction.member.id)
 
             await timer(command.cooldown * 1000)
 
-            command.cooldowns.delete(interaction.member.id)           
+            command.cooldowns.delete(interaction.member.id)
 
         } catch (error) {
 
             console.error(error);
 
-            return interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+            return interaction.reply({ content: `There was an error while executing this command!\nError:${error}`, ephemeral: true });
         }
     }
 }
