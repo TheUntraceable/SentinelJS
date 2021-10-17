@@ -4,6 +4,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS,Intents.FLAGS.GUILD_M
 const fs = require('fs');
 
 client.commands = new Collection();
+client.data_analysis = {}
 client.command_names = new Array();
 
 fs.readdir(`${process.cwd()}/helpers/`, (err, files) => {
