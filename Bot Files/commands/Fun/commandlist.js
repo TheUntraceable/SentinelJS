@@ -2,7 +2,7 @@ const { MessageActionRow, MessageEmbed ,MessageSelectMenu } = require("discord.j
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const get_commands = (client,category=undefined) => {
     data = new Array();
-    for (command in client.command_names) {
+    for (command of client.command_names) {
         const Configuration = new Set();
         const DataAnalysis = new Set();
         const Fun = new Set(); 
@@ -10,10 +10,10 @@ const get_commands = (client,category=undefined) => {
         const Moderating = new Set();
         const Status = new Set();
         const Unknown = new Set();
+                
         if(category === undefined) {
             for (command of client.command_names) {
                 let commandObject = client.commands.get(command)
-                
                 if (commandObject.category.toLowerCase() == "configuration") {
                     Configuration.add(command)    
                 
@@ -37,16 +37,11 @@ const get_commands = (client,category=undefined) => {
                 } else {
                     Unknown.add(command)
                 }
-                return [Configuration,DataAnalysis,Fun,Invitelogger,Moderating,Status,Unknown]
+                return [{configuration : Configuration,dataanalysis:DataAnalysis,fun:Fun,invitelogger:Invitelogger,moderating:Moderating,status:Status,unknown:Unknown}]
             }    
         }
-        
-        {
-            if(command[1].category == category) {
-                data.append({c : command[1].name})
-            }
-        }
-    }
+
+}
 
     return data
 }
@@ -59,11 +54,11 @@ module.exports = {
             option.setName('category')
                 .setDescription('The command category to view.')
                 .setRequired(false)),    
-
+    usage : "/commandlist <category_of_commands>",
     cooldown : 5,
     cooldowns : new Set(),
 
-    async execute(interaction) {
+    async execute(interaction) {            
         let message = "";
         const sel = new MessageActionRow()
         .addComponents(
@@ -99,19 +94,37 @@ module.exports = {
             .setColor("#51ff00")
             .setDescription("This is a list of all the commands that are available to be used by almost anyone! ||(Except for the ones under Moderating which you need the correct permissions for.)||");
             
-            if (!interaction.options.get("category")) {
-                for(command in get_commands(interaction.client)) {
-                    message += `\`${command["c"]}\`\n`
-                }
-            }
-        
-            else if (interaction.options.get("category")) {
-                for (command in get_commands(interaction.client,interaction.options.get("category"))) {
-                    message += `$\`{command["c"]}\`\n`
-                }
-            }
+        if(!interaction.options.getString("category")) {
+                const dictionary = get_commands(interaction.client)
+                embed.addFields([
+                    {
+                        name : "Configuration",
+                        value : dictionary["configuration"],
+                        inline : true
+                    },{
+                        name : "Data Analysis",
+                        value : dictionary["dataanalysis"],
+                        inline : true,
+                    },{
+                        name : "Fun",
+                        value : dictionary["fun"],
+                        inline : true,
+                    },{
+                        name : "InviteLogger",
+                        value : dictionary["fun"],
+                        inline : true,
+                    },{
+                        name : "Moderating",
+                        value : dictionary["moderating"],
+                        inline : true,
+                    },{
+                        name : "Status",
+                        value : dictionary["status"],
+                        inline : true,
+                    }
+                ])
+        }
 
-        embed.addField("Commands: ",message)
 
         await interaction.reply({embeds : [embed], components : [sel]});
     }
