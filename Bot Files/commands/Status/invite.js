@@ -6,7 +6,7 @@ module.exports = {
 		.setName('invite')
 		.setDescription('invite the bot'),
 	async execute(interaction) {
- const botAdd = `[Thank you for adding me!](invite link here
+ const botAdd = `[Thank you for adding me!](https://dsc.gg/security)`
 )`
         const pingy = new MessageEmbed()
 	.setColor('RANDOM')
