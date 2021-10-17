@@ -6,13 +6,12 @@ module.exports = {
 		.setName('invite')
 		.setDescription('invite the bot'),
 	async execute(interaction) {
- const botAdd = `[Thank you for adding me!](https://dsc.gg/security)`
-)`
-        const pingy = new MessageEmbed()
-	.setColor('RANDOM')
-	.setTitle("Invite Link!")
-	.setDescription(botAdd)
-	.setTimestamp()
-		return interaction.reply({ embeds: [pingy] });
+
+		const pingy = new MessageEmbed()
+		.setColor('RANDOM')
+		.setTitle("Invite Link!")
+		.setDescription(`[Thank you for adding me!](https://dsc.gg/security)`)
+		.setTimestamp()
+			return await interaction.reply({ embeds: [pingy] });
 	},
 };
