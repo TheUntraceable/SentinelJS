@@ -31,7 +31,7 @@ module.exports = {
         if(interaction.guild.ownerId === user.id) return await interaction.reply({ephemeral:true,embeds: [new MessageEmbed().setColor("#ff0000").setTitle("You can not ban them because they own the server.").setDescription("They own the server meaning that I can not ban them.")]})
         if(!interaction.guild.me.permissions.has("BAN_MEMBERS")) return await interaction.reply({ephemeral:true,embeds: [new MessageEmbed().setColor("#ff0000").setTitle("I do not have the `BAN_MEMBERS` permission.").setDescription("I do not have the `BAN_MEMBERS` permission.")]})
         if(!user.bannable) return await interaction.reply({ephemeral:true,embeds: [new MessageEmbed().setColor("#ff0000").setTitle("I cannot ban that member.").setDescription("For some odd reason, I cannot ban that person..")]})
-        user.ban(`Action by ${interaction.member.id}.`)
+        interaction.guild.members.ban(`Action by ${interaction.member.id}.`)
             .then(async banInfo =>
                 await interaction.reply({content : c, ephemeral: true ,embeds : [new MessageEmbed().setTitle("Banned!").setColor("RANDOM").setDescription(`I successfully have banned ${banInfo.user.toString()} from the server!\nReason: ${reason || "None"}`)]})
             ).catch (
