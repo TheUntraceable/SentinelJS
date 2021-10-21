@@ -2,6 +2,7 @@ const { MessageActionRow, MessageEmbed ,MessageSelectMenu } = require("discord.j
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const get_commands = (client,category=undefined) => {
 
+    const Payload = new Set();
     const Configuration = new Set();
     const DataAnalysis = new Set();
     const Fun = new Set(); 
@@ -11,38 +12,39 @@ const get_commands = (client,category=undefined) => {
     const Unknown = new Set();
 
     for (command of client.command_names) {
-                
+          
         if(!category) {
-            for (command of client.command_names) {
+                const commandObject = client.commands.get(command);
 
-                const commandObject = client.commands.get(command)
-                
                 if (commandObject.category.toLowerCase() == "configuration") {
-                    Configuration.add(command)    
+                    Configuration.add(command);    
                 
                 } else if(commandObject.category.toLowerCase() == "dataanalysis") {
-                    DataAnalysis.add(command)
+                    DataAnalysis.add(command);
 
                 } else if(commandObject.category.toLowerCase() == "fun") {
-                    Fun.add(command)
+                    Fun.add(command);
 
                 } else if(commandObject.category.toLowerCase() == "invitelogger") { 
-                    Invitelogger.add(command)
+                    Invitelogger.add(command);
 
                 } else if(commandObject.category.toLowerCase() == "moderating") {
-                    Moderating.add(command)
+                    Moderating.add(command);
 
                 } else if(commandObject.category.toLowerCase() == "status") {
-                    Status.add(command)
+                    Status.add(command);
                 
                 } else if(command.category.toLowerCase() == "theuntraceableonly") {
                     continue
                 } else {
-                    Unknown.add(command)
+                    Unknown.add(command);
                 }
-                return {configuration : Configuration,fun:Fun,invitelogger:Invitelogger,dataanalysis:DataAnalysis,moderating:Moderating,status:Status,unknown:Unknown}
-            }    
-        }
+                return {configuration : Configuration,fun:Fun,invitelogger:Invitelogger,dataanalysis:DataAnalysis,moderating:Moderating,status:Status,unknown:Unknown};
+            } else {
+                if (commandObject.category.toLowerCase() == "configuration") {
+                    Payload.add(command);
+            }
+        return Payload;
     }
 }
 
@@ -88,7 +90,7 @@ module.exports = {
                         value : "moderating"    
                     },
                 ])
-            )
+            );
             const embed = new MessageEmbed()
             .setTitle("Here are a list of all the available commands!")
             .setColor("#51ff00")
@@ -96,9 +98,9 @@ module.exports = {
             
         if(!interaction.options.getString("category")) {
         
-                const dictionary = get_commands(interaction.client)
+                const dictionary = get_commands(interaction.client);
 
-                console.log(dictionary)
+                console.log(dictionary);
                 
                 embed.addFields([
                     {
@@ -126,10 +128,10 @@ module.exports = {
                         value : dictionary["status"] ? dictionary["status"] : "None.",
                         inline : true,
                     }
-                ])
-        }
-
+                ]);
+            }
 
         await interaction.reply({embeds : [embed], components : [sel]});
+        }
     }
-};
+}
