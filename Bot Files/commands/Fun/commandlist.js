@@ -1,25 +1,28 @@
 const { MessageActionRow, MessageEmbed ,MessageSelectMenu } = require("discord.js");
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const get_commands = (client,category=undefined) => {
-    data = new Array();
+
+    const Configuration = new Set();
+    const DataAnalysis = new Set();
+    const Fun = new Set(); 
+    const Invitelogger = new Set();
+    const Moderating = new Set();
+    const Status = new Set();
+    const Unknown = new Set();
+
     for (command of client.command_names) {
-        const Configuration = new Set();
-        const DataAnalysis = new Set();
-        const Fun = new Set(); 
-        const Invitelogger = new Set();
-        const Moderating = new Set();
-        const Status = new Set();
-        const Unknown = new Set();
                 
-        if(category === undefined) {
+        if(!category) {
             for (command of client.command_names) {
-                let commandObject = client.commands.get(command)
+
+                const commandObject = client.commands.get(command)
+                
                 if (commandObject.category.toLowerCase() == "configuration") {
                     Configuration.add(command)    
                 
-                } else if(commandObject.category.toLowerCase() == "dataAnalysis") {
+                } else if(commandObject.category.toLowerCase() == "dataanalysis") {
                     DataAnalysis.add(command)
-            
+
                 } else if(commandObject.category.toLowerCase() == "fun") {
                     Fun.add(command)
 
@@ -31,19 +34,16 @@ const get_commands = (client,category=undefined) => {
 
                 } else if(commandObject.category.toLowerCase() == "status") {
                     Status.add(command)
-
+                
                 } else if(command.category.toLowerCase() == "theuntraceableonly") {
                     continue
                 } else {
                     Unknown.add(command)
                 }
-                return [{configuration : Configuration,dataanalysis:DataAnalysis,fun:Fun,invitelogger:Invitelogger,moderating:Moderating,status:Status,unknown:Unknown}]
+                return {configuration : Configuration,fun:Fun,invitelogger:Invitelogger,dataanalysis:DataAnalysis,moderating:Moderating,status:Status,unknown:Unknown}
             }    
         }
-
-}
-
-    return data
+    }
 }
 
 module.exports = {
@@ -54,12 +54,12 @@ module.exports = {
             option.setName('category')
                 .setDescription('The command category to view.')
                 .setRequired(false)),    
+
     usage : "/commandlist <category_of_commands>",
     cooldown : 5,
     cooldowns : new Set(),
 
     async execute(interaction) {            
-        let message = "";
         const sel = new MessageActionRow()
         .addComponents(
             new MessageSelectMenu()
@@ -95,31 +95,35 @@ module.exports = {
             .setDescription("This is a list of all the commands that are available to be used by almost anyone! ||(Except for the ones under Moderating which you need the correct permissions for.)||");
             
         if(!interaction.options.getString("category")) {
+        
                 const dictionary = get_commands(interaction.client)
+
+                console.log(dictionary)
+                
                 embed.addFields([
                     {
                         name : "Configuration",
-                        value : dictionary["configuration"],
+                        value : dictionary["configuration"] ? dictionary["configuration"] : "None.",
                         inline : true
                     },{
                         name : "Data Analysis",
-                        value : dictionary["dataanalysis"],
+                        value : dictionary["dataanalysis"] ? dictionary["dataanalysis"] : "None.",
                         inline : true,
                     },{
                         name : "Fun",
-                        value : dictionary["fun"],
+                        value : dictionary["fun"] ? dictionary["fun"] : "None.",
                         inline : true,
                     },{
                         name : "InviteLogger",
-                        value : dictionary["fun"],
+                        value : dictionary["invitelogger"] ? dictionary["invitelogger"] : "None.",
                         inline : true,
                     },{
                         name : "Moderating",
-                        value : dictionary["moderating"],
+                        value : dictionary["moderating"] ? dictionary["moderating"] : "None.",
                         inline : true,
                     },{
                         name : "Status",
-                        value : dictionary["status"],
+                        value : dictionary["status"] ? dictionary["status"] : "None.",
                         inline : true,
                     }
                 ])

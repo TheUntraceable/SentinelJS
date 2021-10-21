@@ -3,34 +3,39 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('kick-with-id')
-        .setDescription('Kicks a member using their ID.')
+		.setName('kick')
+        .setDescription('Kicks a member.')
+        .addUserOption(option =>
+            option.setName("member")
+            .setDescription("The member you would like to kick.")
+            .setRequired(true)
+            )
         .addStringOption(option =>
-            option.setName("member-id")
-            .setDescription("The ID of the member you would like to kick.")
-            .required(true)
+            option.setName("reason")
+            .setDescription("The reason why you would like to kick this member.")
             ),
-        usage : "/kick <user-id> [reason]",
+    usage : "/kick <user-id> [reason]",
 	cooldowns : new Set(),
 	cooldown : 10,
 	category : "moderating",
+
     async execute(interaction) {
 
-
-        
-        if(!interaction.member.permissions.has("KICK_MEMBERS")) { 
-            return await interaction.reply({ephemeral : true,embeds : [new MessageEmbed.setColor("#ff0000").setTitle="You do not have the `KICK_MEMBERS` permission.".setDescription("You need `KICK_MEMBERS` to execute this command. Try again once you are sure you have this permission.")]})
-        }  
-        
-        user = interaction.guild.members.cache.get(interaction.options.get("id"))
-
-        if(!user) await interaction.reply({content : "That ID is invalid."})
-        const embed = new MessageEmbed().setTitle(`You have been kicked from: ${interaction.guild.name} by ${interaction.member.name}.\n${reason ? `Reason: ${reason}` : "No reason was specified."}`).setColor("#ff0000")
-        try {
-            user.send({embeds : [embed]})
-        } catch (error) {
-            console.error(error)
-        }
-        await
-        }
+        const user = interaction.options.getMember("member")
+        const reason = interaction.options.getString("reason")
+        if(!user) await interaction.reply({content : "That member is invalid."})
+        if(user == interaction.guild.me) return await interaction.reply({embeds : [new MessageEmbed().setColor("#ff0000").setTitle("You can not kick me.").setDescription("I can't kick myself! You'll have to kick me manually.")]})
+        if(!interaction.member.permissions.has("KICK_MEMBERS") && !interaction.guild.ownerId == interaction.member.id) return await interaction.reply({ephemeral : true,embeds : [new MessageEmbed().setColor("#ff0000").setTitle("You do not have the `KICK_MEMBERS` permission.").setDescription("You need `KICK_MEMBERS` to execute this command. Try again once you are sure you have this permission.")]})    
+        if(user.roles.highest >= interaction.member.roles.highest && !interaction.guild.ownerId == interaction.member.id) return await interaction.reply({ephemeral : true, embeds : [new MessageEmbed().setColor("#ff0000").setTitle("You can not kick them due to role hierarchy.").setDescription("They have a role that is the same/higher than your highest role.")]})
+        if(user.roles.highest >= interaction.guild.me.roles.highest && !interaction.guild.ownerId == interaction.member.id) return await interaction.reply({ephemeral:true, embeds : [new MessageEmbed().setColor("#ff0000").setTitle("I can not kick them due to role hierarchy.").setDescription("They have a role that is the same/higher than my highest role.")]})
+        if(interaction.guild.ownerId === user.id) return await interaction.reply({ephemeral:true,embeds: [new MessageEmbed().setColor("#ff0000").setTitle("You can not kick them because they own the server.").setDescription("They own the server meaning that I can not kick them.")]})
+        if(!interaction.guild.me.permissions.has("KICK_MEMBERS")) return await interaction.reply({ephemeral:true,embeds: [new MessageEmbed().setColor("#ff0000").setTitle("I do not have the `KICK_MEMBERS` permission.").setDescription("I do not have the `KICK_MEMBERS` permission.")]})
+        if(!user.kickable) return await interaction.reply({ephemeral:true,embeds: [new MessageEmbed().setColor("#ff0000").setTitle("I cannot kick that member.").setDescription("For some odd reason, I cannot kick that person..")]})
+        user.kick(`Action by ${interaction.member.id}.`)
+            .then(async banInfo =>
+                await interaction.reply({content : c, ephemeral: true ,embeds : [new MessageEmbed().setTitle("Kicked!").setColor("RANDOM").setDescription(`I successfully have kicked ${banInfo.user.toString()} from the server!\nReason: ${reason || "None"}`)]})
+            ).catch (
+                console.error()
+            )
     }
+}
