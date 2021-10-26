@@ -1,5 +1,5 @@
 # **Sentinel**
-[![](https://custom-icon-badges.herokuapp.com/github/stars/TheUntraceable/SentinelJS?logo=star)][https://github.com/TheUntraceable]
+[![](https://custom-icon-badges.herokuapp.com/github/stars/TheUntraceable/SentinelJS?logo=star)]
 [![](https://ptb.discord.com/api/guilds/794739329956053063/embed.png)](https://discord.gg/dYwHhQKxBs)
 [![](https://custom-icon-badges.herokuapp.com/github/commit-activity/w/TheUntraceable/SentinelJS?style=plastic&logo=github)](https://github.com/TheUntraceable/SentinelJS)
 [![](https://custom-icon-badges.herokuapp.com/github/last-commit/TheUntraceable/SentinelJS?style=plastic&logo=github)](https://github.com/TheUntraceable/SentinelJS)
