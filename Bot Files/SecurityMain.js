@@ -5,6 +5,7 @@ const fs = require('fs');
 
 client.commands = new Collection();
 client.data_analysis = []
+client.config = config
 client.command_names = new Array();
 
 fs.readdir(`${process.cwd()}/helpers/`, (err, files) => {
@@ -26,4 +27,4 @@ client.on("interactionCreate", interaction => {
 	client.handle(interaction)
 })
 
-client.login(config["token"])
+client.login(config.token)

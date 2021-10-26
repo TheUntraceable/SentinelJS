@@ -32,7 +32,11 @@ module.exports = {
                 name: "Users: ",
                 value: `I can see ${interaction.client.users.cache.size} user(s).`,
                 inline: true
-            }
+            },{
+                name: "Version: ",
+                value: `I am in version ${interaction.client.config.beta ? "Beta" : ""}${interaction.client.config.version}`,
+                inline: true
+            } 
         ])
         await interaction.reply({embeds : [embed]})
     }
