@@ -14,7 +14,6 @@ module.exports = {
             option.setName("reason")
             .setDescription("The reason why you would like to ban this user.")
             ),
-    usage : "/ban <user-id> [reason]",
 	cooldowns : new Set(),
 	cooldown : 10,
 	category : "moderating",

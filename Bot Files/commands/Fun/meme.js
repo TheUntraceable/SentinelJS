@@ -8,7 +8,7 @@ const {
 const url = "https://www.reddit.com/r/meme/hot/.json?limit=100";
 const https = require("https");
 module.exports = {
-	  data: new SlashCommandBuilder().setName("meme").setDescription("Get a meme"),
+  data: new SlashCommandBuilder().setName("meme").setDescription("Get a meme"),
   cooldown: 5,
   cooldowns: new Set(),
   async execute(interaction) {
@@ -36,7 +36,7 @@ module.exports = {
 			  .setDescription(`[${title}](${link})\n\n${text}`)
 			  .setURL(`https://reddit.com/${subRedditName}`);
 
-			await interaction.reply({
+			interaction.reply({
 			  embeds: [textembed],
 			  components: [yeah],
 			});
@@ -57,7 +57,7 @@ module.exports = {
 			  .setColor("RANDOM")
 			  .setDescription(`[${title}](${link})\n\n${text}`)
 			  .setURL(`https://reddit.com/${subRedditName}`);
-			await interaction.reply({
+			interaction.reply({
 			  embeds: [textembed],
 			  components: [hello],
 			});
@@ -75,7 +75,7 @@ module.exports = {
 			.setColor("RANDOM")
 			.setDescription(`[${title}](${link})`)
 			.setURL(`https://reddit.com/${subRedditName}`);
-		  await interaction.reply({ embeds: [imageembed], components: [hi] });
+		  interaction.reply({ embeds: [imageembed], components: [hi] });
 		})
 		.on("error", function (e) {
 		  console.log("Got an error with memes lol: ", e);

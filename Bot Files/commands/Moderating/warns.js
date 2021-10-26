@@ -2,13 +2,13 @@ const { SlashCommandBuilder } = require("@discordjs/builders")
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName("userinfo")
-    .setDescription("Displays information about a user.")
+    .setName("warns")
+    .setDescription("Lets you view a users warns.")
     .addUserOption(option =>
-        option
+        option       
         .setName("user")
-        .setDescription("The user you would like to get information about.")
-        .setRequired(true)
+        .setDescription("The user's warns you would like to view.")
+        .setRequired(false)
         ),
     implemented: false
 }

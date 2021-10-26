@@ -1,5 +1,6 @@
 const { MessageActionRow, MessageEmbed ,MessageSelectMenu } = require("discord.js");
 const { SlashCommandBuilder } = require('@discordjs/builders');
+
 const get_commands = (client,category=undefined) => {
 
     const Payload = new Set();
@@ -44,7 +45,8 @@ const get_commands = (client,category=undefined) => {
                 if (commandObject.category.toLowerCase() == "configuration") {
                     Payload.add(command);
             }
-        return Payload;
+            return Payload;
+        }
     }
 }
 
@@ -57,7 +59,6 @@ module.exports = {
                 .setDescription('The command category to view.')
                 .setRequired(false)),    
 
-    usage : "/commandlist <category_of_commands>",
     cooldown : 5,
     cooldowns : new Set(),
 
@@ -134,4 +135,3 @@ module.exports = {
         await interaction.reply({embeds : [embed], components : [sel]});
         }
     }
-}
