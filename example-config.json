@@ -1,0 +1,6 @@
+{
+    "clientId" : "898268227216506940",
+    "token" : "Discord-Bot-Token",
+    "version" : 0.7, // Remove this comment. Make sure you keep this version in here for the `botstats` command and for troubleshooting.
+    "beta" : true
+}

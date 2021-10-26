@@ -28,8 +28,34 @@ Unlike army soldiers, Sentinel knows how to have fun, instead of just having sec
 
 So what are you waiting for? Invite Sentinel now!
 -
+## How do I use it?
+I would prefer if you would just invite the [bot](https://dsc.gg/security), but because someone is going to run their own instance because they have severe trust issues, so I may as well hold their hand the entire way through it.
+
+    - Step One
+        - Install Docker
+        - Install the repository.
+        - Lucky for you, I made a Dockerfile so that you can easily run the bot, even if you're on Linux, Potato, or even rooted android! I don't know if it works.
+
+    - Step Two
+        - Configure the bot.
+        - Simply add a config.json within the "Bot Files" directory.
+        - After this, add some data which should make the file look like the example-config.json.
+
+    - Step Three
+        - Build the Dockerfile
+        - Simply make sure you're in the directory containing my Dockerfile
+        - Run "docker build ."
+      
+    - Step Four
+        - Run the Docker Container
+        - When you ran the docker build command, it should return something like "sha256:random_letters_well_not_really_just_sha256_encrypted_letters?"
+        - Remove the "sha256:" part and then run "docker run {whatever_you_have_here}"
+        - If you have any issues, don't hesitate to join the Discord, link below.
+-
+
 > **Usefull Links**
 > + [Patreon](https://www.patreon.com/user?u=50781264)
 > + [Discord](https://discord.gg/dYwHhQKxBs)
 > + [Website](https://sentinel.theuntraceable.tk) *I am using a free domain as of now because I want to make sure I don't waste any money.*
 > + [License](https://github.com/TheUntraceable/SentinelJS/blob/e1e020bf80d79c692bf79c6491e21e364071623f/LICENSE.md)
+> + [Invite](https://dsc.gg/security)
