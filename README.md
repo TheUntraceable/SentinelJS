@@ -3,7 +3,7 @@
 [![](https://ptb.discord.com/api/guilds/813543866220806216/embed.png)](https://discord.gg/dYwHhQKxBs)
 [![](https://custom-icon-badges.herokuapp.com/github/commit-activity/w/TheUntraceable/SentinelJS?style=plastic&logo=github)](https://github.com/TheUntraceable/SentinelJS)
 [![](https://custom-icon-badges.herokuapp.com/github/last-commit/TheUntraceable/SentinelJS?style=plastic&logo=github)](https://github.com/TheUntraceable/SentinelJS)
-
+[![Website Status](https://api.netlify.com/api/v1/badges/93ef3cbc-e5f8-4bef-9329-ccc635d37987/deploy-status)](https://sentinel.theuntraceable.tk)
 ## **What is it?**
 Sentinel (originally named Security) is designed to keep your discord server nice and secure from potential threats to your server and community. Some of the rich  features included are: 
 
