@@ -64,26 +64,33 @@ module.exports = client => {
             const command = client.commands.get(interaction.commandName);
 
             if(!command) return;
-            if(!command.cooldowns) {
+            
+            if(command.cooldowns != undefined && command.cooldown == undefined || command.cooldowns == undefined && command.cooldown != undefined) {
                 console.error(`${command.data.name} has not got a cooldowns list but does have a cooldown. Fix this.`)
             }
-    
-            if(command.cooldowns.has(interaction.member.id)) {
-                return await interaction.reply(`You are on cooldown. This command has ${command.cooldown}, please try again later.`)
+            if(command.cooldowns != undefined) {
+                if(command.cooldowns.has(interaction.member.id)) {
+                    return await interaction.reply(`You are on cooldown. This command has ${command.cooldown}, please try again later.`)
+                }
             }
-            
+            if(command.implemented != undefined){
+                if(command.implemented === false) {
+                    return await interaction.reply({ephemeral:true,embeds : [new MessageEmbed().setTitle("This command isn't created yet!").setDescription("Hey there! Thanks for showing interest in Sentinel, but I regret to inform you that this command has not yet been implemented. To speed up and encourage my developers to make the commands, they have all of the commands setup on Discord's side, but not yet on their side, thus this command in not usable as of now! Keep an eye out for updates! Thanks, and sorry!").setColor("RANDOM")]})
+                }
+            }    
             try {
                 await command.execute(interaction);
-                console.log(interaction.client.data_analysis)
+                if(command.cooldowns & command.cooldown != undefined){
+
+                    command.cooldowns.add(interaction.member.id)
+    
+                    await timer(command.cooldown * 1000)
+        
+                    command.cooldowns.delete(interaction.member.id)
+    
+                }
                 interaction.client.data_analysis[command.data.name] += 1
-                console.log(interaction.client.data_analysis[command.data.name])
-                
-                command.cooldowns.add(interaction.member.id)
-    
-                await timer(command.cooldown * 1000)
-    
-                command.cooldowns.delete(interaction.member.id)
-    
+                    
             } catch (error) {
     
                 console.error(error);

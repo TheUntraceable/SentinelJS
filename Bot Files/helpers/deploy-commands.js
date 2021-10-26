@@ -1,6 +1,6 @@
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
-const { token, clientId, guildId } = require('../config.json');
+const { token, clientId } = require('../config.json');
 
 const categories = ["Configuration","DataAnalysis","Fun","Invitelogger","Moderating","Status","TheUntraceableOnly"]
 const fs = require('fs');
@@ -12,16 +12,17 @@ for (const folder of categories) {
 	for (const file of commandFiles) {
 		const command = require(`${process.cwd()}/commands/${folder}/${file}`);
 		commands.push(command.data.toJSON());
-}
+	}
 }
 module.exports = client => {
 	client.deploy = async () => {
 		const rest = new REST({ version: '9' }).setToken(token);
 			try {
+
 				console.log('Started refreshing application (/) commands.');
-		
+
 				await rest.put(
-					Routes.applicationGuildCommands(clientId, guildId),
+					Routes.applicationCommands(clientId),
 					{ body: commands },
 				);
 		
