@@ -23,8 +23,6 @@ Sentinel (originally named Security) is designed to keep your discord server nic
 Unlike army soldiers, Sentinel knows how to have fun, instead of just having security and leaving it there, there are a few categories of rich, enjoyable, extra categories of commands such as:
 - **Economy**
     - Become the second richest person (because Untraceable is first all the time, or is she? ) in this economy system from begging on the streets for spare change to working as a multimillionare invester. (jobs and such will come soon trust me ;) 
-- **Music**
-    - This might have some issues as the lavalink server may be down or an issue with Wavelink.
 - **Games**
     - There are a bunch of games you can play within discord within a command!
 
