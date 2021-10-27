@@ -16,7 +16,7 @@ Sentinel (originally named Security) is designed to keep your discord server nic
 - **Invite Logging:**
     - Ever wondered how you're getting raided? Just check with this feature which will found out who invited who with what invite and who made that invite.
 - **Moderation:**
-    - Someone disobeying the rules? We have the fix for that, ***moderation commands***, these commands are sure to show them whoose boss and that their actions will always have consequences. 
+    - Someone disobeying the rules? We have the fix for that, ***moderation commands***, these commands are sure to show them who's boss and that their actions will always have consequences. 
 > **Note: There are many more rich, easy, useful features to come so be ready for 100% security and stability.**
 --------
 ## Security is boring, what else?
