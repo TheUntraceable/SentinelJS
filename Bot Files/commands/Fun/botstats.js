@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { SlashCommandBuilder, time } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {
@@ -10,11 +10,11 @@ module.exports = {
         const embed = new MessageEmbed().setTitle("Bot stats").setColor("#2F3136").setDescription("This embed will contain stats regarding me.").addFields([
             {
                 name : "Uptime: ",
-                value: `<t:${Math.round(interaction.client.readyTimestamp / 1000)}:R>.`,
+                value: time(Math.round(interaction.client.readyTimestamp / 1000), "R"),
                 inline: true
             }, {
                 name : "Created: ",
-                value: `I was created on <t:${Math.round(interaction.client.application.createdTimestamp / 1000)}:D>.`,
+                value: `I was created on ${time(Math.round(interaction.client.application.createdTimestamp / 1000), "D")}.`,
                 inline: true
             },{
                 name: "Channels: ",

@@ -1,12 +1,12 @@
-const { MessageActionRow, MessageEmbed ,MessageSelectMenu } = require("discord.js");
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { MessageActionRow, MessageEmbed, MessageSelectMenu } = require("discord.js");
+const { SlashCommandBuilder, spoiler } = require('@discordjs/builders');
 
 const get_commands = (client,category=undefined) => {
 
     const Payload = new Set();
     const Configuration = new Set();
     const DataAnalysis = new Set();
-    const Fun = new Set(); 
+    const Fun = new Set();
     const Invitelogger = new Set();
     const Moderating = new Set();
     const Status = new Set();
@@ -95,7 +95,7 @@ module.exports = {
             const embed = new MessageEmbed()
             .setTitle("Here are a list of all the available commands!")
             .setColor("#51ff00")
-            .setDescription("This is a list of all the commands that are available to be used by almost anyone! ||(Except for the ones under Moderating which you need the correct permissions for.)||");
+            .setDescription("This is a list of all the commands that are available to be used by almost anyone! " + spoiler("(Except for the ones under Moderating which you need the correct permissions for.)"));
             
         if(!interaction.options.getString("category")) {
         
@@ -108,23 +108,23 @@ module.exports = {
                         name : "Configuration",
                         value : dictionary["configuration"] ? dictionary["configuration"] : "None.",
                         inline : true
-                    },{
+                    }, {
                         name : "Data Analysis",
                         value : dictionary["dataanalysis"] ? dictionary["dataanalysis"] : "None.",
                         inline : true,
-                    },{
+                    }, {
                         name : "Fun",
                         value : dictionary["fun"] ? dictionary["fun"] : "None.",
                         inline : true,
-                    },{
+                    }, {
                         name : "InviteLogger",
                         value : dictionary["invitelogger"] ? dictionary["invitelogger"] : "None.",
                         inline : true,
-                    },{
+                    }, {
                         name : "Moderating",
                         value : dictionary["moderating"] ? dictionary["moderating"] : "None.",
                         inline : true,
-                    },{
+                    }, {
                         name : "Status",
                         value : dictionary["status"] ? dictionary["status"] : "None.",
                         inline : true,
