@@ -12,9 +12,9 @@ Sentinel (originally named Security) is designed to keep your discord server nic
 - **Message Logging:**
     - This will log all messages! If you wanted to, you could view read how the conversation went on right from the logs with the instant reaction!
 - **Action Logging:**
-    - From editing a nickname to deleting channels, this feature has you covered on what actions being taken by who and when.
+    - From editing a nickname to deleting channels, this feature has you covered on what actions are being taken by who and when.
 - **Invite Logging:**
-    - Ever wondered how you're getting raided? Just check with this feature which will found out who invited who with what invite and who made that invite.
+    - Ever wondered how you're getting raided? Just check with this feature which will find out who invited who with what invite and who made that invite.
 - **Moderation:**
     - Someone disobeying the rules? We have the fix for that, ***moderation commands***, these commands are sure to show them who's boss and that their actions will always have consequences. 
 > **Note: There are many more rich, easy, useful features to come so be ready for 100% security and stability.**
@@ -22,7 +22,7 @@ Sentinel (originally named Security) is designed to keep your discord server nic
 ## Security is boring, what else?
 Unlike army soldiers, Sentinel knows how to have fun, instead of just having security and leaving it there, there are a few categories of rich, enjoyable, extra categories of commands such as:
 - **Economy**
-    - Become the second richest person (because Untraceable is first all the time, or is she? ) in this economy system from begging on the streets for spare change to working as a multimillionare invester. (jobs and such will come soon trust me ;) 
+    - Become the second richest person (because Untraceable is first all the time, or is she? ) in this economic system from begging on the streets for spare change to working as a multi millionaire investor. (jobs and such will come soon trust me ;) 
 - **Games**
     - There are a bunch of games you can play within discord within a command!
 
@@ -51,7 +51,6 @@ I would prefer if you would just invite the [bot](https://dsc.gg/security), but 
         - When you ran the docker build command, it should return something like "sha256:random_letters_well_not_really_just_sha256_encrypted_letters?"
         - Remove the "sha256:" part and then run "docker run {whatever_you_have_here}"
         - If you have any issues, don't hesitate to join the Discord, link below.
--
 
 > **Usefull Links**
 > + [Patreon](https://www.patreon.com/user?u=50781264)
