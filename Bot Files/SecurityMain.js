@@ -1,7 +1,8 @@
 const config = require('./config.json');
 const { Client, Collection, Intents } = require('discord.js');
-const client = new Client({ intents: [Intents.FLAGS.GUILDS,Intents.FLAGS.GUILD_MEMBERS,Intents.FLAGS.GUILD_MESSAGES] }); 
 const fs = require('fs');
+
+const client = new Client({ intents: [Intents.FLAGS.GUILDS,Intents.FLAGS.GUILD_MEMBERS,Intents.FLAGS.GUILD_MESSAGES] }); 
 
 client.commands = new Collection();
 client.data_analysis = []
@@ -23,8 +24,4 @@ fs.readdir(`${process.cwd()}/helpers/`, (err, files) => {
 	client.loadCommands();
 });
 
-client.on("interactionCreate", interaction => {
-	client.handle(interaction)
-})
-
-client.login(config.token)
+client.login(client.config.token)
