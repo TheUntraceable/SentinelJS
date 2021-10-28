@@ -70,7 +70,7 @@ module.exports = client => {
             }
             if(command.cooldowns != undefined) {
                 if(command.cooldowns.has(interaction.member.id)) {
-                    return await interaction.reply(`You are on cooldown. This command has ${command.cooldown}, please try again later.`)
+                    return await interaction.reply(`You are on cooldown. This cooldown will be gone <t:${Math.round(Date.now() / 1000) + command.cooldown}:R>, please try again later.`)
                 }
             }
             if(command.implemented != undefined){
@@ -80,7 +80,7 @@ module.exports = client => {
             }    
             try {
                 await command.execute(interaction);
-                if(command.cooldowns & command.cooldown != undefined){
+                if(command.cooldowns != undefined && command.cooldown != undefined){
 
                     command.cooldowns.add(interaction.member.id)
     
