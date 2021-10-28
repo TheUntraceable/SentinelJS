@@ -18,11 +18,7 @@ module.exports = {
                 inline: true
             },{
                 name: "Channels: ",
-                value: `I can see ${interaction.client.channels.cache.size} channel(s)`,
-                inline: true
-            },{
-                name: "Emojis: ",
-                value: `I can see ${interaction.client.emojis.size} emoji(s).`,
+                value: `I can see ${interaction.client.channels.cache.size} channel(s).`,
                 inline: true
             },{
                 name: "Guilds: ",
@@ -30,11 +26,11 @@ module.exports = {
                 inline: true
             },{
                 name: "Users: ",
-                value: `I can see ${interaction.client.users.cache.size} user(s).`,
+                value: `I can see ${interaction.client.users.cache.size} user(s) in my cache. ||(This means that they have either used the bot or someone has used them for a command for example the rob command ;())||`,
                 inline: true
             },{
                 name: "Version: ",
-                value: `I am in version ${interaction.client.config.beta ? "Beta" : ""}${interaction.client.config.version}`,
+                value: `I am in version ${interaction.client.config.beta ? "Beta " : ""}${interaction.client.config.version}`,
                 inline: true
             } 
         ])
