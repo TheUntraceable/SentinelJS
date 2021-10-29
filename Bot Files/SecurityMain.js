@@ -22,6 +22,7 @@ fs.readdir(`${process.cwd()}/helpers/`, (err, files) => {
 	client.deploy()
 	client.loadEvents();
 	client.loadCommands();
+	client.connect_to_mongo()
 });
 
 client.login(client.config.token)
