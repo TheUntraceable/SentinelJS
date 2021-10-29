@@ -8,6 +8,15 @@ module.exports = {
 	cooldown : 10,
 	category : "status",
 	async execute(interaction) {
-		await interaction.reply({content : `Client Latency - ${interaction.client.ws.ping}ms`});
+		let emoji = ""
+		if(interaction.client.ws.ping < 150) {
+			emoji = "<:theconnectionisgreat:902500574774321202>"
+		} else if(interaction.client.ws.ping < 250) {
+			emoji = "<:decentconnection:902500575042744360>"
+		} else if(interaction.client.ws.ping > 500) {
+			emoji = "<:badconnection:902500575957098506>"
+		}
+
+		await interaction.reply({content : `Pong! ${emoji} Client Latency - ${interaction.client.ws.ping}ms`});
 	}
 };
