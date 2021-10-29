@@ -1,1 +1,25 @@
-work pleasee
+const { MessageEmbed } = require("discord.js")
+
+module.exports = {
+    name: "guildIntegrationsUpdate",
+    once: false,
+    async execute(guild) {
+
+        const data = await guild.client.db.guilds.findOne({
+            guildId : guild.id
+        })
+        
+        if(data.actionLogs != false) {
+
+            const embed = new MessageEmbed()
+            .setTitle("Integrations have been updated!")
+            .setDescription(`This servers integrations have been updated!`) 
+            .setColor("YELLOW")
+            .setTimestamp()
+        
+            guild.channels.fetch(data.actionLogs).then(channel =>
+                channel.send({embeds:  [embed]})
+            )
+        }
+    }
+}
