@@ -44,6 +44,7 @@ const get_commands = (client,category=undefined) => {
         }
     }
 }
+
 module.exports = client => { 
 
     client.handle = async interaction => {
@@ -61,17 +62,27 @@ module.exports = client => {
             }
         }
         if(interaction.isCommand()) {
+            if(!interaction.inGuild()) { 
+                return await interaction.reply("Commands will only work within servers.")
+            }
+
             const command = client.commands.get(interaction.commandName);
 
             if(!command) return;
             
-            if(command.cooldowns != undefined && command.cooldown == undefined || command.cooldowns == undefined && command.cooldown != undefined) {
+            if(command.enabled === false) {
+                return await interaction.reply(`${command.data.name} has been disabled.`)
+            }
+            
+            if(command.cooldowns != undefined & command.cooldown == undefined || command.cooldowns == undefined & command.cooldown != undefined) {
                 console.error(`${command.data.name} has not got a cooldowns list but does have a cooldown. Fix this.`)
             }
-            if(command.cooldowns != undefined) {
+
+            if(!command.cooldowns == undefined) {
                 if(command.cooldowns.has(interaction.member.id)) {
                     return await interaction.reply(`You are on cooldown. This cooldown will be gone <t:${Math.round(Date.now() / 1000) + command.cooldown}:R>, please try again later.`)
                 }
+            
             }
             if(command.implemented != undefined){
                 if(command.implemented === false) {

@@ -7,11 +7,12 @@ module.exports = client => {
 
         await mongo.connect();
 
-        console.log('Connected successfully to server');
+        console.log('Connected successfully to MongoDB');
         
         client.db = mongo.db("discord");
         
-        client.db.guilds = db.collection('guilds');
-        client.db.users = db.collection("users")	
+        client.db.guilds = client.db.collection('guilds');
+        client.db.users = client.db.collection("users")	
+        client.db.afk = client.db.collection("afk")
     }
 }
