@@ -7,12 +7,21 @@ module.exports = {
 	once: false,
 
 	async execute(channel) {
-        const id = await channel.client.mongo.guilds.find({})
+        const data = await channel.client.db.guilds.findOne({
+            guildId : channel.id
+        })
 
-        channel.guild.channels.fetch(id).then(channel =>
-        
-            channel.send({embeds : [new MessageEmbed().setColor("YELLOW").setTitle("Command deleted!").setDescription(`<:moderationmedium:902500576007426068> ${command.name} has been updated.`)]})
+        if(data.actionLogs != false) {
 
-        )
+            const embed = new MessageEmbed()
+            .setTitle("A new channel has been created!")
+            .setDescription(`A new channel: ${channel.name} has been created!`) // Add who created it or whatever
+            .setColor("#51ff00")
+            .setTimestamp()
+
+            channel.guild.channels.fetch(data.actionLogs).then(channel =>
+                channel.send({embeds: [embed]})
+            )
+        }
     }
 }
