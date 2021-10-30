@@ -16,7 +16,12 @@ const get_commands = (client,category=undefined) => {
 
                 const commandObject = client.commands.get(command)
                 
-                if (commandObject.category.toLowerCase() == "configuration") {
+                if(commandObject.category == undefined) {
+                    Unknown.add(command)
+
+                }
+
+                if(commandObject.category.toLowerCase() == "configuration") {
                     Configuration.add(command)    
                 
                 } else if(commandObject.category.toLowerCase() == "dataanalysis") {
@@ -36,9 +41,7 @@ const get_commands = (client,category=undefined) => {
                 
                 } else if(command.category.toLowerCase() == "theuntraceableonly") {
                     continue
-                } else {
-                    Unknown.add(command)
-                }
+                } 
                 return {configuration : Configuration,fun:Fun,invitelogger:Invitelogger,dataanalysis:DataAnalysis,moderating:Moderating,status:Status,unknown:Unknown}
             }    
         }
@@ -61,6 +64,7 @@ module.exports = client => {
                 })
             }
         }
+
         if(interaction.isCommand()) {
             if(!interaction.inGuild()) { 
                 return await interaction.reply("Commands will only work within servers.")
@@ -91,7 +95,7 @@ module.exports = client => {
             }    
             try {
                 await command.execute(interaction);
-                if(command.cooldowns != undefined && command.cooldown != undefined){
+                if(command.cooldowns != undefined && command.cooldown != undefined) {
 
                     command.cooldowns.add(interaction.member.id)
     
@@ -106,7 +110,7 @@ module.exports = client => {
     
                 console.error(error);
     
-                return interaction.reply({ content: `There was an error while executing this command!\nError:${error}`, ephemeral: true });
+                return interaction.followUp({ content: `There was an error while executing this command!\nError:${error}`, ephemeral: true });
             }
         } 
 
