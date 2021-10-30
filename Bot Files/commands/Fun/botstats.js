@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { SlashCommandBuilder, time } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {
@@ -26,13 +26,17 @@ module.exports = {
                 inline: true
             },{
                 name: "Users: ",
-                value: `I can see ${interaction.client.users.cache.size} user(s) in my cache. ||(This means that they have either used the bot or someone has used them for a command for example the rob command ;())||`,
+                value: `I can see ${interaction.client.users.cache.size} user(s) in my cache.`,
                 inline: true
             },{
                 name: "Version: ",
                 value: `I am in version ${interaction.client.config.beta ? "Beta " : ""}${interaction.client.config.version}`,
                 inline: true
-            } 
+            },{
+                name: "Joined server at: ",
+                value: `I joined this server ${time(Math.round(interaction.guild.joinedTimestamp / 1000), "R")}`,
+                inline: true
+            }
         ])
         await interaction.reply({embeds : [embed]})
     }
