@@ -3,14 +3,16 @@ const { SlashCommandBuilder } = require("@discordjs/builders")
 module.exports = {
 
     data : new SlashCommandBuilder()
-    .setName("member-update-logs")
-    .setDescription("Set the channel where I should send logs regarding member updates.")
+    .setName("voice-logs")
+    .setDescription("Set the channel where I should send logs regarding voice states.")
+    
     .addChannelOption(option =>
         option
         .setName("channel")
-        .setDescription("Set the channel where I should send logs regarding member updates.")
+        .setDescription("Set the channel where I should send logs regarding voice states.")
         .setRequired(false)
         ),
+        
     async execute(interaction) {
         
         if(!interaction.options.get("channel")) {
@@ -19,10 +21,10 @@ module.exports = {
                 guildId: interaction.guild.id
             },{
                 $set : {
-                    memberUpdates : false,
+                    voiceLogs : false
                 }
             })
-            return await interaction.reply("I have disabled Member-Update-Logs.")
+            return await interaction.reply("I have disabled Voice-Logs.")
         }
 
         if(interaction.options.getChannel("channel").type != "GUILD_TEXT") {
@@ -35,10 +37,11 @@ module.exports = {
                 guildId : interaction.guild.id
             },{
                 $set : {
-                    memberUpdates: interaction.options.getChannel("channel").id 
+                    voiceLogs: interaction.options.getChannel("channel").id 
                 }
             })
 
         }
+
     }
 }
