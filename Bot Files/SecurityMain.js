@@ -19,10 +19,10 @@ fs.readdir(`${process.cwd()}/helpers/`, (err, files) => {
 		require(`./helpers/${file}`)(client);
 	}
 
+	client.connect_to_mongo()
 	client.deploy()
 	client.loadEvents();
 	client.loadCommands();
-	client.connect_to_mongo()
 });
 
 client.login(client.config.token)
