@@ -11,7 +11,11 @@ for (const folder of categories) {
 
 	for (const file of commandFiles) {
 		const command = require(`${process.cwd()}/commands/${folder}/${file}`);
-		commands.push(command.data.toJSON());
+		if(command.data != undefined) {
+			commands.push(command.data.toJSON());
+		} else if(command.raw_data != undefined) {
+			commands.push(command.raw_data) // I am not gonna be using SlashCommandBuilder all the time.
+		}
 	}
 }
 module.exports = client => {
