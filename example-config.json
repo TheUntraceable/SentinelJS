@@ -1,7 +1,8 @@
 {
-    "clientId" : "898268227216506940",
+    "clientId" : "Client's-ID-Here",
     "token" : "Discord-Bot-Token",
     "version" : 0.7, // Remove this comment. Make sure you keep this version in here for the `botstats` command and for troubleshooting.
     "beta" : true,
-    "mongo_url" : "A-Valid-Mongo-URL-And-Not-This-Random-Mumbo-Jumbo"
+    "mongo_url" : "A-Valid-Mongo-URL-And-Not-This-Random-Mumbo-Jumbo",
+    "cash_emoji": "An-Emoji-To-Use-For-Economy-System"
 }
