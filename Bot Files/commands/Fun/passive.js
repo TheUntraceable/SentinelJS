@@ -12,10 +12,11 @@ module.exports = {
         ),
     cooldown: 86400,
     cooldowns: new Set(),
+
     async execute(interaction) {
         const mode = interaction.options.getBoolean("mode")
 
         await interaction.client.db.users.updateOne({memberId: interaction.member.id},{$set : {passive: mode}})
-        await interaction.reply("I have set your passive to")
+        await interaction.reply(`I have set your passive to ${mode}.`)
     }
 }
