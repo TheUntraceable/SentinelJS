@@ -5,17 +5,6 @@ module.exports = client => {
         
         const timer = ms => new Promise( res => setTimeout(res, ms));
 
-        if(interaction.isContextMenu()) {
-            if(interaction.customId == "CommandListInteraction") {
-                const payload = get_commands(interaction.client,interaction.values[0])
-
-                await interaction.update({
-                    embeds : [new MessageEmbed().setTitle(`${interaction.values[0]} Commands!`).setDescription(`This is a list of ${interaction.values[0]}'s commands.`.addField("Commands: ",payload,true))],
-                    components: [interaction.component.options]
-                })
-            }
-        }
-
         if(interaction.isCommand()) {
             if(!interaction.inGuild()) { 
                 return await interaction.reply("Commands will only work within servers.")
