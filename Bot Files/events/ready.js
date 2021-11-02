@@ -6,11 +6,12 @@ module.exports = {
 
 	async execute(client) {
 		console.log(`Ready! Logged in as ${client.user.tag}`);
-		for(command of client.command_names) {
-			client.data_analysis[command] = 0
-		}
+		client.commands.forEach((v,k,coll) =>  {
+			client.data_analysis[k] = 0 // K = name
+			}
+		)
 
-		client.guilds.cache.each(guild => await client.openAccount(guild))	
+		client.guilds.cache.each(guild => client.openAccount(guild))	
 	}
 
 }
