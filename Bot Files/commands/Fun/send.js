@@ -26,10 +26,10 @@ module.exports = {
         if(amount > dataOnInvoker.wallet) {
             return await interaction.reply(`You do not have that much money in your wallet! You only have ${dataOnInvoker.wallet}${interaction.client.config.cash_emoji}.`) // In future make it so that the money is taken out of bank if possible
         }
-        await interaction.client.db.users.updateOne({memberId: receiver.id}.{$inc : {wallet: amount}})
+        await interaction.client.db.users.updateOne({memberId: receiver.id}, {$inc : {wallet: amount}})
         await interaction.client.db.users.updateOne({memberId: interaction.member.id},{$inc : {wallet: -amount}})
 
-        return await interaction.reply(`I have given ${receiver.tag} ${amount}${interaction.client.config.cash_emoji} for you.`)
+        return await interaction.reply(`I have given ${receiver.displayName} ${amount}${interaction.client.config.cash_emoji} for you.`)
 
     }
 }
