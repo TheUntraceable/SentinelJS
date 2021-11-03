@@ -18,6 +18,7 @@ module.exports = {
         if(toGive <= 0) {
             return await interaction.reply(`${randomer} gave you nothing.`) // I wanted to make a joke but non of them are funny, I was gonna say somethin like "They didn't like you so they didn't give you anything. Go sue them." but nah.
         }
+        await interaction.client.db.users.updateOne({memberId: interaction.member.id},{$inc: {wallet: toGive}})
         return await interaction.reply(`${randomer} gave you ${toGive} ${interaction.client.config.cash_emoji}.`)
     }
 }
