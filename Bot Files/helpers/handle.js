@@ -30,6 +30,11 @@ const getCommands = (client,category=undefined) => {
             
             }
         }
+        Configuration.slice(0, -1)
+        Fun.slice(0, -1)
+        Moderating.slice(0, -1)
+        Status.slice(0, -1)
+
         return {configuration : Configuration, fun:Fun, moderating:Moderating, status:Status}; // Add back invite logger here.
     } else {
         for(command of client.commands.keys()) {
@@ -50,14 +55,14 @@ module.exports = client => {
 
         if(interaction.isSelectMenu()) {
             if(interaction.customId == "CommandListInteraction") {
-                if(interaction.customId == "CommandListInteraction") {
-                    const payload = getCommands(interaction.client,interaction.values[0])
-    
-                    await interaction.update({
-                        embeds : [new MessageEmbed().setTitle(`${interaction.values[0]} Commands!`).setDescription(`This is a list of ${interaction.values[0]}'s commands.`.addField("Commands: ",payload,true))],
-                        components: [interaction.component.options]
-                    })
-                }
+                console.log(interaction.values)
+                const payload = getCommands(interaction.client,interaction.values[0])
+
+                await interaction.update({
+                    embeds : [new MessageEmbed().setTitle(`${interaction.values[0]} Commands!`).setDescription(`This is a list of ${interaction.values[0]}'s commands.`).addField("Commands: ",payload,true)],
+                    components: [interaction.component.options]
+                })
+            
             }
         }
 
@@ -93,9 +98,10 @@ module.exports = client => {
                 await interaction.client.openBank(interaction.member)
                 await interaction.client.openAccount(interaction.guild)
                 await command.execute(interaction);
-
-                const specialAmountToGive = Math.round(Math.random() * (50 - 10) + 10)
-                await interaction.client.db.users.updateOne({memberId: interaction.user.id},{$inc : {maxBank: specialAmountToGive}})
+                if(command.category.toLowerCase() == "fun"){
+                    const specialAmountToGive = Math.round(Math.random() * (50 - 10) + 10)
+                    await interaction.client.db.users.updateOne({memberId: interaction.user.id},{$inc : {maxBank: specialAmountToGive}})
+                }
  
                 if(command.cooldowns != undefined && command.cooldown != undefined) {
 
