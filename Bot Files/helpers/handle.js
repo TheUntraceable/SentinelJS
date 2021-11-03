@@ -1,9 +1,65 @@
-const {MessageEmbed} = require("discord.js")
+const { MessageEmbed } = require("discord.js")
+
+const getCommands = (client,category=undefined) => {
+
+    let Payload = ""
+    let Configuration = ""
+    let Fun = "" 
+    // const Invitelogger = ""
+    let Moderating = ""
+    let Status = ""
+    
+    if(!category) {
+        for (command of client.commands.keys()) {
+            const commandObject = client.commands.get(command);
+
+            if (commandObject.category.toLowerCase() == "configuration") {
+                Configuration += `\`${command}\`,`
+
+            } else if(commandObject.category.toLowerCase() == "fun") {
+                Fun += `\`${command}\`,`
+
+            } else if(commandObject.category.toLowerCase() == "invitelogger") { 
+                Invitelogger += `\`${command}\`,`
+
+            } else if(commandObject.category.toLowerCase() == "moderating") {
+                Moderating += `\`${command}\`,`
+
+            } else if(commandObject.category.toLowerCase() == "status") {
+                Status += `\`${command}\`,`
+            
+            }
+        }
+        return {configuration : Configuration, fun:Fun, moderating:Moderating, status:Status}; // Add back invite logger here.
+    } else {
+        for(command of client.commands.keys()) {
+            const commandObject = client.commands.get(command)
+            if(commandObject.category == category) {
+                Payload += `\`${command}\`,`
+            }
+        }
+        return Payload;
+    }
+}
+
 module.exports = client => { 
 
     client.handle = async interaction => {
         
         const timer = ms => new Promise( res => setTimeout(res, ms));
+
+        if(interaction.isSelectMenu()) {
+            if(interaction.customId == "CommandListInteraction") {
+                if(interaction.customId == "CommandListInteraction") {
+                    const payload = getCommands(interaction.client,interaction.values[0])
+    
+                    await interaction.update({
+                        embeds : [new MessageEmbed().setTitle(`${interaction.values[0]} Commands!`).setDescription(`This is a list of ${interaction.values[0]}'s commands.`.addField("Commands: ",payload,true))],
+                        components: [interaction.component.options]
+                    })
+                }
+            }
+        }
 
         if(interaction.isCommand()) {
             if(!interaction.inGuild()) { 
@@ -34,7 +90,13 @@ module.exports = client => {
                 }
             }    
             try {
+                await interaction.client.openBank(interaction.member)
+                await interaction.client.openAccount(interaction.guild)
                 await command.execute(interaction);
+
+                const specialAmountToGive = Math.round(Math.random() * (50 - 10) + 10)
+                await interaction.client.db.users.updateOne({memberId: interaction.user.id},{$inc : {maxBank: specialAmountToGive}})
+ 
                 if(command.cooldowns != undefined && command.cooldown != undefined) {
 
                     command.cooldowns.add(interaction.member.id)

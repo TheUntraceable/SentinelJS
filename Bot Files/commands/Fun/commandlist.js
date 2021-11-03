@@ -1,55 +1,47 @@
 const { MessageActionRow, MessageEmbed ,MessageSelectMenu } = require("discord.js");
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
-const get_commands = (client,category=undefined) => {
+const getCommands = (client,category=undefined) => {
 
-    const Payload = new Set();
-    const Configuration = new Set();
-    const DataAnalysis = new Set();
-    const Fun = new Set(); 
-    const Invitelogger = new Set();
-    const Moderating = new Set();
-    const Status = new Set();
-    const Unknown = new Set();
+    let Payload = ""
+    let Configuration = ""
+    let Fun = "" 
+    // const Invitelogger = ""
+    let Moderating = ""
+    let Status = ""
+    
+    if(!category) {
+        for (command of client.commands.keys()) {
+            const commandObject = client.commands.get(command);
 
-    for (command of client.command_names) {
-          
-        if(!category) {
-                const commandObject = client.commands.get(command);
+            if (commandObject.category.toLowerCase() == "configuration") {
+                Configuration += `\`${command}\`,`
 
-                if (commandObject.category.toLowerCase() == "configuration") {
-                    Configuration.add(command);    
-                
-                } else if(commandObject.category.toLowerCase() == "dataanalysis") {
-                    DataAnalysis.add(command);
+            } else if(commandObject.category.toLowerCase() == "fun") {
+                Fun += `\`${command}\`,`
 
-                } else if(commandObject.category.toLowerCase() == "fun") {
-                    Fun.add(command);
+            } else if(commandObject.category.toLowerCase() == "invitelogger") { 
+                Invitelogger += `\`${command}\`,`
 
-                } else if(commandObject.category.toLowerCase() == "invitelogger") { 
-                    Invitelogger.add(command);
+            } else if(commandObject.category.toLowerCase() == "moderating") {
+                Moderating += `\`${command}\`,`
 
-                } else if(commandObject.category.toLowerCase() == "moderating") {
-                    Moderating.add(command);
-
-                } else if(commandObject.category.toLowerCase() == "status") {
-                    Status.add(command);
-                
-                } else if(command.category.toLowerCase() == "theuntraceableonly") {
-                    continue
-                } else {
-                    Unknown.add(command);
-                }
-                return {configuration : Configuration,fun:Fun,invitelogger:Invitelogger,dataanalysis:DataAnalysis,moderating:Moderating,status:Status,unknown:Unknown};
-            } else {
-                if (commandObject.category.toLowerCase() == "configuration") {
-                    Payload.add(command);
+            } else if(commandObject.category.toLowerCase() == "status") {
+                Status += `\`${command}\`,`
+            
             }
-            return Payload;
         }
+        return {configuration : Configuration, fun:Fun, moderating:Moderating, status:Status}; // Add back invite logger here.
+    } else {
+        for(command of client.commands.keys()) {
+            const commandObject = client.commands.get(command)
+            if(commandObject.category == category) {
+                Payload.add(command)
+            }
+        }
+        return Payload;
     }
 }
-
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('commandlist')
@@ -62,7 +54,9 @@ module.exports = {
     cooldown : 5,
     cooldowns : new Set(),
 
-    async execute(interaction) {            
+    async execute(interaction) {
+        const category = interaction.options.getString("category")
+        
         const sel = new MessageActionRow()
         .addComponents(
             new MessageSelectMenu()
@@ -78,47 +72,34 @@ module.exports = {
                         description : "This will show all commands that are in the Configuration category!",
                         value : "configuration"    
                     },{
-                        label : "DataAnalysis",
-                        description : "This will show all commands that are in the DataAnalysis category!",
-                        value : "dataanalysis"    
-                    },{
                         label : "Fun",
                         description : "This will show all commands that are in the Fun category!",
                         value : "fun"    
                     },{
                         label : "Moderating",
                         description : "This will show all commands that are in the Moderating category!",
-                        value : "moderating"    
+                        value : "moderating"
                     },
                 ])
             );
-            const embed = new MessageEmbed()
+        
+        const embed = new MessageEmbed()
             .setTitle("Here are a list of all the available commands!")
             .setColor("#51ff00")
-            .setDescription("This is a list of all the commands that are available to be used by almost anyone! ||(Except for the ones under Moderating which you need the correct permissions for.)||");
-            
-        if(!interaction.options.getString("category")) {
-        
-                const dictionary = get_commands(interaction.client);
+            .setDescription("This is a list of all the commands that are available to be used by almost anyone! ||(Except for the ones under Moderating which you need the correct permissions for.)||")
 
-                console.log(dictionary);
-                
+            if(!category) {
+                const dictionary = getCommands(interaction.client);
+                console.log(dictionary)
+
                 embed.addFields([
                     {
                         name : "Configuration",
                         value : dictionary["configuration"] ? dictionary["configuration"] : "None.",
                         inline : true
-                    },{
-                        name : "Data Analysis",
-                        value : dictionary["dataanalysis"] ? dictionary["dataanalysis"] : "None.",
-                        inline : true,
-                    },{
+                    },,{
                         name : "Fun",
                         value : dictionary["fun"] ? dictionary["fun"] : "None.",
-                        inline : true,
-                    },{
-                        name : "InviteLogger",
-                        value : dictionary["invitelogger"] ? dictionary["invitelogger"] : "None.",
                         inline : true,
                     },{
                         name : "Moderating",
@@ -130,8 +111,12 @@ module.exports = {
                         inline : true,
                     }
                 ]);
+            } else {
+                const dictionary = getCommands(interaction.client,category)
+                console.log(dictionary)
+                embed.addField(category,dictionary)
             }
 
-        await interaction.reply({embeds : [embed], components : [sel]});
-        }
+        await interaction.reply({embeds : [embed],components: [sel]});
     }
+}

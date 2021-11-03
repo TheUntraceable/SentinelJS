@@ -1,6 +1,6 @@
 const fs = require("fs")
 
-const categories = ["Configuration","DataAnalysis","Fun","Invitelogger","Moderating","Status","TheUntraceableOnly"]
+const categories = ["Configuration","Fun","Invitelogger","Moderating","Status","TheUntraceableOnly"]
 
 module.exports = client => {
 
@@ -18,9 +18,11 @@ module.exports = client => {
                     }
                     client.data_analysis[command.data.name] = 0
                     if(command.data != undefined) {
+                        command.category = category
                         client.commands.set(command.data.name, command);
 
                     } else if(command.raw_data != undefined) {
+                        command.category = category
                         client.commands.set(command.raw_data.name, command)
 
                     }
