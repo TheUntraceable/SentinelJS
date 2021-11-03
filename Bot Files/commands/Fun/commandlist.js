@@ -31,12 +31,17 @@ const getCommands = (client,category=undefined) => {
             
             }
         }
+        Configuration.slice(0, -1)
+        Fun.slice(0, -1)
+        Moderating.slice(0, -1)
+        Status.slice(0, -1)
+
         return {configuration : Configuration, fun:Fun, moderating:Moderating, status:Status}; // Add back invite logger here.
     } else {
         for(command of client.commands.keys()) {
             const commandObject = client.commands.get(command)
             if(commandObject.category == category) {
-                Payload.add(command)
+                Payload += `\`${command}\`,`
             }
         }
         return Payload;
@@ -49,7 +54,12 @@ module.exports = {
         .addStringOption(option =>
             option.setName('category')
                 .setDescription('The command category to view.')
-                .setRequired(false)),    
+                .setRequired(false)
+                .addChoice("Status","status")
+                .addChoice("Moderating","moderating")
+                .addChoice("Fun","fun")
+                .addChoice("Configuration","configuration")
+                ),
 
     cooldown : 5,
     cooldowns : new Set(),
@@ -83,15 +93,13 @@ module.exports = {
                 ])
             );
         
-        const embed = new MessageEmbed()
+        let embed = new MessageEmbed()
             .setTitle("Here are a list of all the available commands!")
             .setColor("#51ff00")
             .setDescription("This is a list of all the commands that are available to be used by almost anyone! ||(Except for the ones under Moderating which you need the correct permissions for.)||")
 
             if(!category) {
                 const dictionary = getCommands(interaction.client);
-                console.log(dictionary)
-
                 embed.addFields([
                     {
                         name : "Configuration",
@@ -112,9 +120,8 @@ module.exports = {
                     }
                 ]);
             } else {
-                const dictionary = getCommands(interaction.client,category)
-                console.log(dictionary)
-                embed.addField(category,dictionary)
+                const payload = getCommands(interaction.client,interaction.options.getString("category"))
+                return await interaction.reply({embeds : [new MessageEmbed().setTitle(`${interaction.options.getString("category")} Commands!`).setDescription(`This is a list of ${category}'s commands.`).addField("Commands: ",payload,true)],components: [sel]})
             }
 
         await interaction.reply({embeds : [embed],components: [sel]});
