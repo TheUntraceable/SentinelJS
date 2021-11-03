@@ -4,7 +4,7 @@ module.exports = {
     name: "guildMemberUpdate",
     once: false,
     async execute(member) {
-        const data = await member.client.guilds.findOne({ guildId: member.guild.id})
+        const data = await member.client.guilds.db.findOne({ guildId: member.guild.id})
         if(!data.memberUpdates == null) {
             const embed = new MessageEmbed()
             .setTitle("A member has been updated!")
