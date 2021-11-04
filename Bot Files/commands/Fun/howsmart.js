@@ -10,5 +10,11 @@ module.exports = {
         .setDescription("The member you want to see's intelligence.")
         .setRequired(false)
         ),
-    implemented: false
+    async execute(interaction) {
+        const user = interaction.options.getMember("member") || interaction.member
+
+        const smartness = Math.floor(Math.random() * Math.floor(100))
+
+        await interaction.reply(`${user.displayName} is ${smartness}% smart.`)
+    }
 }
