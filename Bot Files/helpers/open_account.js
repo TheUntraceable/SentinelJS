@@ -28,7 +28,7 @@ module.exports = client => {
                 maxBank : 1000,    
                 passive : false,
                 warns : [],
-                bag : []
+                inventory : []
             })
         }
 
