@@ -118,7 +118,7 @@ module.exports = client => {
     
                 console.error(error);
     
-                return interaction.followUp({ content: `There was an error while executing this command!\nError:${error}`, ephemeral: true });
+                return interaction.reply({ content: `There was an error while executing this command!\nError:${error}`, ephemeral: true });
             }
         } 
 
