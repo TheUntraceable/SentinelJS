@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
+const { MessageEmbed } = require("discord.js")
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -14,18 +15,27 @@ module.exports = {
         .addChoice("durex","durex")
         ),
     async execute(interaction) {
-        const item = interaction.getStringOption("item")
+        const embed = new MessageEmbed.setTitle("Shop items").setDescription("This is the shop, you can buy many things here...").seColour("#51ff00")
+        for(item of mainshop) {
+            embed.addField(item.name,`${item.price}${interaction.client.config.cash_emoji} | ${item.description}`,true)
+        }
+
+
+
+
+        
+        const item = interaction.options.getString("item")
         if (item == "kids") {
-            interaction.reply(`You can buy kids for 500${interaction.client.config.cash_emoji}.`)
+            await interaction.reply(`You can buy kids for 500${interaction.client.config.cash_emoji}.`)
 
         } else if (item == "water gun") {
-            interaction.reply(`You can buy some durex for 150${interaction.client.config.cash_emoji}.`)
-        
+            await interaction.reply(`You can buy a water gun for 250${interaction.client.config.cash_emoji}.`)
+            
         } else if (item == "durex") {
-            interaction.reply(`You can buy a water gun for 250${interaction.client.config.cash_emoji}.`)
+            await interaction.reply(`You can buy some durex for 150${interaction.client.config.cash_emoji}.`)
         
         } else {
-            interaction.reply(`You can buy a water gun for 250${interaction.client.config.cash_emoji}.\nYou can buy some durex for 150${interaction.client.config.cash_emoji}.\nYou can buy kids for 500${interaction.client.config.cash}.`)
+            await interaction.reply({embeds: [embed]})
 
         }
     }
