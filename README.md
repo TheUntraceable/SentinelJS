@@ -99,9 +99,9 @@ This is temporary documentation.
 | whois | This gets the information about a user. | Moderating | whois [member] |
 | getmember | Makes it easier to get a user from an ID. | Moderating | getmember <id> |
 | mute | Mutes the specified user. | Moderating | mute <member> [reason] [time=600] |
-| help | The help command! | Help | help [entity] |
 | report | Reports the specified user. | Moderating | report <member> <reason> |
 | warn | Warns a specified user. | Moderating | warn <member> [reason] |
 | remove_warn | Removes a warn. | Moderating | remove_warn <member> <warn> |
 | unban | Unbans a member. | Moderating | unban <member> [reason] |
 | warns | Shows the warns of a user. | Moderating | warns <member> |
+| help | The help command! | Help | help [command] |
