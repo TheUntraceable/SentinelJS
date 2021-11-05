@@ -98,6 +98,7 @@ module.exports = client => {
                 await interaction.client.openBank(interaction.member)
                 await interaction.client.openAccount(interaction.guild)
                 await command.execute(interaction);
+                command.uses ++
                 if(command.category.toLowerCase() == "fun"){
                     const specialAmountToGive = Math.round(Math.random() * (50 - 10) + 10)
                     await interaction.client.db.users.updateOne({memberId: interaction.user.id},{$inc : {maxBank: specialAmountToGive}})
@@ -112,7 +113,6 @@ module.exports = client => {
                     command.cooldowns.delete(interaction.member.id)
     
                 }
-                interaction.client.data_analysis[command.data.name] += 1
                     
             } catch (error) {
     
