@@ -6,7 +6,6 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS,	Intents.FLAGS.GUILD_
 // I don't need people in my DM's but I do need literally everything else.
 
 client.commands = new Collection();
-client.data_analysis = []
 client.config = config
 
 fs.readdir(`${process.cwd()}/helpers/`, (err, files) => {
