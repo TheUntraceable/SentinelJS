@@ -58,3 +58,50 @@ I would prefer if you would just invite the [bot](https://dsc.gg/security), but 
 > + [Website](https://sentinel.theuntraceable.tk) *I am using a free domain as of now because I want to make sure I don't waste any money.*
 > + [License](https://github.com/TheUntraceable/SentinelJS/blob/e1e020bf80d79c692bf79c6491e21e364071623f/LICENSE.md)
 > + [Invite](https://dsc.gg/security)
+
+---
+## Documentation
+
+`[argument]` = Optional Argument.
+`<argument>` = Required Argument.
+
+This is temporary documentation.
+| Command Name | Command Description | Category | Arguments |
+| :----------- | :-----------------: | :------: | --------: |
+| memberupdates | Disables/Enables member update logs. | Configuration | memberupdates <channel> |
+| susaccounts | Disables/Enables suspicious accounts logs. Damn that's a mouthful. | Configuration | susaccounts <channel> |
+| antispammer | Disables/Enables the antispammer. | Configuration | antispammer |
+| actionlogs | Disables/Enables action logs. | Configuration | actionlogs <channel> | 
+| messagelogs | Disables/Enables message logs. | Configuration | messagelogs <channel> |
+| sell | Sells something in your inventory. | Fun | sell <item> [amount=1] |
+| shop | The current shop, (I promise I'll make this great one day.) | Fun | shop | 
+| rockpaperscissors | Let's you play Rock, Paper, Scissors. | Fun | rockpaperscissors [move] |
+| ping | Gets the bot's current ping. | Fun | ping | 
+| leaderboard | Shows the current leaderboard. Not guild specific. | Fun | leaderboard [top_few=3] |
+| commandlist | Gives a list of all the commands! | Fun | commandlist |
+| credits | This shows the credits. | Fun | credits |
+| rob | Robs someone. | Fun | rob [member] |
+| howsmart | Find out how smart a member is! The bot uses great calculations to determine how smart they are. | Fun | howsmart [member] |
+| beg | Beg on the street coins! | Fun | beg |
+| buy | Buys something from the shop. (I promise to make this good). | Fun | buy <item> [amount=1] |
+| withdraw | Withdraw a certain amount of coins from your bank! | Fun | withdraw [amount] |
+| use | Use an item. | Fun | use |
+| deposit | Deposit a certain amount of coins to your bank! | Fun | deposit [amount] |
+| send | Sends some money to a chosen player out of your wallet. | Fun | send <member> [amount] |
+| balance | Shows you your balance. | Fun | balance [member] |
+| command_info | Gets the amount of times a command has been used. | Fun | command_info <command_name> |
+| slots | Gambles some money on the slot machines! | Fun | slots [amount] |
+| invite | Special invites that are useful. | Fun | invite |
+| bag | Shows your inventory. | Fun | bag [member] |
+| botstats | Gets the bot's stats. | Fun | botstats |
+| ban | Bans a user from the server. They cannot rejoin even if they get a new invite unless unban. | Moderating | ban <member> <reason> |
+| unmute | Unmutes the specified user. | Moderating | unmute <member> [reason] |
+| whois | This gets the information about a user. | Moderating | whois [member] |
+| getmember | Makes it easier to get a user from an ID. | Moderating | getmember <id> |
+| mute | Mutes the specified user. | Moderating | mute <member> [reason] [time=600] |
+| help | The help command! | Help | help [entity] |
+| report | Reports the specified user. | Moderating | report <member> <reason> |
+| warn | Warns a specified user. | Moderating | warn <member> [reason] |
+| remove_warn | Removes a warn. | Moderating | remove_warn <member> <warn> |
+| unban | Unbans a member. | Moderating | unban <member> [reason] |
+| warns | Shows the warns of a user. | Moderating | warns <member> |
