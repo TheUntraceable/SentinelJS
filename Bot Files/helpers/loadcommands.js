@@ -16,20 +16,37 @@ module.exports = client => {
                     if(!command.usage == undefined) {
                         console.log(`Remove usage from ${command.data.name}`)
                     }
-                    client.data_analysis[command.data.name] = 0
                     if(command.data != undefined) {
                         command.category = category
+                        let usage = ""
+                        usage += `${command.data.name}`
+                        if(!command.data.options != 0) {
+                            for (option of command.data.options) {
+                                usage += `${option.name.required ? `<${option.name}>` : `[${option.name}]`}`
+                            }
+                        }
+                        command.usage = usage
+                        command.uses = 0
                         client.commands.set(command.data.name, command);
 
                     } else if(command.raw_data != undefined) {
                         command.category = category
+                        command.uses = 0
+                        let usage = ""
+                        usage += `${command.raw_data.name}`
+                        if(!command.raw_data.options) {
+                            for (option of command.raw_data.options) {
+                                usage += `${option.name.required ? `<${option.name}>` : `[${option.name}]`}`
+                            }
+                        }
+                        command.usage = usage
                         client.commands.set(command.raw_data.name, command)
 
                     }
 
                     console.log(`✅ Loaded ${command.data.name}.`)
                 } catch(e) {
-                    console.log(`❌ Couldn't load ${command.data.name}`)                    
+                    console.error(e)
                 }
             }
         }

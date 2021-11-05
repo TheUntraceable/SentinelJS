@@ -32,7 +32,7 @@ module.exports = {
                         inline : true
                     },{
                         name : "Command **uses**",
-                        value : interaction.client.data_analysis[command.data.name] ? interaction.client.data_analysis[command.data.name] : "Errored...",
+                        value : command.uses, 
                         inline : true
                     }
                 ]);
