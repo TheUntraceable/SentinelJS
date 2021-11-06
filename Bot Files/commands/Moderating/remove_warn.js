@@ -13,7 +13,20 @@ module.exports = {
     .addIntegerOption(option =>
         option
         .setName("id")
-        .setDescription("The Id of the war you'd like to delete. If this is not set, al warns will be deleted.")
+        .setDescription("The Id of the war you'd like to delete. If this is not set, all warns will be deleted.")
         .setRequired(false)
-        )
+        ),
+    async execute(interaction) {
+        const user = interaction.options.getMember("user")
+        const id = interaction.options.getInteger("id")
+        if(!id) {
+            await interaction.client.db.users.updateOne({memberId: user},{$set: {warns: []}})
+            return await interaction.reply(`Removed all warns from ${user.displayName}.`)
+        }
+
+        await interaction.client.db.users.updateOne({memberId: user},{$pull: {warns: {count: id}}})
+        return await interaction.reply(`Removed warn ${count} from ${user.displayName}.`)
+    
+
+    }
 }

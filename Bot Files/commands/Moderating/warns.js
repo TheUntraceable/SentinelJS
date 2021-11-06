@@ -10,5 +10,14 @@ module.exports = {
         .setDescription("The user's warns you would like to view.")
         .setRequired(false)
         ),
-    implemented: false
+    async execute(interaction) {
+        const member = interaction.options.getMember("user") || interaction.member
+        const warns = await interaction.client.db.users.findOne({memberId: member.id}).warns
+        if(!warns) return await interaction.reply("This user has no warns.")
+        let m = ""
+        for (warn of warns) {
+            m += `Warn: ${warn.count} - Reason: ${warn.reason}. Moderator: ${interaction.client.users.fetch(warn.author).tag}`
+        }
+        return await interaction.reply(m)
+    }
 }
