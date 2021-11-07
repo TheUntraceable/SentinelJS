@@ -105,3 +105,30 @@ This is temporary documentation.
 | unban | Unbans a member. | Moderating | unban <member> [reason] |
 | warns | Shows the warns of a user. | Moderating | warns <member> |
 | help | The help command! | Help | help [command] |
+
+---
+## I want to contribute!
+Contribute if you want. If you do make a great contribution you'll get the "Contributor" role in the Discord Server. If you frequently contribute, you'll get the "Notable Contributor".
+Before you contribute, I have a few requirements.
+
+First you should test your code. If any error is found, you're expected to fix it and make the pull request again.
+
+If you are contributing to an event, you should format it like this 
+```javascript
+const { MessageEmbed } = require(discord.js)
+module.exports = {
+    name: "Event Name", // The event's name. String.
+    once: true // Does the event run only once? Boolean.
+    execute(parameters) { // Parameters you need for the event to run.
+        // Check if the guild wants to be alerted if the event occurs.
+        // Fortunately, to send the message to the guild, index the Document with the event type (changes to guild channels are stuff are actionLogs, member updates are memberUpdates, etc.)
+        const embed = new MessageEmbed()
+        .setTitle("What happened") // For example "A member has been updated!" or "A member has left!"
+        .setDescription(`${who} has ${done_what}!`) // For example "The Untraceable has deleted #general"
+        .setColor("RED") // Green when something has been created, red when something has been deleted, yellow when something is modified.
+        .setTimestamp()
+        // Send the embed
+    }
+}
+```
+That's all I need. Thanks :D.
