@@ -115,7 +115,7 @@ First you should test your code. If any error is found, you're expected to fix i
 
 If you are contributing to an event, you should format it like this 
 ```javascript
-const { MessageEmbed } = require(discord.js)
+const { MessageEmbed } = require("discord.js")
 module.exports = {
     name: "Event Name", // The event's name. String.
     once: true // Does the event run only once? Boolean.
