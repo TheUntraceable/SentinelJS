@@ -36,30 +36,28 @@ module.exports = {
         ),
     async execute(interaction) {
         const amount = interaction.options.getInteger("amount")
+
         if(amount > 100 || amount <= 0) {
             return await interaction.reply("The most messages you can delete is 100 and the least is 1.")
         }
         
         const toDelete = new Array();
-        const messages = interaction.channel.messages.fetch({limit: amount})
+        const messagesToDel = await interaction.channel.messages.fetch({limit: amount})
+        messagesToDel.forEach(message => {
+            
+            // const author = interaction.options.getMember("author") || message.member
+            // const regex = new RegExp(interaction.options.getString("regex")) || new RegExp(".*")
+            // const string = interaction.options.getString("string") || ""
+            // const role = interaction.options.getRole("role") || message.member.roles.highest
 
-        for(const message of messages.values()) {
-
-            const author = interaction.options.getMember("author") || message.author
-            const regex = interaction.options.getString("regex") || /.*/
-            const string = interaction.options.getString("string") || ""
-            const role = interaction.options.getRole("role") || message.author.roles.highest
-
-            if(message.author.id == author.id && regex.test(message.content) && message.content.includes(string) && message.author.roles.has(role)) {
-                toDelete.push(message.id)
+            /* if(message.author.id == author.id && regex.test(message.content) && message.content.includes(string) && message.members.roles.has(role)) */ 
+            if(message.content.includes("") && message.author.id == message.author.id && /.*/.test(message.content) && message.member.roles.cache.has(message.member.roles.highest.id)) {
+                toDelete.push(message)
             }
-        }
-        interaction.channel.bulkDelete(toDelete,true)
-            .then(messages =>
-                interaction.reply(`I have deleted ${messages.size} messages!`)           
-            ).catch(
-                console.error
-            )
+        })
+
+        const messages = await interaction.channel.bulkDelete(toDelete,true)
+        await interaction.reply(`I have deleted ${messages.size} messages!`)
     }
 
-}
+}   

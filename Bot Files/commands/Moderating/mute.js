@@ -16,5 +16,14 @@ module.exports = {
         .setDescription("The reason you would like to mute this user.")
         .setRequired(false)
         ),
-    implemented: false
+
+    async execute(interaction) {
+        const reason = interaction.options.getString("reason") || "No reason provided."
+        const user = interaction.options.getMember("user")
+        const data = await interaction.client.db.guilds.findOne({guildId: interaction.guild.id})
+        const role = data.muteRole;
+
+        user.roles.add(role,`Action by ${interaction.member.id}.`)
+        await interaction.reply(`I have muted ${user}. Reason: ${reason}`,`Action by ${interaction.member.id}`)
+    }
 }

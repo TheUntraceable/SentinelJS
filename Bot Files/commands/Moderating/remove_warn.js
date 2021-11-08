@@ -13,20 +13,37 @@ module.exports = {
     .addIntegerOption(option =>
         option
         .setName("id")
-        .setDescription("The Id of the war you'd like to delete. If this is not set, all warns will be deleted.")
+        .setDescription("The id of the war you'd like to delete. If this is not set, all warns will be deleted.")
         .setRequired(false)
         ),
+
     async execute(interaction) {
         const user = interaction.options.getMember("user")
         const id = interaction.options.getInteger("id")
+        
+        await interaction.client.openBank(user)
+
+        const data = await interaction.client.db.users.findOne({memberId: user.id});
+        const warns = data.warns;
+        
+        if(user.roles.highest >= interaction.member.roles.highest && !interaction.member.id == interaction.guild.ownerId) {
+            return await interaction.reply("You can't do that due to role hierarchy.")
+        } else if(!interaction.member.permissions.has("MANAGE_MESSAGES")) {
+            return await interaction.reply("You are missing the `MANAGE_MESSAGES` permissions.")
+        }
         if(!id) {
-            await interaction.client.db.users.updateOne({memberId: user},{$set: {warns: []}})
+            await interaction.client.db.users.updateOne({memberId: user.id},{$set: {warns: new Array()}})
             return await interaction.reply(`Removed all warns from ${user.displayName}.`)
         }
-
-        await interaction.client.db.users.updateOne({memberId: user},{$pull: {warns: {count: id}}})
-        return await interaction.reply(`Removed warn ${count} from ${user.displayName}.`)
-    
+        
+        for(warn of warns) {
+            if(warn.count == id) {
+                warns.splice(warns.indexOf(warn), 1)
+                break;
+            }
+        }
+        await interaction.client.db.users.updateOne({memberId: user.id},{$set: {warns: warns}})
+        return await interaction.reply(`Removed warn ${id} from ${user.displayName}.`)
 
     }
 }

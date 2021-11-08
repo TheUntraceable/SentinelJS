@@ -19,7 +19,17 @@ module.exports = {
     async execute(interaction) {
         const reason = interaction.options.getString("reason")
         const member = interaction.options.getMember("user")
+        await interaction.client.openBank(member)
         const data = await interaction.client.db.users.findOne({memberId: member.id})
+
+        if(interaction.member.roles.highest >= member.roles.highest && !interaction.member.id == interaction.guild.ownerId) {
+            return interaction.reply("You can't warn this user due to role hierarchy.")
+        } else if(member.bot) {
+            return await interaction.reply("Why are you warning a bot? Warning a bot doesn't make sense.")
+        } else if(member.id == interaction.guild.ownerId) {
+            return await interaction.reply("You cannot warn the guild owner...")
+        }
+
         data.warns.push({
             author: interaction.member.id,
             reason: reason,
