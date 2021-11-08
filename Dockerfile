@@ -10,14 +10,10 @@ RUN source ~/.bashrc
 RUN . ~/.nvm/nvm.sh; nvm install v16.6.0
 RUN . ~/.nvm/nvm.sh; npm install -g pm2 yarn
 # Create the bot's directory
-RUN mkdir -p /usr/src/bot
-WORKDIR /usr/src/bot
-
-COPY package.json /usr/src/bot
-COPY . /usr/src/bot
+RUN git clone https://github.com/TheUntraceable/SentinelJS
+WORKDIR SentinelJS
+RUN cd "SentinelJS"
 RUN npm install
-
-RUN cd "Bot Files"
 RUN "Starting Code"
 
 # Start the bot.
