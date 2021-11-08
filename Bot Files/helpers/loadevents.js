@@ -10,10 +10,23 @@ module.exports = client => {
                 const event = require(`${process.cwd()}/events/${file}`);
 
                 if (event.once) {
-                    client.once(event.name, (...args) => event.execute(...args));
+                    client.once(event.name, async (...args) => {
+                        
+                        try {
+                            await event.execute(...args)
+                        } catch (error) {
+                            console.error(error)
+                        }
+                    });
 
                 } else {
-                    client.on(event.name, (...args) => event.execute(...args));
+                    client.on(event.name, async (...args) => {
+                        try {
+                            event.execute(...args)
+                        } catch (error) { 
+                            console.error(error)
+                        }
+                    });
                 }
             }
         }
