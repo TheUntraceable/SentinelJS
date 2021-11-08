@@ -95,6 +95,11 @@ module.exports = client => {
                 }
             }    
             try {
+                for(option in interaction.options.data) {
+                    if(option.type == "USER") {
+                        await interaction.client.openBank(option.member)
+                    }
+                }
                 await interaction.client.openBank(interaction.member)
                 await interaction.client.openAccount(interaction.guild)
                 await command.execute(interaction);
