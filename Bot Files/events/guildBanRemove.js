@@ -4,6 +4,8 @@ module.exports = {
     name: "guildBanAdd",
     once: false,
     async execute(ban) {
+        await ban.client.openAccount(ban.guild)
+
         const data = await ban.client.db.guilds.findOne({
             guildId : ban.guild.id
         })

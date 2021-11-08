@@ -4,6 +4,7 @@ module.exports = {
     name: "guildMemberUpdate",
     once: false,
     async execute(member) {
+        await member.client.openAccount(member.guild)
         const data = await member.client.guilds.db.findOne({ guildId: member.guild.id})
         if(!data.memberUpdates == null) {
             const embed = new MessageEmbed()

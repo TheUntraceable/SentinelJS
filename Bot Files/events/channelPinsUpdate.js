@@ -5,12 +5,13 @@ module.exports = {
     once: false,
 
     async execute(channel,time) {
+        await channel.client.openAccount(channel.guild)
 
         if(channel.type != "GUILD_TEXT") {
             return // I don't care if someone pins anything in my Dm's, I'll pin them.
         }
         const data = await channel.client.db.guilds.findOne({
-            guildId : channel.id
+            guildId : channel.guild.id
         })
         
 

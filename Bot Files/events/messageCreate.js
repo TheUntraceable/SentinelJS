@@ -5,6 +5,7 @@ module.exports = {
     once: false,
     async execute(message) {
         if(!message.guild) return
+        await message.client.openAccount(message.guild) // Add anti spam later once you finish stuff.
         const afk_data = await message.client.db.guilds.find({where: message.guild.id}).toArray()
         for(afk_person of afk_data) {
             if(message.mentions.has(afk_person.owner)) {

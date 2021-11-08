@@ -4,8 +4,10 @@ module.exports = {
     name: "emojiUpdate",
     once: false,
     async execute(before,after) {
+        await interaction.client.openAccount(channel.guild)
+
         const data = await after.client.db.guilds.findOne({
-            guildId : before.id
+            guildId : before.guild.id
         })
         if(data.actionLogs != false) {
 

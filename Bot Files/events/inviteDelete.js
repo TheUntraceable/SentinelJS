@@ -4,6 +4,7 @@ module.exports = {
     name: "inviteDelete",
     once: false,
     async execute(invite) {
+        await invite.guild.client.openAccount(invite.guild)
         const data = await invite.client.db.guilds.findOne({guildId : invite.guild.id})
         if (data.actionLogs != false) {
             const embed = new MessageEmbed()

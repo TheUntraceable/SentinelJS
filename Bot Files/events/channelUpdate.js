@@ -4,12 +4,13 @@ module.exports = {
     name: "channelUpdate",
     once: false,
     async execute(before,after) {
+        await channel.client.openAccount(channel.guild)
 
         if(before.type != "GUILD_TEXT" || after.type != "GUILD_TEXT")  {
             return // I don't care if someone updates anything in my Dm's, I'll update them.
         }
         const data = await before.client.db.guilds.findOne({
-            guildId : before.id
+            guildId : before.guild.id
         })
         
         const embed = new MessageEmbed()

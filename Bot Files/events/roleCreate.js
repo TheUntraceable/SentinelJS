@@ -4,6 +4,7 @@ module.exports = {
     name: "roleCreate",
     once: false,
     async execute(role) {
+        
         const data = await role.client.db.guilds.findOne({guildId: role.guild.id})
         if(data.actionLogs != false) {
             

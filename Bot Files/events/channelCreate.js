@@ -7,8 +7,10 @@ module.exports = {
 	once: false,
 
 	async execute(channel) {
+        await channel.client.openAccount(channel.guild)
+
         const data = await channel.client.db.guilds.findOne({
-            guildId : channel.id
+            guildId : channel.guild.id
         })
 
         if(data.actionLogs != false) {

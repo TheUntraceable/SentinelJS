@@ -4,6 +4,7 @@ module.exports = {
     name: "messageUpdate",
     once: false,
     async execute(before,after) {
+        await before.client.openAccount(before.guild)
         const data = await before.client.db.guilds.findOne({guildId : before.guild.id})
         if(data.messageLogs != false) {
             const embed = new MessageEmbed()

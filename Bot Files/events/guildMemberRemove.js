@@ -4,6 +4,8 @@ module.exports = {
     name: "guildMemberRemove",
     once: false,
     async execute(member) {
+        await member.client.openAccount(member.guild)
+
         const data = await member.client.db.guilds.findOne({
             guildId : member.guild.id
         })

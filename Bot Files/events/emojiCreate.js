@@ -4,8 +4,9 @@ module.exports = {
     name: "emojiCreate",
     once: false,
     async execute(emoji) {
+        await interaction.client.openAccount(emoji.guild)
         const data = await emoji.client.db.guilds.findOne({
-            guildId : emoji.id
+            guildId : emoji.guild.id
         })
 
         if(data.actionLogs != false) {

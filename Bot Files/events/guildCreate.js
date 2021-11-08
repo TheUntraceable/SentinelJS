@@ -3,6 +3,5 @@ module.exports = {
     once: false,
     async execute(guild) {
         await guild.client.openAccount(guild)
-        
     }
 }

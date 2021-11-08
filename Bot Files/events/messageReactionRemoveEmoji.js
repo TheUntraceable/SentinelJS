@@ -3,6 +3,7 @@ module.exports = {
     name: "messageReactionRemoveEmoji",
     once: false,
     async execute(reaction) {
+        await reaction.client.openAccount(reaction.message.guild)
         const data = await reaction.client.db.guilds.findOne({guildId : reaction.message.guild.id})
         if(data.messageLogs != false) {
             const embed = new MessageEmbed()

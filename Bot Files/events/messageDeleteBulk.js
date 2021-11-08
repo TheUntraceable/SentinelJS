@@ -15,13 +15,13 @@ module.exports = {
             .setTimestamp()
             
             messages.forEach((value,key, kv) => {
-                if(m.length + `${value.author} - ${value.content}`.length < 4000) {
-                    m += `${value.author} - ${value.content}`
+                if(m.length + `${value.author} - ${value.content}\n`.length < 4000) {
+                    m += `${value.author} - ${value.content}\n`
                 } else {
                     embed.addField("Messages - ", m,false)
                 }
             })
-            messages[0].client.channels.fetch(data.messageLogs).then(channel =>
+            messages.at(0).client.channels.fetch(data.messageLogs).then(channel =>
                 channel.send({embeds: [embed]})
                 )
 

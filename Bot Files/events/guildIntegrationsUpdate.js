@@ -4,6 +4,7 @@ module.exports = {
     name: "guildIntegrationsUpdate",
     once: false,
     async execute(guild) {
+        await client.openAccount(guild)
 
         const data = await guild.client.db.guilds.findOne({
             guildId : guild.id

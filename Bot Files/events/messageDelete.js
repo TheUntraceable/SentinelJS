@@ -4,6 +4,8 @@ module.exports = {
     name: "messageDelete",
     once: false, // If this was in my server this would be set to true.
     async execute(message) {
+        await message.client.openAccount(message.guild)
+
         const data = await message.client.db.guilds.findOne({guildId : message.guild.id})
         if(data.messageLogs != false) {
             const embed = new MessageEmbed()
