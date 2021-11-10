@@ -10,6 +10,8 @@ module.exports = {
         .setDescription("The amount of coins you would like to deposit.")
         .setRequired(true)
         ),
+    cooldowns: new Set(),
+    cooldown: 5,
     async execute(interaction) {
         const data = await interaction.client.db.users.findOne({memberId: interaction.user.id})
         const amount = interaction.options.getInteger("amount")

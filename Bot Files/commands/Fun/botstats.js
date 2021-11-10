@@ -5,6 +5,8 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('botstats')
 		.setDescription('See information about the bot!'),
+    cooldowns: new Set(),
+    cooldown: 5,
 	async execute(interaction) {
 
         const embed = new MessageEmbed().setTitle("Bot stats").setColor("#2F3136").setDescription("This embed will contain stats regarding me.").addFields([

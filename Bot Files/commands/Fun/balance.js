@@ -11,6 +11,8 @@ module.exports = {
         .setDescription("The member's balance you would like to see.")
         .setRequired(false)
         ),
+    cooldowns: new Set(),
+    cooldown: 5,
     async execute(interaction) {
         await interaction.client.openBank(interaction.member)
         const member = interaction.options.getMember("member") == null ? interaction.member : interaction.options.getMember("member")
