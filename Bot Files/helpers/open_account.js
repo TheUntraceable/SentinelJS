@@ -10,6 +10,7 @@ module.exports = client => {
                     actionLogs :  false,
                     suspiciousAccounts : false,
                     memberJoins :  false,
+                    badWords: new Set(),
                     memberUpdates : false,
                     voiceLogs: false,
                     antiSpammer : false, // I have set it to be disabled by default because that's going to take away a load of weight from the Antispammer cache.
