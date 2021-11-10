@@ -1,70 +1,10 @@
 const { MessageEmbed } = require("discord.js")
 
-const getCommands = (client,category=undefined) => {
-
-    let Payload = ""
-    let Configuration = ""
-    let Fun = "" 
-    // const Invitelogger = ""
-    let Moderating = ""
-    let Status = ""
-    
-    if(!category) {
-        for (command of client.commands.keys()) {
-            const commandObject = client.commands.get(command);
-
-            if (commandObject.category.toLowerCase() == "configuration") {
-                Configuration += `\`${command}\`,`
-
-            } else if(commandObject.category.toLowerCase() == "fun") {
-                Fun += `\`${command}\`,`
-
-            } else if(commandObject.category.toLowerCase() == "invitelogger") { 
-                Invitelogger += `\`${command}\`,`
-
-            } else if(commandObject.category.toLowerCase() == "moderating") {
-                Moderating += `\`${command}\`,`
-
-            } else if(commandObject.category.toLowerCase() == "status") {
-                Status += `\`${command}\`,`
-            
-            }
-        }
-        Configuration.slice(0, -1)
-        Fun.slice(0, -1)
-        Moderating.slice(0, -1)
-        Status.slice(0, -1)
-
-        return {configuration : Configuration, fun:Fun, moderating:Moderating, status:Status}; // Add back invite logger here.
-    } else {
-        for(command of client.commands.keys()) {
-            const commandObject = client.commands.get(command)
-            if(commandObject.category == category) {
-                Payload += `\`${command}\`,`
-            }
-        }
-        return Payload;
-    }
-}
-
 module.exports = client => { 
 
     client.handle = async interaction => {
         
         const timer = ms => new Promise( res => setTimeout(res, ms));
-
-        if(interaction.isSelectMenu()) {
-            if(interaction.customId == "CommandListInteraction") {
-                console.log(interaction.values)
-                const payload = getCommands(interaction.client,interaction.values[0])
-
-                await interaction.update({
-                    embeds : [new MessageEmbed().setTitle(`${interaction.values[0]} Commands!`).setDescription(`This is a list of ${interaction.values[0]}'s commands.`).addField("Commands: ",payload,true)],
-                    components: [interaction.component.options]
-                })
-            
-            }
-        }
 
         if(interaction.isCommand()) {
             if(!interaction.inGuild()) { 
