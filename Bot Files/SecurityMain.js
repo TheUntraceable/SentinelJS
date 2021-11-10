@@ -24,6 +24,7 @@ fs.readdir(`${process.cwd()}/helpers/`, (err, files) => {
 	client.deploy()
 	client.loadEvents();
 	client.loadCommands();
+	client.cacheAntispammers()
 });
 
 client.login(client.config.token)
