@@ -21,5 +21,8 @@ module.exports = {
                 await message.delete()
             }
         }
+        if(!data.antiSpammer) return
+        const antispam = message.client.antispammers.get(message.guild.id)
+        antispam.message(message)
     }
 }

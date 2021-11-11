@@ -7,6 +7,7 @@ module.exports = client => {
         for(guild of client.guilds.cache.values()) {
             // Later I'll add some ability to change most things of the antispam
             let data = await client.db.guilds.findOne({guildId: guild.id})
+            if(!data.antiSpammer) return
             let antispam = new AntiSpam({
                 warnThreshold : 3,
                 kickThreshold : 7,
@@ -29,6 +30,7 @@ module.exports = client => {
                 removeBotMessages : true,	
                 removeBotMessagesAfter : 5000,
             	})
+            client.antispammers.set(guild.id, antispam)
         }
     }
 }
