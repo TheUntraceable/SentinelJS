@@ -4,7 +4,7 @@ module.exports = {
     name: "guildMemberAdd",
     once: false, // If this were a private bot, this would be true :(
     async execute(member) {
-        await ban.client.openAccount(member.guild)
+        await member.client.openAccount(member.guild)
         const data = await member.client.db.guilds.findOne({
             guildId : member.guild.id
         })
