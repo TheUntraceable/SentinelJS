@@ -14,7 +14,9 @@ module.exports = client => {
             const command = client.commands.get(interaction.commandName);
 
             if(!command) return;
-            
+
+            interaction.client.statcord.postCommand(interaction.commandName, interaction.user.id);
+
             if(command.enabled === false) {
                 return await interaction.reply(`${command.data.name} has been disabled.`)
             }
