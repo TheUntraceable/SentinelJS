@@ -24,7 +24,7 @@ module.exports = {
             guildId : interaction.guild.id
         },{
             $set : {
-                antispammer: interaction.options.getBoolean("mode") 
+                antiSpammer: interaction.options.getBoolean("mode") 
             }
         })
         let antispam = new AntiSpam({
