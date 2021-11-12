@@ -29,11 +29,11 @@ fs.readdir(`${process.cwd()}/helpers/`, (err, files) => {
 
 	client.connect_to_mongo()
 	const timer = ms => new Promise( res => setTimeout(res, ms));
-	timer(10*1000)
-	client.deploy()
-	client.loadEvents();
-	client.loadCommands();
-	client.cacheAntispammers()
+	timer(10*1000).then(async () => {
+		client.deploy()
+		client.loadEvents();
+		client.loadCommands();
+	})
 });
 
 
