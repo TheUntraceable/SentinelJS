@@ -44,13 +44,13 @@ module.exports = {
         } else {
             // They want to add or remove a word from the blacklist
             const word = interaction.options.getString("word")
-            if(command.options.getString("whitelist-or-blacklist") == "blacklist") {
+            if(interaction.options.getString("whitelist-or-blacklist") == "blacklist") {
                 data.badWords.add(word)
             } else {
                 data.badWords.remove(word)
             }
             await interaction.client.db.guilds.updateOne({guildId: interaction.guild.id}, {$set: {badWords: data.badWords}})
-            return await interaction.reply(command.options.getString("whitelist-or-blacklist" == "whitelist"? `I have removed ${word} from the blacklist.` : `I have added ${word} to the blacklist.`))
+            return await interaction.reply(interaction.options.getString("whitelist-or-blacklist" == "whitelist"? `I have removed ${word} from the blacklist.` : `I have added ${word} to the blacklist.`))
         }
     }
 }
