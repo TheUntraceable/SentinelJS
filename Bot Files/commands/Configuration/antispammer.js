@@ -46,8 +46,7 @@ module.exports = {
             banEnabled : true,
             deleteMessagesAfterBanForPastDays : 14,
             removeMessages : true,	
-            removeBotMessages : true,	
-            removeBotMessagesAfter : 5000,
+            removeBotMessages : false,
             })
         interaction.client.antispammers.set(interaction.guild.id, antispam)
 
