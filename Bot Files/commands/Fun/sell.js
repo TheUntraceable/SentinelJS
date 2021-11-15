@@ -1,35 +1,10 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
 
-const mainshop = [{"id" : 1,"name":"Durex","price":100,"Description":"Durex | Good Protection."},
-            {"id" : 2,"name":"Kids", "price":10, "Description": "Kids | Good ~~slaves~~ kids."},
-            {"id" : 3,"name" : "Water gun", "price" : 100, "Description": "A water gun! (This update I made a use command)"}
+const mainshop = [
+    {id : 1,name:"Durex",price:100,description:"Durex | Good Protection."},
+    {id : 2,name:"Kids", price:10, description: "Kids | Good kids."},
+    {id : 3,name : "Water gun", price : 100, description: "A water gun! (This update I made a use command)"}
            ]
-
-async function sellItems(interaction) {
-    const wantedItem = interaction.options.getString("item");
-    const amount = interaction.options.getInteger("amount")
-    const data = await interaction.client.db.users.findOne({memberId: interaction.member.id})
-    
-    for(item of mainshop) {
-        if (item.name == wantedItem) { // wantedItem is just a string
-            
-            if (amount > item.amount) {
-                return await interaction.reply(`You only have ${item.amount} ${item.name} to sell. Not ${amount}.`)
-            }
-
-            if(data.inventory.find(i => i.name == item.name) != undefined) { // If the item is in their inventory
-                data.inventory[data.inventory.indexOf(item)].amount -= amount
-                await interaction.client.db.users.updateOne({memberId: interaction.member.id}, {$set: {wallet: data.wallet + amount * item.price, inventory: data.inventory}})
-                return await interaction.reply(`You sold ${wantedItem} x${amount}. You now have ${data.inventory[data.inventory.indexOf(item)].amount}`)
-            } else {
-                data.inventory.splice(data.inventory.indexOf(item), 1)
-                await interaction.client.db.users.updateOne({memberId: interaction.member.id}, {$set: {wallet: data.wallet + amount * item.price, inventory: data.inventory}})
-                return await interaction.reply(`You sold ${wantedItem} x${amount}.`)
-
-            }
-        }
-    } 
-}
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -51,6 +26,28 @@ module.exports = {
         .setRequired(true)
         ),
     async execute(interaction) {
-        await sellItems(interaction)       
-    }
+        const wantedItem = interaction.options.getString("item");
+        const amount = interaction.options.getInteger("amount")
+        const data = await interaction.client.db.users.findOne({memberId: interaction.member.id})
+        
+        for(item of mainshop) {
+            if (item.name.toLowerCase() == wantedItem) { // wantedItem is just a string
+                
+                const wantedItemData = data.inventory.find(i => i.name == item.name)
+                
+                if (data.inventory[data.inventory.indexOf(wantedItemData)].amount < amount || data.inventory[data.inventory.indexOf(wantedItemData)].amount == undefined) {
+                    return await interaction.reply(`You cannot sell ${amount} ${wantedItem} because you only have ${data.inventory[data.inventory.indexOf(wantedItemData)].amount}.`)
+                }
+
+                if(wantedItemData != undefined) { // If the item is in their inventory
+                    data.inventory[data.inventory.indexOf(wantedItemData)].amount -= amount
+                    await interaction.client.db.users.updateOne({memberId: interaction.member.id}, {$set: {wallet: data.wallet + item.price * amount, inventory: data.inventory}})
+                    return await interaction.reply(`You sold ${wantedItem} x${amount}. You now have ${data.inventory[data.inventory.indexOf(wantedItemData)].amount}`)
+                } else {
+                    data.inventory.slice(data.inventory.indexOf(wantedItemData), 1)
+                    await interaction.client.db.users.updateOne({memberId: interaction.member.id}, {$set: {wallet: data.wallet + item.price * amount, inventory: data.inventory}})
+                    return await interaction.reply(`You sold ${wantedItem} x${amount}.`)
+                }
+            }
+        }    }
 }
