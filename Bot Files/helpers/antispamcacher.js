@@ -3,6 +3,7 @@ const AntiSpam = require('discord-anti-spam');
 
 module.exports = client => {
     client.antispammers = new Collection() // Should be mapped guildId: antispamObj
+
     client.cacheAntispammers = async () => {
         for(guild of client.guilds.cache.values()) {
             // Later I'll add some ability to change most things of the antispam
@@ -27,7 +28,7 @@ module.exports = client => {
                 banEnabled : true,
                 deleteMessagesAfterBanForPastDays : 14,
                 removeMessages : true,	
-                removeBotMessages : true,	
+                removeBotMessages : false,	
             	})
             client.antispammers.set(guild.id, antispam)
         }
