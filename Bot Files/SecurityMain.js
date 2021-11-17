@@ -3,7 +3,7 @@ const config = require('./config.json');
 const { Client, Collection, Intents } = require('discord.js');
 const fs = require('fs');
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS,	Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_BANS, Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS, Intents.FLAGS.GUILD_INTEGRATIONS, Intents.FLAGS.GUILD_WEBHOOKS, Intents.FLAGS.GUILD_INVITES, Intents.FLAGS.GUILD_VOICE_STATES, Intents.FLAGS.GUILD_PRESENCES, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.GUILD_MESSAGE_TYPING]});
+const client = new Client({ presence: {status: "dnd"}, intents: [Intents.FLAGS.GUILDS,	Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_BANS, Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS, Intents.FLAGS.GUILD_INTEGRATIONS, Intents.FLAGS.GUILD_WEBHOOKS, Intents.FLAGS.GUILD_INVITES, Intents.FLAGS.GUILD_VOICE_STATES, Intents.FLAGS.GUILD_PRESENCES, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.GUILD_MESSAGE_TYPING]});
 
 // I don't need people in my DM's but I do need literally everything else.
 
@@ -26,14 +26,15 @@ fs.readdir(`${process.cwd()}/helpers/`, (err, files) => {
 		
 		require(`./helpers/${file}`)(client);
 	}
+	client.loadEvents();
 
-	client.connect_to_mongo()
-	const timer = ms => new Promise( res => setTimeout(res, ms));
-	timer(10*1000).then(async () => {
-		client.deploy()
-		client.loadEvents();
+	client.connect_to_mongo().then(() => {
 		client.loadCommands();
-		client.cacheAntispammers();
+		client.cacheAntispammers()
+	}).catch(() => {
+		console.error("Failed to connect to Mongo.")
+		client.destroy()
+		process.exit(1);
 	})
 });
 

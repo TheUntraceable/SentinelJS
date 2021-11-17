@@ -5,11 +5,18 @@ module.exports = {
 	once: true,
 
 	async execute(client) {
-		client.statcord.autopost();
 		console.log(`Ready! Logged in as ${client.user.tag}`);
-		client.guilds.cache.each(guild => client.openAccount(guild))	
-		client.cacheAntispammers()
+		client.statcord.autopost();
+		client.guilds.cache.forEach(guild => client.openAccount(guild))	
 
+		setInterval(() => {
+
+			client.user.setPresence({
+				name: `over ${client.users.cache.size}`,
+				type: "WATCHING"
+			});
+		}, 5000);
+		
 	}
 
 }
