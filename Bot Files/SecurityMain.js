@@ -28,11 +28,12 @@ fs.readdir(`${process.cwd()}/helpers/`, (err, files) => {
 	}
 	client.loadEvents();
 
-	client.connect_to_mongo().then(() => {
+	client.connect_to_mongo().then(message => {
+		console.log(message)
 		client.loadCommands();
 		client.cacheAntispammers()
-	}).catch(() => {
-		console.error("Failed to connect to Mongo.")
+	}).catch(message => {
+		console.error(message)
 		client.destroy()
 		process.exit(1);
 	})
