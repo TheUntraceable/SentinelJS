@@ -28,13 +28,13 @@ const getCommands = (client) => {
             Status += `\`${command}\`,`
         
         }
-        Configuration.slice(0, -1)
-        Fun.slice(0, -1)
-        Moderating.slice(0, -1)
-        Status.slice(0, -1)
-
-        return {configuration : Configuration, fun:Fun, moderating:Moderating, status:Status}; // Add back invite logger here.
     }
+    Configuration.slice(0, -1)
+    Fun.slice(0, -1)
+    Moderating.slice(0, -1)
+    Status.slice(0, -1)
+
+    return {configuration : Configuration, fun:Fun, moderating:Moderating, status:Status}; // Add back invite logger here.
 }
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -73,6 +73,6 @@ module.exports = {
             }
         ]);
 
-        await interaction.reply({embeds : [embed],components: [sel]});
+        await interaction.reply({embeds : [embed]});
     }
 }

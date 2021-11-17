@@ -5,7 +5,6 @@ module.exports = {
     name: "messageCreate",
     once: false,
     async execute(message) {
-
         if(!message.guild) return
 
         await message.client.openAccount(message.guild) // Add anti spam later once you finish stuff.
@@ -31,9 +30,10 @@ module.exports = {
         if(data.antiSpammer) {
             if(message.author.id == message.client.user.id) return
             
-            let antispam = message.client.antispammers.get(message.guild.id) 
-            
-            if(!antispam) {
+            if(message.client.antispammers.has(message.guild.id)) {
+                const antispammer = message.client.antispammers.get(message.guild.id)
+                await antispammer.message(message)
+            } else {
                 let antispam = new AntiSpam({
                     warnThreshold : 3,
                     kickThreshold : 7,
@@ -53,13 +53,10 @@ module.exports = {
                     banEnabled : true,
                     deleteMessagesAfterBanForPastDays : 14,
                     removeMessages : true,	
-                    removeBotMessages : false,
                     })
-
                 message.client.antispammers.set(message.guild.id, antispam)
+                await antispam.message(message)
             }
-
-            antispam.message(message)
         }
     }
 }

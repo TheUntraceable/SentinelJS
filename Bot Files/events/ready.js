@@ -11,8 +11,9 @@ module.exports = {
 
 		client.statcord.autopost();
 
-		setInterval(() => {
+		setInterval(async () => {
 			client.user.setActivity(`over ${client.users.cache.size} users!`, { type: 'WATCHING' });
+			await client.cacheAntispammers()
 		}, 300000);
 		
 	}
