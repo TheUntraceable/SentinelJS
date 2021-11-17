@@ -10,7 +10,7 @@ module.exports = {
         })
 
         if(data.suspiciousAccounts != false) {
-            if(Math.round(member.createdTimestamp / 1000) < 2629800) {
+            if(Math.round(member.createdTimestamp / 1000) < 604800) {
                 const young = new MessageEmbed()
                 .setTitle(`${member.tag}'s account is under 1 week old!'`)
                 .setDescription(`${ban.user.tag} has been classed as a suspicious account!`)
@@ -31,6 +31,8 @@ module.exports = {
             member.client.channels.fetch(data.memberJoins).then(channel =>
                 channel.send({embeds : [embed]})
                 )
+        } else if(!data.autoRoles) {
+            await member.roles.add(data.autoRoles)
         }
     }
 }
