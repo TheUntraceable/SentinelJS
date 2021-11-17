@@ -31,6 +31,7 @@ fs.readdir(`${process.cwd()}/helpers/`, (err, files) => {
 	client.connect_to_mongo().then(message => {
 		console.log(message)
 		client.cacheAntispammers()
+		client.guilds.cache.forEach(guild => client.openAccount(guild))	
 		client.loadCommands();
 	}).catch(message => {
 		console.error(message)
