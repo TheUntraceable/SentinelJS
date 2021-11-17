@@ -30,8 +30,8 @@ fs.readdir(`${process.cwd()}/helpers/`, (err, files) => {
 
 	client.connect_to_mongo().then(message => {
 		console.log(message)
-		client.loadCommands();
 		client.cacheAntispammers()
+		client.loadCommands();
 	}).catch(message => {
 		console.error(message)
 		client.destroy()
