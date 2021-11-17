@@ -2,6 +2,10 @@ const axios = require("axios");
 const { MessageEmbed } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders")
 
+const randomInt = (min, max) => {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
 function getRandomPost(posts) {
     const randomIndex = randomInt(0, posts.length);
     return posts[randomIndex].data;
@@ -11,9 +15,10 @@ module.exports = {
     .setName("meme")
     .setDescription("Get a random meme."),
     // I was about to let users choose what subreddits they wanted to get memes from, but I decided to just get a random one because I can't be asked to check if it's dangerous.
+
     cooldown: 5,
     cooldowns: new Set(),
-    
+
     async execute(interaction) {
         const subReddits = [
             "r/programmerreactions",
@@ -24,12 +29,8 @@ module.exports = {
           ];
         const randomIndex = randomInt(0, subReddits.length);
         axios.get(`https://reddit.com/${subReddits[randomIndex]}/.json`).then(async resp => {
-                const {
-                title,
-                url,
-                subreddit_name_prefixed: subreddit
-            } = getRandomPost(resp.data.data.children);
-            await interaction.reply({embds : [new MessageEmbed().setTitle(title).setImage(url).setFooter(`from ${subreddit}`)]})
+            const { title, url, subreddit_name_prefixed: subreddit } = getRandomPost(resp.data.data.children);
+            await interaction.reply({embeds : [new MessageEmbed().setTitle(title).setImage(url).setFooter(`from ${subreddit}`)]})
         })
 
     }
