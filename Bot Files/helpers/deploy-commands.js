@@ -11,7 +11,6 @@ for (const folder of categories) {
 
 	for (const file of commandFiles) {
 		const command = require(`${process.cwd()}/commands/${folder}/${file}`);
-
 		if(command.data != undefined) {
 			commands.push(command.data.toJSON());
 		} else if(command.raw_data != undefined) {

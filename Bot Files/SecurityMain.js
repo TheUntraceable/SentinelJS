@@ -28,9 +28,9 @@ fs.readdir(`${process.cwd()}/helpers/`, (err, files) => {
 	}
 	client.loadEvents();
 
-	client.connect_to_mongo().then(message => {
+	client.connect_to_mongo().then(async message => {
 		console.log(message)
-		client.cacheAntispammers()
+		await client.cacheAntispammers()
 		client.guilds.cache.forEach(guild => client.openAccount(guild))	
 		client.loadCommands();
 	}).catch(message => {

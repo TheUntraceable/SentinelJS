@@ -6,31 +6,38 @@ module.exports = client => {
 
     client.cacheAntispammers = async () => {
         for(guild of client.guilds.cache.values()) {
+
             // Later I'll add some ability to change most things of the antispam
+            
             let data = await client.db.guilds.findOne({guildId: guild.id})
+            
             if(!data.antiSpammer) return
-            let antispam = new AntiSpam({
-                warnThreshold : 3,
-                kickThreshold : 7,
-                muteThreshold : 5,
-                banThreshold : 15,
-                maxDuplicatesWarn : 3,
-                maxDuplicatesKick  : 7,
-                maxDuplicatesMute : 5,
-                maxDuplicatesBan : 15,
-                muteRoleName : data.muteRole,
-                modLogsChannelName : data.actionLogs,
-                modLogsEnabled : true,
-                errorMessages : true,
-                warnEnabled : true,
-                kickEnabled : true,
-                muteEnabled : true,
-                banEnabled : true,
-                deleteMessagesAfterBanForPastDays : 14,
-                removeMessages : true,	
-                removeBotMessages : false,	
-            	})
-            client.antispammers.set(guild.id, antispam)
+            
+            const exists = client.antispammers.has(guild.id)
+            
+            if(!exists) {
+                let antispam = new AntiSpam({
+                    warnThreshold : 3,
+                    kickThreshold : 7,
+                    muteThreshold : 5,
+                    banThreshold : 15,
+                    maxDuplicatesWarn : 3,
+                    maxDuplicatesKick  : 7,
+                    maxDuplicatesMute : 5,
+                    maxDuplicatesBan : 15,
+                    muteRoleName : data.muteRole,
+                    modLogsChannelName : data.actionLogs,
+                    modLogsEnabled : true,
+                    errorMessages : true,
+                    warnEnabled : true,
+                    kickEnabled : true,
+                    muteEnabled : true,
+                    banEnabled : true,
+                    deleteMessagesAfterBanForPastDays : 14,
+                    removeMessages : true,	
+                    })
+                client.antispammers.set(guild.id, antispam)
+            }
         }
     }
 }
