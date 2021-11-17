@@ -21,6 +21,7 @@ module.exports = {
         for (item of inventory) {
             if(item.amount == 0) {
                 await interaction.client.db.users.updateOne({memberId: interaction.member.id}, {$pull: {inventory: {name: item.name}}})
+                inventory.splice(inventory.indexOf(item), 1)
             }
         }
 
