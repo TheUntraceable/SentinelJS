@@ -4,7 +4,13 @@ module.exports = client => {
         return new Promise(async (res,rej) => {
             const mongo = new MongoClient(client.config.mongo_url);
 
-            await mongo.connect();
+            await mongo.connect(async (error,client) => {
+                if(error) {
+                    rej(error);
+                } else {
+                    res("Successfully connected to MongoDB.")
+                }
+            })
                 
             client.db = mongo.db("discord");
             
