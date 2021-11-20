@@ -18,6 +18,8 @@ module.exports = {
         
         const data = await interaction.client.commands.get(command)
 
+        if(!data) return await interaction.reply({ephemeral: true, content: "That command does not exist."})
+
         return await interaction.reply({ephemeral: true,content: `\`\`\`js\n${data.execute}\`\`\``})
     }
 }
