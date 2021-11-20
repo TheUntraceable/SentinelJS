@@ -33,6 +33,7 @@ fs.readdir(`${process.cwd()}/helpers/`, (err, files) => {
 		await client.cacheAntispammers()
 		client.guilds.cache.forEach(guild => client.openAccount(guild))	
 		client.loadCommands();
+		if(client.config.dev_mode) client.deploy()
 	}).catch(message => {
 		console.error(message)
 		client.destroy()
