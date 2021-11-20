@@ -5,6 +5,6 @@
     "beta" : true,
     "mongo_url" : "A-Valid-Mongo-URL-And-Not-This-Random-Mumbo-Jumbo",
     "cash_emoji": "An-Emoji-To-Use-For-Economy-System",
-    "statcord-api-key": "statcord-api-key.",
-    "dsc.gg-api-key": "A valid dsc.gg api key."
+    "statcord-api-key": "statcord-api-key."
+
 }
