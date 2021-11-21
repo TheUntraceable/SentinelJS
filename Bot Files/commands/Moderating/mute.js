@@ -18,6 +18,11 @@ module.exports = {
         ),
 
     async execute(interaction) {
+
+        if(!interaction.member.permissions.has("MANAGE_MESSAGES")) {
+            return await interaction.reply("")
+        }
+
         const reason = interaction.options.getString("reason") || "No reason provided."
         const user = interaction.options.getMember("user")
         const data = await interaction.client.db.guilds.findOne({guildId: interaction.guild.id})
