@@ -13,9 +13,11 @@ module.exports = client => {
 
                 try {
                     const command = require(`${process.cwd()}/commands/${category}/${file}`);
-                    if(!command.usage == undefined) {
+                    if(!command.usage === undefined) {
                         console.log(`Remove usage from ${command.data.name}`)
                     }
+                    command.cooldowns = new Set(); // Just so I don't have to add a `cooldowns: new Set()` to each and every command
+                    
                     if(command.data != undefined) {
                         command.category = category
                         let usage = ""
