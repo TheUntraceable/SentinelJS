@@ -44,17 +44,18 @@ module.exports = {
         }
         
         const messagesToDel = await interaction.channel.messages.fetch({limit: amount})
-        messagesToDel.filter(message => {
+        const filter = async (message) => {
             
             const author = interaction.options.getMember("author") || message.member
             const regex = new RegExp(interaction.options.getString("regex")) || new RegExp(".*")
             const string = interaction.options.getString("string") || ""
             const role = interaction.options.getRole("role") || message.member.roles.highest
 
-            message.author.id == author.id && regex.test(message.content) && message.content.includes(string) && message.members.roles.cache.has(role)
-        })
+            message.author.id == author.id && regex.test(message.content) && message.content.includes(string) && message.members.roles.cache.has(role.id)
+        } 
+        const toDel = messagesToDel.filter(message => filter(message.content))
 
-        const messages = await interaction.channel.bulkDelete(messagesToDel,true)
+        const messages = await interaction.channel.bulkDelete(toDel,true)
         await interaction.reply(`I have deleted ${messages.size} messages!`)
     }
 
