@@ -4,7 +4,7 @@ module.exports = {
     name: "threadMembersUpdate",
     once: false,
     async execute(before,after) {
-        const data = await after.at().client.db.guilds.findOne({guildId: after.guild.id})
+        const data = await after.at().client.db.guilds.findOne({guildId: after.thread.guild.id})
         if(data.actionLogs != false) {
 
             const embed = new MessageEmbed()
