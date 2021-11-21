@@ -7,5 +7,4 @@
     "cash_emoji": "An-Emoji-To-Use-For-Economy-System",
     "statcord-api-key": "statcord-api-key.",
     "dev": "boolean, true or false. This will determine wether to deploy slash commands whenever launched"
-
 }
