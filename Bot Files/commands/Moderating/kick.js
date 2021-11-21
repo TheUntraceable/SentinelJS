@@ -14,10 +14,9 @@ module.exports = {
             option.setName("reason")
             .setDescription("The reason why you would like to kick this member.")
             ),
-    usage : "/kick <user-id> [reason]",
-	cooldowns : new Set(),
+
+    cooldowns : new Set(),
 	cooldown : 10,
-	category : "moderating",
 
     async execute(interaction) {
 
