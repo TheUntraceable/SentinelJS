@@ -54,12 +54,12 @@ module.exports = {
             .setDescription("The name of the tag you'd like to view.")
             .setRequired(true)
             )
-    .addIntegerOption(option => 
-        option
-        .setName("guild")
-        .setDescription("The guild I should get this tag from. This should be the ID of a guild that I am in.")
-        .setRequired(false)
-        )
+        .addIntegerOption(option => 
+            option
+            .setName("guild")
+            .setDescription("The guild I should get this tag from. This should be the ID of a guild that I am in.")
+            .setRequired(false)
+            )
         )
     .addSubcommand(command =>
         command
@@ -84,12 +84,12 @@ module.exports = {
             .setDescription("The name of the tag you'd like to get information on.")
             .setRequired(true)
             )
-    .addIntegerOption(option => 
-        option
-        .setName("guild")
-        .setDescription("The guild I should get this tag from. This should be the ID of a guild that I am in.")
-        .setRequired(false)
-        )
+        .addIntegerOption(option => 
+            option
+            .setName("guild")
+            .setDescription("The guild I should get this tag from. This should be the ID of a guild that I am in.")
+            .setRequired(false)
+            )
         )
     .addSubcommand(command => 
         command
@@ -109,14 +109,13 @@ module.exports = {
             .setDescription("The name of the alias you'd like to create.")
             .setRequired(true)
             )
-        ),
-    /*
+    )    
     .addSubcommand(command => 
         command
         .setName("list")
         .setDescription("List all tags.")
-        )
-    */
+        ),
+
     async execute(interaction) {
        
         const command = interaction.options.getSubcommand()
@@ -126,12 +125,19 @@ module.exports = {
 
             const contents = interaction.options.getString("contents")
 
-            await interaction.client.db.tags.insertOne({type: "core" ,name: name, contents: contents, owner: interaction.user.id, uses:0})
+            let data = await interaction.client.db.tags.findOne({name: name})
+
+            if(data) {
+                await interaction.reply("Tag already exists.")
+                return
+            }
+
+            await interaction.client.db.tags.insertOne({type: "core" ,name: name, contents: contents, owner: interaction.user.id, uses:0, guildId: interaction.guild.id})
             await interaction.reply(`Created tag ${name}.`)
 
         } else if(command == "delete") {
 
-            const data = await interaction.client.db.tags.findOne({name: name})
+            let data = await interaction.client.db.tags.findOne({name: name})
 
             if(!data) {
                 await interaction.reply(`A tag with the name ${name} doesn't exist.`)
@@ -151,7 +157,8 @@ module.exports = {
                 return
             }
 
-            await interaction.client.db.tags.deleteMany({name: name})
+            await interaction.client.db.tags.deleteOne({name: name})
+            await interaction.client.db.tags.deleteMany({pointsTo: name})
             await interaction.reply(`Deleted tag ${name}.`)
 
         } else if(command == "edit") {
@@ -159,6 +166,10 @@ module.exports = {
             const contents = interaction.options.getString("contents")
             let data = await interaction.client.db.tags.findOne({name: name})
             
+            if(data.type == "alias") {
+                await interaction.client.db.tags.updateOne({name: data.pointsTo},{$set: {contents: contents}})
+            }
+
             if(data.owner != interaction.user.id) {
                 if(!interaction.member.permissions.has("MANAGE_GUILD")) {
                     await interaction.reply("You do not have permission to edit this tag. Make sure you own it or have the `MANAGE_GUILD` permissions.")
@@ -166,9 +177,6 @@ module.exports = {
                 }
             }
 
-            if(data.type == "alias") {
-                await interaction.client.db.tags.updateOne({name: data.pointsTo},{$set: {contents: contents}})
-            }
 
             await interaction.client.db.tags.updateOne({name: name}, {$set: {contents: contents}})
             await interaction.reply(`Edited tag ${name}.`)
@@ -184,19 +192,26 @@ module.exports = {
 
             if(data.type == "alias") {
                 let data = await interaction.client.db.tags.findOne({name: data.pointsTo})
-
+                await interaction.client.db.tags.updateOne({name:data.pointsTo},{$inc: {uses: 1}})
+            } else {
+                await interaction.client.db.tags.updateOne({name:name},{$inc: {uses: 1}})
             }
-
-            await interaction.client.db.tags.updateOne({name:name},{$inc: {uses: 1}})
             await interaction.reply(data.contents)
        
         } else if(command == "info") {
-            const data = await interaction.client.db.tags.findOne({name:name})
+            
+            let data = await interaction.client.db.tags.findOne({name:name})
+            
             if(!data) {
                 await interaction.reply("That is not a valid tag.")
                 return
             }
-            await interaction.reply(`${name} has been used ${data.uses} times and the owner is ${interaction.client.users.resolve(data.owner)}.`)
+
+            if(data.type == "alias") {
+                let data = await interaction.client.db.tags.findOne({name: data.pointsTo})
+            }
+
+            await interaction.reply(`${name} is an alias of ${data.name}. ${name} has been used ${data.uses} times and the owner is ${interaction.client.users.resolve(data.owner).tag}.`)
       
         } else if(command == "alias") {
 
@@ -209,16 +224,16 @@ module.exports = {
                 return
             }
 
-            let data = await interaction.client.db.tags.findOne({name:alias})
+            data = await interaction.client.db.tags.findOne({name:alias})
             
             if(data) {
-                await interaction.reply("That alias already exists.")
+                await interaction.reply("There is an alias/tag with that name that already exists.")
                 return
             }
 
             await interaction.client.db.tags.insertOne({type: "alias", pointsTo: name})
             await interaction.reply(`I have created an alias (${alias}) which points to ${name}.`)
 
-        }
+        } else if(command == "list") {return}
     }
 }
