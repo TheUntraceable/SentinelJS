@@ -14,6 +14,7 @@ module.exports = {
             option.setName("reason")
             .setDescription("The reason why you would like to ban this user.")
             ),
+
 	cooldowns : new Set(),
 	cooldown : 10,
 
@@ -50,7 +51,7 @@ module.exports = {
         }
         // Checks above.
         
-        interaction.guild.members.ban(`Action by ${interaction.member.id}.`)
+        interaction.guild.members.ban(user.id,`Action by ${interaction.member.id}.`)
             .then(async banInfo =>
                 await interaction.reply({content : c, ephemeral: true ,embeds : [new MessageEmbed().setTitle("Banned!").setColor("RANDOM").setDescription(`I successfully have banned ${banInfo.user.toString()} from the server!\nReason: ${reason || "None"}`)]})
             ).catch (
