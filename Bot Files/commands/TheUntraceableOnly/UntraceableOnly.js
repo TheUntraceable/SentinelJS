@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders")
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName("UntraceableOnly")
+    .setName("theuntraceable-only")
     .setDescription("Makes a command only available to The Untraceable.")
     .addIntegerOption(option =>
         option
