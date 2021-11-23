@@ -3,8 +3,9 @@ const { SlashCommandBuilder } = require("@discordjs/builders")
 module.exports = {
     data: new SlashCommandBuilder()
     .setName("theuntraceable-only")
+    .setDefaultPermission(false)
     .setDescription("Makes a command only available to The Untraceable.")
-    .addIntegerOption(option =>
+    .addStringOption(option =>
         option
         .setName("command-id")
         .setDescription("The command's Id you would like to make only available to you.")
