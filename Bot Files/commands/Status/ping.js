@@ -4,9 +4,9 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('ping')
 		.setDescription('Replies with the Clients latency!'),
-	cooldowns : new Set(),
+
 	cooldown : 10,
-	category : "status",
+	
 	async execute(interaction) {
 		let emoji = ""
 		if(interaction.client.ws.ping < 150) {
