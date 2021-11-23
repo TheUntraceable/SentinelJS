@@ -5,6 +5,28 @@ module.exports = client => {
         const timer = ms => new Promise( res => setTimeout(res, ms));
 
         if(interaction.isAutocomplete()) {
+            const command = interaction.client.commands.get(interaction.commandName)
+
+            if(!command) return;
+
+            const typed = interaction.options.getFocused(true)
+
+            const toSuggest = new Array();
+
+            if(interaction.commandName == "help") {
+
+                const suggested = interaction.client.commands.filter(c => c.name.startsWith(typed)).map(c => c.name)
+
+                if(suggested.length > 0) {
+                    for(suggestion of suggested) {
+                        toSuggest.push({
+                            name: suggestion.name,
+                            value: suggestion.name
+                        })
+                    }
+                    await interaction.respond(toSuggest)
+                }
+            }
 
         }
 
@@ -28,10 +50,8 @@ module.exports = client => {
                 console.error(`${command.data.name} has not got a cooldowns list but does have a cooldown. Fix this.`)
             }
 
-            if(!command.cooldowns == undefined) {
-                if(command.cooldowns.has(interaction.member.id)) {
+            if(command.cooldowns.has(interaction.user.id)) {
                     return await interaction.reply(`You are on cooldown. This cooldown will be gone <t:${Math.round(Date.now() / 1000) + command.cooldown}:R>, please try again later.`)
-                }
             }
 
             try {
@@ -46,22 +66,23 @@ module.exports = client => {
                 
                 await command.execute(interaction);
                 
+                if(command.cooldown) {
+
+                    command.cooldowns.add(interaction.user.id)
+    
+                    await timer(command.cooldown * 1000)
+        
+                    command.cooldowns.delete(interaction.user.id)
+    
+                }
+                
                 command.uses ++
 
-                if(command.category.toLowerCase() == "fun"){
+                if(command.category.toLowerCase() == "fun") {
                     const specialAmountToGive = Math.round(Math.random() * (50 - 10) + 10)
                     await interaction.client.db.users.updateOne({memberId: interaction.user.id},{$inc : {maxBank: specialAmountToGive}})
                 }
  
-                if(command.cooldowns != undefined && command.cooldown != undefined) {
-
-                    command.cooldowns.add(interaction.member.id)
-    
-                    await timer(command.cooldown * 1000)
-        
-                    command.cooldowns.delete(interaction.member.id)
-    
-                }
                     
             } catch (error) {
     
