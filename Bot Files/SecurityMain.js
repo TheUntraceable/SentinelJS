@@ -28,15 +28,23 @@ fs.readdir(`${process.cwd()}/helpers/`, (err, files) => {
 	}
 	client.loadEvents();
 
-	client.connect_to_mongo().then(async message => {
+	client.connectToMongo().then(async message => {
+
 		console.log(message)
+
 		await client.cacheAntispammers()
+
 		client.guilds.cache.forEach(guild => client.openAccount(guild))	
+
 		client.loadCommands();
+
 		if(client.config.dev) client.deploy()
+
 	}).catch(message => {
 		console.error(message)
+
 		client.destroy()
+
 		process.exit(1);
 	})
 });
