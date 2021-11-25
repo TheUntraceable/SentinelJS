@@ -12,11 +12,11 @@ module.exports = {
         .setRequired(true)
         ),
     async execute(interaction) {
-        const id = interaction.options.getInteger("command-id")
+        const id = interaction.options.getString("command-id")
         
         if(!interaction.client.application?.owner) await interaction.client.application?.fetch()
 
-        const command = await interaction.client.application.commands.fetch(id)
+        const command = await interaction.client.application.commands.fetch('912767093705961476')
         
         if(!command) {
             return await interaction.reply("That command doesn't exist, how do you not know your own bot's commands Id when you made a command to show you the Id's for each and every command..")
@@ -24,7 +24,7 @@ module.exports = {
 
         const permissions = [
             {
-                id: interaction.client.application?.id,
+                id: interaction.client.application?.owner.id,
                 type: "USER",
                 permission: true
             }
