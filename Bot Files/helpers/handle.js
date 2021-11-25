@@ -40,10 +40,16 @@ module.exports = client => {
 
             if(!command) return;
 
+            const data = await interaction.client.db.guilds.findOne({guildId: interaction.guild.id})
+
+            if(data.disabledCommands.includes(command.name)) {
+                return await interaction.reply(`${command.name} is disabled by Guild Admins.`)
+            }
+
             interaction.client.statcord.postCommand(interaction.commandName, interaction.user.id);
 
             if(command.enabled === false) {
-                return await interaction.reply(`${command.data.name} has been disabled.`)
+                return await interaction.reply(`${command.data.name} has been disabled by Untraceable.`)
             }
             
             if(command.cooldowns != undefined & command.cooldown == undefined || command.cooldowns == undefined & command.cooldown != undefined) {
