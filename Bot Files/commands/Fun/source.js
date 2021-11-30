@@ -1,4 +1,3 @@
-'https://github.com/TheUntraceable/SentinelJS/Bot Files/commands/Status/invite.js'
 const { SlashCommandBuilder } = require("@discordjs/builders")
 
 module.exports = {
