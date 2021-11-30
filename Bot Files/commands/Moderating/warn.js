@@ -16,6 +16,7 @@ module.exports = {
         .setDescription("The reason you would like to warn this user.")
         .setRequired(true)
         ),
+    cooldown: 5,
     async execute(interaction) {
         const reason = interaction.options.getString("reason")
         const member = interaction.options.getMember("user")
@@ -28,6 +29,8 @@ module.exports = {
             return await interaction.reply("Why are you warning a bot? Warning a bot doesn't make sense.")
         } else if(member.id == interaction.guild.ownerId) {
             return await interaction.reply("You cannot warn the guild owner...")
+        } else if(!member.permissions.has("KICK_MEMBERS")) {
+            return await interaction.reply
         }
 
         data.warns.push({

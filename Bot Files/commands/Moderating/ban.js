@@ -14,9 +14,7 @@ module.exports = {
             option.setName("reason")
             .setDescription("The reason why you would like to ban this user.")
             ),
-
-	cooldowns : new Set(),
-	cooldown : 10,
+	cooldown : 15,
 
     async execute(interaction) {
 

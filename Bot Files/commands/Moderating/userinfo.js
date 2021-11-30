@@ -11,6 +11,8 @@ module.exports = {
         .setDescription("The user you would like to get information about.")
         .setRequired(false)
         ),
+    cooldown: 5,
+    
     async execute(interaction) {
         const member = interaction.options.getMember("user") || interaction.member;
 

@@ -10,6 +10,7 @@ module.exports = {
         .setDescription("The user's warns you would like to view.")
         .setRequired(false)
         ),
+    cooldown: 5,
     async execute(interaction) {
         const member = interaction.options.getMember("user") || interaction.member
         await interaction.client.openBank(member)

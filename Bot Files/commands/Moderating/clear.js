@@ -34,6 +34,7 @@ module.exports = {
         .setDescription("The role that the author of the messages must have in order to be deleted.")
         .setRequired(false)
         ),
+    cooldown: 5,
     async execute(interaction) {
 
 

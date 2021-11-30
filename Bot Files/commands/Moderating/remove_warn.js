@@ -16,7 +16,7 @@ module.exports = {
         .setDescription("The id of the war you'd like to delete. If this is not set, all warns will be deleted.")
         .setRequired(false)
         ),
-
+    cooldown: 10,
     async execute(interaction) {
         const user = interaction.options.getMember("user")
         const id = interaction.options.getInteger("id")

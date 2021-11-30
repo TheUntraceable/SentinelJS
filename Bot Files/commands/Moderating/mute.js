@@ -20,7 +20,7 @@ module.exports = {
     async execute(interaction) {
 
         if(!interaction.member.permissions.has("MANAGE_MESSAGES")) {
-            return await interaction.reply("")
+            return await interaction.reply("You are missing the `MANAGE_MESSAGES` permission.")
         }
 
         const reason = interaction.options.getString("reason") || "No reason provided."

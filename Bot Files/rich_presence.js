@@ -11,8 +11,6 @@ var d1 = new Date ();
 rpc.on('ready', () => {
 	console.clear();
 	console.log("Setting RPC activity...");
-
-	//TODO Probably add enable/disable options in config.json
 	
 	//Sets the initial Rich Presence
 	rpc.setActivity({

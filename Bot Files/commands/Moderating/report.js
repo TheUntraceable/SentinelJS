@@ -16,6 +16,7 @@ module.exports = {
             .setDescription("The user you would like to report.")
             .setRequired(true)
         ),
+    cooldown: 15,
     async execute(interaction) {
         const member = interaction.options.getMember("user")
         const reason = interaction.options.getString("reason")
