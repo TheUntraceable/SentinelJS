@@ -14,6 +14,8 @@ module.exports = {
         .setRequired(true)
         ),
 
+    cooldown: 5,
+
     async execute(interaction) {
         
         if(!interaction.member.permissions.has("MANAGE_GUILD")) {

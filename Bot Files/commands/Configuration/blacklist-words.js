@@ -31,6 +31,7 @@ module.exports = {
             .addChoice("Blacklist", "blacklist")
             )
         ),
+    cooldown: 3,
     async execute(interaction) {
         
         const data = await interaction.client.db.guilds.findOne({guildId: interaction.guild.id})

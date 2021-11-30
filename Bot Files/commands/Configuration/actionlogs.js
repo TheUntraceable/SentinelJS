@@ -13,6 +13,8 @@ module.exports = {
         .setDescription("Set the channel where I should send logs regarding actions.")
         .setRequired(false)
         ),
+
+    cooldown: 5,
         
     async execute(interaction) {
         

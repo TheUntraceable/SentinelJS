@@ -33,6 +33,8 @@ module.exports = {
         .setName("view")
         .setDescription("View the roles that will be given to new members.")
         ),
+    cooldown: 5,
+    
     async execute(interaction) {
         const subcommand = interaction.options.getSubcommand()
         const data = await interaction.client.db.guilds.findOne({guildId: interaction.guild.id})        
