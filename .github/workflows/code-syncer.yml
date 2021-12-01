@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: "Update ConfigJSON on Server"
         run: |
-          curl "https://panel.epikhost.com/api/application/servers/${{env.id}}/startup" \
+          curl "https://panel.epikhost.xyz/api/application/servers/${{env.id}}/startup" \
           -H "Authorization: Bearer ${{env.apiKey}}" \
           -H "Content-Type: application/json" \
           -X POST \
