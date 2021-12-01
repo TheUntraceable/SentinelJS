@@ -11,6 +11,7 @@ module.exports = {
         .setDescription("The member's balance you would like to see.")
         .setRequired(false)
         ),
+    cooldown: 5,
     cooldowns: new Set(),
     cooldown: 5,
     async execute(interaction) {

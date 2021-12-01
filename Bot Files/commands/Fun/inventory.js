@@ -10,8 +10,7 @@ module.exports = {
         .setDescription("The user's inventory you'd like to view.")
         .setRequired(false)        
         ),
-    cooldowns: new Set(),
-    cooldown: 5,
+    cooldown: 15,
     async execute(interaction) {
         const data = await interaction.client.db.users.findOne({memberId: interaction.member.id})
         const inventory = data.inventory

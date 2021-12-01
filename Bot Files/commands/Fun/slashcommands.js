@@ -16,6 +16,8 @@ module.exports = {
         .setDescription("The Id of the command you want to see.")
         .setRequired(false)
         ),
+    
+    cooldown: 5,
 
     async execute(interaction) {
         let m = ""

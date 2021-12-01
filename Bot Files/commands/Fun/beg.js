@@ -6,8 +6,7 @@ module.exports = {
     .setDescription("Beg for coins."),
 
     cooldown: 30,
-    cooldowns: new Set(),
-
+    
     async execute(interaction) {
         const someone = ["Young Bloke","Your dad", "Your mum", "Bill Gates", "Walmart Employee", "Masked man", "Man who lives down the street", "Karen", "Kiddies", "Year 7's", "Idiots", "Jokes", "Charities", "Mistakes", "Accidents", "Complete Idiots", "Drunk Idiots", "Drug Addicts", "Alcoholic", "James","**She**","Santa", "Slave", "Elf", "Drug Dealer", "A Masked Figure."]
 

@@ -11,58 +11,7 @@ module.exports = client => {
                     res("Successfully connected to MongoDB.")
                 }
             })
-            class CachingMongoClient {
 
-                constructor(db) {
-                    this.db = db
-                    this.cache = new Collection()
-                }
-                
-                inCache (query) {
-                    return this.cache.has(query)
-                }
-
-                retrieve (query) {
-
-                    if(this.inCache(query)) {
-
-                        return this.cache.get(query)
-
-                    } else {
-
-                        return await this.db.findOne(query)
-                        
-                    }
-                }
-
-                async retrieveFromDatabase (query) {
-
-                    return await this.db.findOne(query)
-
-                }
-
-                async findOne (query) {
-                    
-                    return this.retrieve(query)
-                
-                }
-
-                async deleteOne (query) {
-                    const data = this.retrieve(query)
-                    
-                    if(!data) {
-                        return await this.db.deleteOne(query)
-                    }
-                    this.cache.delete(query)
-                    
-                }
-
-                async updateOne (query, update, options) {
-                    const data = await this.db.updateOne(query,update,options)
-
-                    
-                }
-            }
             client.db = mongo.db("discord");
             
             client.db.guilds = client.db.collection('guilds');

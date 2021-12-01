@@ -1,10 +1,10 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
 
 const mainshop = [
-    {id : 1,name:"Durex",price:100,description:"Durex | Good Protection."},
-    {id : 2,name:"Kids", price:10, description: "Kids | Good kids."},
-    {id : 3,name : "Water gun", price : 100, description: "A water gun! (This update I made a use command)"}
-           ]
+        {id : 1,name:"Durex",price:100,description:"Durex | Good Protection."},
+        {id : 2,name:"Kids", price:10, description: "Kids | Good kids."},
+        {id : 3,name : "Water gun", price : 100, description: "A water gun! (This update I made a use command)"}
+    ]
 
 
 module.exports = {

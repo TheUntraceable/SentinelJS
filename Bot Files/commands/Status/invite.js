@@ -5,6 +5,9 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('invite')
 		.setDescription('Returns the invite for the bot.'),
+	
+	cooldown: 5,
+
 	async execute(interaction) {
 
 		const embed = new MessageEmbed()

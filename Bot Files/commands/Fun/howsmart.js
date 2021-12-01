@@ -10,7 +10,6 @@ module.exports = {
         .setDescription("The member you want to see's intelligence.")
         .setRequired(false)
         ),
-    cooldowns: new Set(),
     cooldown: 5,
     async execute(interaction) {
         const user = interaction.options.getMember("member") || interaction.member

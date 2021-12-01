@@ -12,5 +12,6 @@ module.exports = {
         .addChoice("durex","durex")
         .addChoice("kids","kids")
         .addChoice("water gun","water gun")
-        )
+        ),
+    // in 1.0.1.
 }

@@ -42,7 +42,6 @@ module.exports = {
 		.setDescription('Sends a list of all commands!'),
 
     cooldown : 5,
-    cooldowns : new Set(),
 
     async execute(interaction) {
 

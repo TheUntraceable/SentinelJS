@@ -109,12 +109,7 @@ module.exports = {
             .setDescription("The name of the alias you'd like to create.")
             .setRequired(true)
             )
-    )    
-    .addSubcommand(command => 
-        command
-        .setName("list")
-        .setDescription("List all tags.")
-        ),
+    ),
 
     async execute(interaction) {
        
@@ -234,6 +229,6 @@ module.exports = {
             await interaction.client.db.tags.insertOne({type: "alias", pointsTo: name})
             await interaction.reply(`I have created an alias (${alias}) which points to ${name}.`)
 
-        } else if(command == "list") {return}
+        }
     }
 }

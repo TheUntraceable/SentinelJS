@@ -7,30 +7,26 @@ module.exports = {
     .setDescription("Makes a command only available to The Untraceable.")
     .addStringOption(option =>
         option
-        .setName("command-id")
-        .setDescription("The command's Id you would like to make only available to you.")
+        .setName("name")
+        .setDescription("The command you would like to make only available to you.")
         .setRequired(true)
         ),
     async execute(interaction) {
-        const id = interaction.options.getString("command-id")
+        const name = interaction.options.getString("name")
         
         if(!interaction.client.application?.owner) await interaction.client.application?.fetch()
 
-        const command = await interaction.client.application.commands.fetch('912767093705961476')
-        
-        if(!command) {
-            return await interaction.reply("That command doesn't exist, how do you not know your own bot's commands Id when you made a command to show you the Id's for each and every command..")
+        if(interaction.client.application?.owner?.id !== interaction.author.id) {
+            interaction.reply("You are not the owner of this bot.")
+            return
         }
 
-        const permissions = [
-            {
-                id: interaction.client.application?.owner.id,
-                type: "USER",
-                permission: true
-            }
-        ]
+        const command = interaction.client.commands.get(name)
 
-        await command.permissions.set({ permissions })
+        if(!command) return await interaction.reply("Invalid command.")
 
+        command.enabled = command.enabled ? false : true
+
+        await interaction.reply(`Command ${command.enabled ? "enabled" : "disabled"}.`)
     }
 }

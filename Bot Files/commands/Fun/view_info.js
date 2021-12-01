@@ -12,7 +12,6 @@ module.exports = {
 			.setDescription('What command to get information on.')
 			.setRequired(true)
     ),
-    cooldowns : new Set(),
     cooldown : 5,
     
     async execute (interaction) {

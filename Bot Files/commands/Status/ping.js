@@ -5,7 +5,7 @@ module.exports = {
 		.setName('ping')
 		.setDescription('Replies with the Clients latency!'),
 
-	cooldown : 10,
+	cooldown : 3,
 	
 	async execute(interaction) {
 		let emoji = ""

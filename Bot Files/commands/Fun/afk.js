@@ -10,6 +10,7 @@ module.exports = {
         .setDescription("The reason you are going to be AFK")
         .setRequired(false)
         ),
+    cooldown: 5,
     async execute(interaction) {
         const data = await interaction.client.db.afk.findOne({owner: interaction.user.id})
         if(!data) {

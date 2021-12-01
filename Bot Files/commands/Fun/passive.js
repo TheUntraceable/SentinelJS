@@ -11,7 +11,6 @@ module.exports = {
         .setRequired(true)
         ),
     cooldown: 86400,
-    cooldowns: new Set(),
 
     async execute(interaction) {
         const mode = interaction.options.getBoolean("mode")

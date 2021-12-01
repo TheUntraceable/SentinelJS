@@ -20,6 +20,7 @@ module.exports = {
         .addChoice("water gun","water gun")
         .addChoice("durex","durex")
         ),
+    cooldown: 15,
     async execute(interaction) {
         const embed = new MessageEmbed().setTitle("Shop items").setDescription("This is the shop, you can buy many things here...").setColor("#51ff00")
         const wantedItem = interaction.options.getString("item")

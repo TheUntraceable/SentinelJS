@@ -6,8 +6,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('botstats')
 		.setDescription('See information about the bot!'),
-    cooldowns: new Set(),
-    cooldown: 5,
+    cooldown: 15, // Just so Github don't get angry with me for some mistake spamming the command, which spams the API.
 	async execute(interaction) {
         
         let commit_messages = ""

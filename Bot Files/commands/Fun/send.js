@@ -16,6 +16,7 @@ module.exports = {
         .setDescription("The amount you would like to send.")
         .setRequired(true)
         ),
+    cooldown: 15, // Avoiding taxes..
     async execute(interaction) {
         const receiver = interaction.options.getMember("member")
         const amount = interaction.options.getInteger("amount")
@@ -30,6 +31,6 @@ module.exports = {
         await interaction.client.db.users.updateOne({memberId: interaction.member.id},{$inc : {wallet: -amount}})
 
         return await interaction.reply(`I have given ${receiver.displayName} ${amount}${interaction.client.config.cash_emoji} for you.`)
-
+        // Include taxes...
     }
 }
