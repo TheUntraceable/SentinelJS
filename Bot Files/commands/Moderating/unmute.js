@@ -17,6 +17,7 @@ module.exports = {
         .setRequired(false)
         ),
     cooldown: 5,
+    requiredPermissions: ["MANAGE_MESSAGES"],
     async execute(interaction) {
 
         if(!interaction.member.permissions.has("MANAGE_MESSAGES")) {

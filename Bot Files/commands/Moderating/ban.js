@@ -15,7 +15,7 @@ module.exports = {
             .setDescription("The reason why you would like to ban this user.")
             ),
 	cooldown : 15,
-
+    requiredPermissions: ["BAN_MEMBERS"],
     async execute(interaction) {
 
         const user = interaction.options.getMember("user")

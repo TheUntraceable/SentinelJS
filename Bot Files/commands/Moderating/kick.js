@@ -15,7 +15,7 @@ module.exports = {
             .setDescription("The reason why you would like to kick this member.")
             ),
 
-    cooldowns : new Set(),
+    requiredPermissions: ["KICK_MEMBERS"],
 	cooldown : 10,
 
     async execute(interaction) {

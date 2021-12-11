@@ -16,6 +16,8 @@ module.exports = {
         .setDescription("Why you would like to unban this user.")
         .setRequired(false)
     ),
+    cooldown: 5,
+    requiredPermissions: ["BAN_MEMBERS"],
     async execute(interaction) {
         const id = interaction.options.getInteger("id")
         const user = interaction.client.users.fetch(id)
@@ -27,14 +29,6 @@ module.exports = {
 
         } else if(user == interaction.client.user) {
             return await interaction.reply({embeds : [embed.setTitle("You can not unban me.").setDescription("I can't unban myself! Also I'm not ban so...")]})
-
-        } else if(!interaction.member.permissions.has("UNBAN_MEMBERS") && !interaction.guild.ownerId == interaction.member.id) {
-            return await interaction.reply({ephemeral : true,embeds : [embed.setTitle("You do not have the `BAN_MEMBERS` permission.").setDescription("You need `BAN_MEMBERS` to execute this command. Try again once you are sure you have this permission.")]})
-
-        } else if(!interaction.guild.me.permissions.has("UNBAN_MEMBERS")) {
-            return await interaction.reply({ephemeral:true,embeds: [embed.setTitle("I do not have the `UNBAN_MEMBERS` permission.").setDescription("I do not have the `UNBAN_MEMBERS` permission.")]})
-        
-        }
 
         interaction.guild.members.bans.fetch(id).then(async ban => {
             if(!ban) {

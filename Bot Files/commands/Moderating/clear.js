@@ -35,6 +35,7 @@ module.exports = {
         .setRequired(false)
         ),
     cooldown: 5,
+    requiredPermissions: ["MANAGE_MESSAGES"],
     async execute(interaction) {
 
 
@@ -57,7 +58,7 @@ module.exports = {
         const toDel = messagesToDel.filter(message => filter(message.content))
 
         const messages = await interaction.channel.bulkDelete(toDel,true)
-        await interaction.reply(`I have deleted ${messages.size} messages!`)
+        await interaction.reply(`I have deleted ${messages.size} messages!`,{ephemeral: true})
     }
 
 }   

@@ -16,7 +16,8 @@ module.exports = {
         .setDescription("The reason you would like to mute this user.")
         .setRequired(false)
         ),
-
+    cooldown: 5,
+    requiredPermissions: ["MANAGE_MESSAGES"],
     async execute(interaction) {
 
         if(!interaction.member.permissions.has("MANAGE_MESSAGES")) {

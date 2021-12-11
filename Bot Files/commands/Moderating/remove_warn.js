@@ -17,6 +17,7 @@ module.exports = {
         .setRequired(false)
         ),
     cooldown: 10,
+    requiredPermissions: ["MANAGE_MESSAGES"],
     async execute(interaction) {
         const user = interaction.options.getMember("user")
         const id = interaction.options.getInteger("id")
