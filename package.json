@@ -1,5 +1,5 @@
 {
-  "name": "security",
+  "name": "sentinel",
   "version": "0.7",
   "description": "Sentinel, the discord bot guaranteed to save your server from any raid.",
   "main": "Bot Files/SecurityMain.js",
