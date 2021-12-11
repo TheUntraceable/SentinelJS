@@ -1,3 +1,5 @@
+const { MessageEmbed } = require("discord.js")
+
 module.exports = client => { 
 
     client.handle = async interaction => {
@@ -40,14 +42,17 @@ module.exports = client => {
 
             if(!command) return;
 
-            const data = await interaction.client.db.guilds.findOne({guildId: interaction.guild.id})
+            let data = await interaction.client.db.guilds.findOne({guildId: interaction.guild.id})
+            if(!data) data = await interaction.client.openAccount(interaction.guild)
 
-            if(data.disabledCommands.includes(command.name)) {
-                return await interaction.reply(`${command.name} is disabled by Guild Admins.`)
+            if(data.disabledCommands != undefined) {
+                
+                if(data.disabledCommands.includes(command.name)) {
+                    return await interaction.reply(`${command.name} is disabled by Guild Admins.`)
+                }
             }
 
-            interaction.client.statcord.postCommand(interaction.commandName, interaction.user.id);
-
+            
             if(command.enabled === false) {
                 return await interaction.reply(`${command.data.name} has been disabled by Untraceable.`)
             }
@@ -60,6 +65,29 @@ module.exports = client => {
                     return await interaction.reply(`You are on cooldown. This cooldown will be gone <t:${Math.round(Date.now() / 1000) + command.cooldown}:R>, please try again later.`)
             }
 
+            if(command.requiredPermissions != undefined) {
+                const embed = new MessageEmbed()
+
+                for(permission of command.requiredPermissions) {
+                    if(!interaction.member.permissions.has(permission) && !interaction.guild.ownerId == interaction.user.id) {
+                        embed
+                        .setTitle(`You do not have the \`${permission}\` permission.`)
+                        .setDescription(`You need \`${permission}\` to execute this command. Try again once you are sure you have this permission.`)
+                        .setColor("#ff0000")
+                        
+                        return await interaction.reply({embeds: [embed]})
+                    } else if(!interaction.guild.me.permissions.has(permission)) {
+                        embed
+                        .setTitle(`I do not have the \`${permission}\` permission.`)
+                        .setDescription(`I need \`${permission}\` to execute this command. Try again once I have this permission.`)
+                        .setColor("#ff0000")
+                        
+                        return await interaction.reply({embeds: [embed]})
+                    }
+                }
+            }
+
+
             try {
                 
                 for(option in interaction.options.data) {
@@ -71,6 +99,7 @@ module.exports = client => {
                 await interaction.client.openAccount(interaction.guild)
                 
                 await command.execute(interaction);
+                interaction.client.statcord.postCommand(interaction.commandName, interaction.user.id);
                 
                 if(command.cooldown) {
 
