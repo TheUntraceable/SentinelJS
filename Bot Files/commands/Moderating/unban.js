@@ -38,5 +38,5 @@ module.exports = {
             await interaction.guild.members.unban(id, `Action by ${user.tag}.`)
             await interaction.reply({ephemeral : true,embeds : [embed.setColor("#51ff00").setTitle("User unbanned.").setDescription(`${user.tag} has been unbanned. Reason: ${reason}`)]})
         })
-    }
+    }}
 }

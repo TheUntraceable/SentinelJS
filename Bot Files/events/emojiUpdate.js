@@ -16,7 +16,9 @@ module.exports = {
             .setDescription(`${before.name == after.name ? before.name : `${before.name}/${after.name}`} has been updated!`) // Add who deleted it or whatever
             .setColor("YELLOW")
             .setTimestamp()
-        
+
+            await client.eventLog(before, after, embed)
+
             emoji.client.channels.get(data.actionLogs).then(channel =>
                 channel.send({embeds:  [embed]})
             )

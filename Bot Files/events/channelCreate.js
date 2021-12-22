@@ -25,5 +25,7 @@ module.exports = {
                 channel.send({embeds: [embed]})
             )
         }
+
+        channel.client.log()
     }
 }

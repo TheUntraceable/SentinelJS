@@ -12,7 +12,9 @@ module.exports = {
             .setDescription(`${member.tag} has been updated!`)
             .setColor("YELLOW")
             .setTimestamp()
-            
+
+            await member.client.eventLog(before, after, embed)
+
             member.client.channels.fetch(data.memberUpdates).then(channel =>
                 channel.send({embeds: embed})
                 )

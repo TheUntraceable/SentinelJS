@@ -18,6 +18,9 @@ module.exports = {
             .setColor("YELLOW")
             .setTimestamp()
         
+            await client.eventLog(before, after, embed)
+
+
             guild.channels.fetch(data.actionLogs).then(channel =>
                 channel.send({embeds:  [embed]})
             )
