@@ -55,6 +55,7 @@ module.exports = client => {
                 }
 
                 async updateOne(query, update, options) {
+                    options = options || {};
                     options.returnDocument = "after";
                     const data = await this.db.findOneAndUpdate(query, update, options);
                     this.cache.set(query, data);
