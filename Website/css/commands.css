@@ -21175,13 +21175,20 @@ h4 {
     text-align: center;
 }
 
+img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 125px;
+    margin-top: 20px;
+}
+
 /*
 Create CSS for class `command-name`
 When this class is hovered over, it should open,
 revealing the `command-description`, `command-usage`, `command-args`
 */
-
-
 
 /* .command-description,
 .command-args,
