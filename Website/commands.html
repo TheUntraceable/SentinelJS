@@ -1,302 +1,943 @@
-<!doctype html>
-<html lang="en" class="no-js h-100">
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Commands | Sentinel Discord Bot</title>
+      <link rel="icon" sizes="any" type="image/svg+xml" href="https://cdn.discordapp.com/avatars/743122320838623338/99043b39ed449dd6cc7006757e2bd4a2.webp?size=100">
+      <link rel="icon" type="image/png" href="https://cdn.discordapp.com/avatars/743122320838623338/99043b39ed449dd6cc7006757e2bd4a2.webp?size=100">
+      <link rel="icon" type="image/x-icon" href="https://cdn.discordapp.com/avatars/743122320838623338/99043b39ed449dd6cc7006757e2bd4a2.webp?size=100">
+      <link rel="shortcut icon" type="image/x-icon" href="https://cdn.discordapp.com/avatars/743122320838623338/99043b39ed449dd6cc7006757e2bd4a2.webp?size=100">
+      <link rel="apple-touch-icon" href="" />
+      <meta name="robots" content="index, follow">
+      <meta name="csrf-token" content="">
+      <meta name="theme-color" content="#00dfee">
+      <meta name="description" content="">
+      <meta property="og:site_name" content="Sentinel">
+      <meta property="og:site" content="">
+      <meta property="og:title" content="Commands | Sentinel Discord Bot">
+      <meta property="og:locale" content="en">
+      <meta property="og:description" content="List of all Sentinel commands and their arguments, descriptions and permissions.">
+      <meta property="og:url" content="">
+      <meta property="og:image" content="https://cdn.discordapp.com/avatars/743122320838623338/99043b39ed449dd6cc7006757e2bd4a2.webp?size=100">
+      <meta property="og:type" content="website">
+      <link href="./css/commands.css" rel="stylesheet">
 
-<head>
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <title>Commands | Sentinel Discord Bot</title>
-   <link rel="icon" sizes="any" type="image/svg+xml" href="https://cdn.discordapp.com/avatars/743122320838623338/99043b39ed449dd6cc7006757e2bd4a2.webp?size=100">
-   <link rel="icon" type="image/png" href="https://cdn.discordapp.com/avatars/743122320838623338/99043b39ed449dd6cc7006757e2bd4a2.webp?size=100">
-   <link rel="icon" type="image/x-icon" href="https://cdn.discordapp.com/avatars/743122320838623338/99043b39ed449dd6cc7006757e2bd4a2.webp?size=100">
-   <link rel="shortcut icon" type="image/x-icon" href="https://cdn.discordapp.com/avatars/743122320838623338/99043b39ed449dd6cc7006757e2bd4a2.webp?size=100">
-   <link rel="apple-touch-icon" href="" />
-   <meta name="robots" content="index, follow">
-   <meta name="csrf-token" content="">
-   <meta name="theme-color" content="#00dfee">
-   <meta name="description" content="">
-   <meta property="og:site_name" content="Sentinel">
-   <meta property="og:site" content="">
-   <meta property="og:title" content="Commands | Sentinel Discord Bot">
-   <meta property="og:locale" content="en">
-   <meta property="og:description" content="List of all Sentinel commands and their arguments, descriptions and permissions.">
-   <meta property="og:url" content="">
-   <meta property="og:image" content="https://cdn.discordapp.com/avatars/743122320838623338/99043b39ed449dd6cc7006757e2bd4a2.webp?size=100">
-   <meta property="og:type" content="website">
-   <link href="./css/commands.css" rel="stylesheet">
-   <style>
-      [wire\:loading],
-      [wire\:loading\.delay],
-      [wire\:loading\.inline-block],
-      [wire\:loading\.inline],
-      [wire\:loading\.block],
-      [wire\:loading\.flex],
-      [wire\:loading\.table],
-      [wire\:loading\.grid] {
-         display: none;
-      }
+  </head>
+    <title> Commands Page </title>
+    <h1> Arguments! </h1>
+    <p style="text-align: center;"> If an argument is surrounded by <strong>"[ ]"</strong> then the argument is optional, if it is surrounded by <strong>"< >"</strong>, then it is required.</p>
 
-      [wire\:loading\.delay\.shortest],
-      [wire\:loading\.delay\.shorter],
-      [wire\:loading\.delay\.short],
-      [wire\:loading\.delay\.long],
-      [wire\:loading\.delay\.longer],
-      [wire\:loading\.delay\.longest] {
-         display: none;
-      }
-
-      [wire\:offline] {
-         display: none;
-      }
-
-      [wire\:dirty]:not(textarea):not(input):not(select) {
-         display: none;
-      }
-
-      input:-webkit-autofill,
-      select:-webkit-autofill,
-      textarea:-webkit-autofill {
-         animation-duration: 50000s;
-         animation-name: livewireautofill;
-      }
-
-      @keyframes livewireautofill {
-         from {}
-      }
-   </style>
-</head>
-
-<body class="d-flex flex-column h-100">
-   <main class="flex-shrink-0">
-      <nav class="navbar navbar-expand-lg navbar-dark">
-         <div class="container">
-               <a class="navbar-brand">
-                  <img src="https://cdn.discordapp.com/avatars/743122320838623338/99043b39ed449dd6cc7006757e2bd4a2.webp?size=100" height="64px" width="64px" alt="l Discord Bot Logo">
-               </a>
-               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                  <li class="nav-item ms-lg-1">
-               </button>
-               <div class="collapse navbar-collapse" id="navbarResponsive">
-                  <ul class="navbar-nav">
-                     <a class="nav-link active">Home</a>
-                     </li>
-                     <li class="nav-item ms-lg-1">
-                           <a class="nav-link " href="https://github.com/TheUntraceable/SentinelJS/blob/3778faeef53b65fb9cd78ba87d881131c0360f69/Bot Files/commands">Commands</a>
-                     <li class="nav-item ms-lg-1">
-                           <a class="nav-link " href="https://github.com/TheUntraceable/SentinelJS">Source Code</a>
-                     </li>
-                     <a class="nav-link " href="https://trello.com/b/Wc8Wkxay/security-rewrite">Trello Board</a>
-                     </li>
-                     <li class="nav-item ms-lg-1">
-                           <a class="nav-link " href="https://dsc.gg/security">Invite</a>
-                     </li>
-                     <li class="nav-item ms-lg-1">
-                           <a class="nav-link " href="https://github.com/TheUntraceable/SentinelJS#documentation">Documentation</a>
-                     </li>
-                     <li class="nav-item ms-lg-1">
-                           <a class="nav-link" href="https://discord.gg/dYwHhQKxBs" target="_blank" rel="noopener">Support</a>
-                     </li>
-                  </ul>
-               </div>
-      </nav>
-      <div>
-         <div class="container">
-               <div wire:id="lL1LA7TZziIsmSP9csfu" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;lL1LA7TZziIsmSP9csfu&quot;,&quot;name&quot;:&quot;commands-search&quot;,&quot;locale&quot;:&quot;en&quot;,&quot;path&quot;:&quot;commands&quot;,&quot;method&quot;:&quot;GET&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;8ae6a136&quot;,&quot;data&quot;:{&quot;searchTerm&quot;:&quot;&quot;,&quot;category&quot;:&quot;&quot;,&quot;commands&quot;:[]},&quot;dataMeta&quot;:{&quot;modelCollections&quot;:{&quot;commands&quot;:{&quot;class&quot;:&quot;App\\Models\\Command&quot;,&quot;id&quot;:[1,2,3,4,5,6,7,8,9,10],&quot;relations&quot;:[&quot;arguments&quot;],&quot;connection&quot;:&quot;mysql&quot;}}},&quot;checksum&quot;:&quot;207b441156f8fcd1e077add9c98188f363880f3d3bd0c1546878eb4984475cb6&quot;}}" id="commands">
-                  <h1 class="mb-4 mt-3">Commands</h1>
-                  <div class="row mt-2 mb-4">
-                     <div class="col-12 col-lg-3 order-last order-lg-first">
-                           <div class="card bg-dark" style="box-shadow: unset;">
-                              <div class="card-body" id="commandsSearchCard">
-                                 <button wire:click="changeCategory('')" class="btn  btn-info  w-100">All</button>
-                                 <button wire:click="changeCategory('basic')" class="btn  btn-secondary  w-100 mt-2">Basic</button>
-                                 <button wire:click="changeCategory('moderation')" class="btn  btn-secondary  w-100 mt-2">Moderation</button>
-                                 <button wire:click="changeCategory('setup')" class="btn  btn-secondary  w-100 mt-2">Setup</button>
-                              </div>
-                           </div>
-                     </div>
-                     <div class="col-12 col-lg-9 order-first order-lg-last">
-                           <input wire:model="searchTerm" class="form-control form-control-lg" type="text" placeholder="Search...">
-                           <div class="mt-3 mb-2" id="commandsSearchButtons">
-                              <div class="btn btn-lg btn-dark w-100 text-start mb-2 command">
-                                 <button class="btn btn-lg btn-dark w-100 text-start shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHelp-2" aria-expanded="false" aria-controls="collapseHelp-2"> ban <span class="badge bg-light float-end" style="margin-top: 3px;">ban</span>
-                                 </button>
-                                 <div class="collapse" id="collapseHelp-2">
-                                       <div class="mt-1 text-muted">
-                                          <p class="title"> Description </p>
-                                          <p> Bans someone. </p>
-                                          <div>
-                                             <table>
-                                                   <tbody>
-                                                      <tr>
-                                                         <td colspan="2">
-                                                               <p class="title"> Required Arguments </p>
-                                                         </td>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>
-                                                               <div class="me-2"> Target </div>
-                                                         </td>
-                                                         <td class="d-inline-flex">
-                                                               <p>The person to ban</p>
-                                                      </tr>
-                                                      <tr>
-                                                         <td colspan="2">
-                                                               <p class="title"> Optional Arguments </p>
-                                                         </td>
-                                                      </tr>
-                                                      <tr>
-                                                      </tr>
-                                                      <tr>
-                                                         <td>
-                                                               <div class="me-2"> answer[1-20] </div>
-                                                         </td>
-                                                         <td class="d-inline-flex">
-                                                               <p>Dummy.</p>
-                                                         </td>
-                                                      </tr>
-                                                   </tbody>
-                                             </table>
-                                          </div>
-                                       </div>
-                                 </div>
-                              </div>
-                              <div class="mt-3 mb-2" id="commandsSearchButtons">
-                                 <div class="btn btn-lg btn-dark w-100 text-start mb-2 command">
-                                    <button class="btn btn-lg btn-dark w-100 text-start shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHelp-2" aria-expanded="false" aria-controls="collapseHelp-2"> kick <span class="badge bg-light float-end" style="margin-top: 3px;">kick</span>
-                                    </button>
-                                    <div class="collapse" id="collapseHelp-2">
-                                          <div class="mt-1 text-muted">
-                                             <p class="title"> Description </p>
-                                             <p> Kicks someone. </p>
-                                             <div>
-                                                <table>
-                                                      <tbody>
-                                                         <tr>
-                                                            <td colspan="2">
-                                                                  <p class="title"> Required Arguments </p>
-                                                            </td>
-                                                            <tr>
-                                                               <td>
-                                                                     <div class="me-2"> Target </div>
-                                                               </td>
-                                                               <td class="d-inline-flex">
-                                                                     <p>The person to kick</p>
-                                                            </tr>
-                                                         </tr>
-                                                         <tr>
-                                                            <td>
-                                                                  <div class="me-2"> </div>
-                                                            </td>
-                                                         </tr>
-                                                      </tbody>
-                                                </table>
-                                             </div>
-                                          </div>
-                                    </div>
-                                 </div>
-   
-                           </div>
-                     </div>
-                  </div>
-               </div>
+   <div class="command" id=action-logs>
+         <div class="command-name">
+            <p>Name: action-logs</p>
          </div>
-      </div>
-   </main>
-   <footer class="pt-5 pt-3 mt-auto" style="background-color: #23272A">
-      <div class="container">
-         <div class="row">
-               <div class="col-6 col-md">
-                  <h3>Features</h3>
-                  <ul class="list-unstyled text-small">
-                     <li><a class="text-muted text-decoration-none" href="">Commands</a></li>
-                  </ul>
-               </div>
-               <div class="col-6 col-md">
-                  <h3>Get Help</h3>
-                  <ul class="list-unstyled text-small">
-                     <li><a class="text-muted text-decoration-none" href="">Read the Docs</a></li>
-                     <li><a class="text-muted text-decoration-none" href="" target="_blank">Join our Discord</a></li> >
-                  </ul>
-               </div>
-               <div class="col-6 col-md">
-                  <h3>Social Media</h3>
-                  <ul class="list-unstyled text-small">
-                     <li><a class="text-muted text-decoration-none" href="" target="_blank" rel="noopener">GitHub</a></li>
-                     <li><a class="text-muted text-decoration-none" href="" target="_blank" rel="noopener">Discord</a></li>
-                  </ul>
-               </div>
-               <div class="col-6 col-md">
-                  <h3>Find Us Online</h3>
-                  <ul class="list-unstyled text-small">
-                     <li><a class="text-muted text-decoration-none" href="" target="_blank" rel="noopener">Top.gg soon.</a></li>
-                     </a></li>
-                  </ul>
-               </div>
-               <div class="col-6 col-md">
-                  <h3>Our Partner</h3>
-                  <ul class="list-unstyled text-small">
-                     <li><a class="text-muted text-decoration-none" href="" target="_blank" rel="noopener">Epikhost</a></li>
-                  </ul>
-               </div>
+         <div class="command-description">
+            <p>Description: Set the channel where I should send logs regarding actions.</p>
          </div>
-         <hr>
-         <div class="row">
-               <div class="col-6 col-md">
-                  <small class="d-block mb-3 mt-2 text-muted">&copy; 2020-2021 Sentinel</small>
-               </div>
-               <div class="col-6 col-md text-end">
-                  <small class="d-block mb-3 mt-2 text-muted">
-                     <a class="text-muted text-decoration-none ms-2" href="">Privacy Policy</a>
-                  </small>
-               </div>
+         <div class="command-category">
+            <p>Category: Configuration</p>
          </div>
-      </div>
-   </footer>
-   <div wire:id="4PqEZGDw9fP3RlSvImSO" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;4PqEZGDw9fP3RlSvImSO&quot;,&quot;name&quot;:&quot;login-modal&quot;,&quot;locale&quot;:&quot;en&quot;,&quot;path&quot;:&quot;commands&quot;,&quot;method&quot;:&quot;GET&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;08604a23&quot;,&quot;data&quot;:{&quot;joinDiscord&quot;:true,&quot;route&quot;:&quot;https:\/\/easypoll.bot\/login?joinDiscord&quot;},&quot;dataMeta&quot;:[],&quot;checksum&quot;:&quot;53332328d2bdcc6af1b49fdd8eb533f03496a5e19a4d9be672461bc1c0af261f&quot;}}">
-      <div wire:ignore.self class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-         <div class="modal-dialog">
-               <div class="modal-content">
-                  <div class="modal-header" style="padding: 1rem 2rem;">
-                     <h4 class="modal-title" id="loginModalLabel">Login</h4>
-                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                     <a href="" rel="nofollow" role="button" class="btn btn-success w-100">Login with Discord</a>
-                     <div class="form-check form-switch mt-1">
-                           <input wire:model="joinDiscord" class="form-check-input" type="checkbox" id="joinDiscord">
-                           <label class="form-check-label" for="joinDiscord">Join Discord Server</label>
-                     </div>
-                  </div>
-               </div>
+
+         <div class="command-args">
+            <p>Arguments: [channel]</p>
          </div>
-      </div>
+         <div class="command-usage">
+            <p>Usage: /action-logs</p>
+         </div>
    </div>
-   <script src="./js/commands.js" defer></script>
-   <script src="/vendor/livewire/livewire.js?id=21fa1dd78491a49255cd" data-turbo-eval="false" data-turbolinks-eval="false"></script>
-   <script data-turbo-eval="false" data-turbolinks-eval="false">
-      window.livewire = new Livewire();
-      window.Livewire = window.livewire;
-      window.livewire_app_url = '';
-      window.livewire_token = 'gsEzxUlhkf5wOMpA6Zy7mvtYjcfA2wnRWx6OSTi3';
-      window.deferLoadingAlpine = function(callback) {
-         window.addEventListener('livewire:load', function() {
-               callback();
-         });
-      };
-      let started = false;
-      window.addEventListener('alpine:initializing', function() {
-         if (!started) {
-               window.livewire.start();
-               started = true;
-         }
-      });
-      document.addEventListener("DOMContentLoaded", function() {
-         if (!started) {
-               window.livewire.start();
-               started = true;
-         }
-      });
-   </script>
-</body>
+
+   <div class="command" id=anti-spammer>
+         <div class="command-name">
+            <p>Name: anti-spammer</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Turns on or off AntiSpammer.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Configuration</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [mode]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /anti-spammer</p>
+         </div>
+   </div>
+
+   <div class="command" id=auto-role>
+         <div class="command-name">
+            <p>Name: auto-role</p>
+         </div>
+         <div class="command-description">
+            <p>Description: I will give these roles to the people who join.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Configuration</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [add] [remove] [view]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /auto-role</p>
+         </div>
+   </div>
+
+   <div class="command" id=blacklist-word>
+         <div class="command-name">
+            <p>Name: blacklist-word</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Blacklist/Whitelist a word from being used.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Configuration</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [view] [blacklist-or-whitelist]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /blacklist-word</p>
+         </div>
+   </div>
+
+   <div class="command" id=member-joins>
+         <div class="command-name">
+            <p>Name: member-joins</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Set the channel where I should send logs regarding member joins.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Configuration</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [channel]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /member-joins</p>
+         </div>
+   </div>
+
+   <div class="command" id=member-update-logs>
+         <div class="command-name">
+            <p>Name: member-update-logs</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Set the channel where I should send logs regarding member updates.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Configuration</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [channel]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /member-update-logs</p>
+         </div>
+   </div>
+
+   <div class="command" id=message-logs>
+         <div class="command-name">
+            <p>Name: message-logs</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Set the channel where I should send logs regarding messages.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Configuration</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [channel]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /message-logs</p>
+         </div>
+   </div>
+
+   <div class="command" id=mute-role>
+         <div class="command-name">
+            <p>Name: mute-role</p>
+         </div>
+         <div class="command-description">
+            <p>Description: The role to use for muting members.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Configuration</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [role]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /mute-role</p>
+         </div>
+   </div>
+
+   <div class="command" id=report-channel>
+         <div class="command-name">
+            <p>Name: report-channel</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Sets the channel to send reports to.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Configuration</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [channel]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /report-channel</p>
+         </div>
+   </div>
+
+   <div class="command" id=suspicious-account-logs>
+         <div class="command-name">
+            <p>Name: suspicious-account-logs</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Set the channel where I should send logs regarding suspicious accounts.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Configuration</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [channel]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /suspicious-account-logs</p>
+         </div>
+   </div>
+
+   <div class="command" id=toggle>
+         <div class="command-name">
+            <p>Name: toggle</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Toggle a command on or off.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Configuration</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [command]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /toggle</p>
+         </div>
+   </div>
+
+   <div class="command" id=voice-logs>
+         <div class="command-name">
+            <p>Name: voice-logs</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Set the channel where I should send logs regarding voice states.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Configuration</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [channel]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /voice-logs</p>
+         </div>
+   </div>
+
+   <div class="command" id=afk>
+         <div class="command-name">
+            <p>Name: afk</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Alerts anyone that mentions you that you are AFK.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Fun</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [reason]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /afk</p>
+         </div>
+   </div>
+
+   <div class="command" id=balance>
+         <div class="command-name">
+            <p>Name: balance</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Shows your or a users balance.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Fun</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [member]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /balance</p>
+         </div>
+   </div>
+
+   <div class="command" id=beg>
+         <div class="command-name">
+            <p>Name: beg</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Beg for coins.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Fun</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: None.</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /beg</p>
+         </div>
+   </div>
+
+   <div class="command" id=botstats>
+         <div class="command-name">
+            <p>Name: botstats</p>
+         </div>
+         <div class="command-description">
+            <p>Description: See information about the bot!</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Fun</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: None.</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /botstats</p>
+         </div>
+   </div>
+
+   <div class="command" id=buy>
+         <div class="command-name">
+            <p>Name: buy</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Lets you buy an item from the shop</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Fun</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [item] [amount]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /buy</p>
+         </div>
+   </div>
+
+   <div class="command" id=commandlist>
+         <div class="command-name">
+            <p>Name: commandlist</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Sends a list of all commands!</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Fun</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: None.</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /commandlist</p>
+         </div>
+   </div>
+
+   <div class="command" id=deposit>
+         <div class="command-name">
+            <p>Name: deposit</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Deposit coins from your wallet to your bank account.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Fun</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [amount]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /deposit</p>
+         </div>
+   </div>
+
+   <div class="command" id=help>
+         <div class="command-name">
+            <p>Name: help</p>
+         </div>
+         <div class="command-description">
+            <p>Description: The help command!</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Fun</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [name]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /help</p>
+         </div>
+   </div>
+
+   <div class="command" id=howsmart>
+         <div class="command-name">
+            <p>Name: howsmart</p>
+         </div>
+         <div class="command-description">
+            <p>Description: See how smart someone is.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Fun</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [member]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /howsmart</p>
+         </div>
+   </div>
+
+   <div class="command" id=inventory>
+         <div class="command-name">
+            <p>Name: inventory</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Lets you view your inventory.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Fun</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [member]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /inventory</p>
+         </div>
+   </div>
+
+   <div class="command" id=meme>
+         <div class="command-name">
+            <p>Name: meme</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Get a random meme.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Fun</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: None.</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /meme</p>
+         </div>
+   </div>
+
+   <div class="command" id=passive>
+         <div class="command-name">
+            <p>Name: passive</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Turns on or off passive mode.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Fun</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [mode]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /passive</p>
+         </div>
+   </div>
+
+   <div class="command" id=rob>
+         <div class="command-name">
+            <p>Name: rob</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Lets your rob a user.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Fun</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [victim]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /rob</p>
+         </div>
+   </div>
+
+   <div class="command" id=rock-paper-scissors>
+         <div class="command-name">
+            <p>Name: rock-paper-scissors</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Play Rock Paper Scissors against me!</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Fun</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [move] [mode]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /rock-paper-scissors</p>
+         </div>
+   </div>
+
+   <div class="command" id=sell>
+         <div class="command-name">
+            <p>Name: sell</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Allows you to sell an item.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Fun</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [item] [amount]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /sell</p>
+         </div>
+   </div>
+
+   <div class="command" id=send>
+         <div class="command-name">
+            <p>Name: send</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Send coins to a user's wallet.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Fun</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [member] [amount]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /send</p>
+         </div>
+   </div>
+
+   <div class="command" id=shop>
+         <div class="command-name">
+            <p>Name: shop</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Displays the current shop.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Fun</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [item]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /shop</p>
+         </div>
+   </div>
+
+   <div class="command" id=slash-command-list>
+         <div class="command-name">
+            <p>Name: slash-command-list</p>
+         </div>
+         <div class="command-description">
+            <p>Description: List all slash commands along with their Id, mainly meant for The Untraceable but...</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Fun</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [command] [id]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /slash-command-list</p>
+         </div>
+   </div>
+
+   <div class="command" id=source>
+         <div class="command-name">
+            <p>Name: source</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Get the source of a command.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Fun</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [command] [type]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /source</p>
+         </div>
+   </div>
+
+   <div class="command" id=tag>
+         <div class="command-name">
+            <p>Name: tag</p>
+         </div>
+         <div class="command-description">
+            <p>Description: The slash command which covers all tag commands.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Fun</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [create] [edit] [view] [delete] [info] [alias]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /tag</p>
+         </div>
+   </div>
+
+   <div class="command" id=use>
+         <div class="command-name">
+            <p>Name: use</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Use an item.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Fun</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [item]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /use</p>
+         </div>
+   </div>
+
+   <div class="command" id=view-info>
+         <div class="command-name">
+            <p>Name: view-info</p>
+         </div>
+         <div class="command-description">
+            <p>Description: This will show information about any command.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Fun</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [command]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /view-info</p>
+         </div>
+   </div>
+
+   <div class="command" id=withdraw>
+         <div class="command-name">
+            <p>Name: withdraw</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Withdraw coins from your bank to your wallet account.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Fun</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [amount]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /withdraw</p>
+         </div>
+   </div>
+
+   <div class="command" id=ban>
+         <div class="command-name">
+            <p>Name: ban</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Bans a user.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Moderating</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [user] [reason]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /ban</p>
+         </div>
+   </div>
+
+   <div class="command" id=clear>
+         <div class="command-name">
+            <p>Name: clear</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Deleted an amount of messages</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Moderating</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [amount] [author] [regex] [string] [role]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /clear</p>
+         </div>
+   </div>
+
+   <div class="command" id=kick>
+         <div class="command-name">
+            <p>Name: kick</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Kicks a member.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Moderating</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [member] [reason]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /kick</p>
+         </div>
+   </div>
+
+   <div class="command" id=mute>
+         <div class="command-name">
+            <p>Name: mute</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Mutes someone.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Moderating</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [user] [duration] [reason]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /mute</p>
+         </div>
+   </div>
+
+   <div class="command" id=remove-warn>
+         <div class="command-name">
+            <p>Name: remove-warn</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Remove a warn from a user.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Moderating</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [user] [id]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /remove-warn</p>
+         </div>
+   </div>
+
+   <div class="command" id=report>
+         <div class="command-name">
+            <p>Name: report</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Report a user.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Moderating</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [reason] [user]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /report</p>
+         </div>
+   </div>
+
+   <div class="command" id=unban>
+         <div class="command-name">
+            <p>Name: unban</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Unban a user from the server.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Moderating</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [id] [reason]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /unban</p>
+         </div>
+   </div>
+
+   <div class="command" id=unmute>
+         <div class="command-name">
+            <p>Name: unmute</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Unmutes a user.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Moderating</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [user] [reason]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /unmute</p>
+         </div>
+   </div>
+
+   <div class="command" id=userinfo>
+         <div class="command-name">
+            <p>Name: userinfo</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Displays information about a user.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Moderating</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [user]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /userinfo</p>
+         </div>
+   </div>
+
+   <div class="command" id=warn>
+         <div class="command-name">
+            <p>Name: warn</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Warn a user.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Moderating</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [user] [reason]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /warn</p>
+         </div>
+   </div>
+
+   <div class="command" id=warns>
+         <div class="command-name">
+            <p>Name: warns</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Lets you view a users warns.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Moderating</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: [user]</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /warns</p>
+         </div>
+   </div>
+
+   <div class="command" id=invite>
+         <div class="command-name">
+            <p>Name: invite</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Returns the invite for the bot.</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Status</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: None.</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /invite</p>
+         </div>
+   </div>
+
+   <div class="command" id=ping>
+         <div class="command-name">
+            <p>Name: ping</p>
+         </div>
+         <div class="command-description">
+            <p>Description: Replies with the Clients latency!</p>
+         </div>
+         <div class="command-category">
+            <p>Category: Status</p>
+         </div>
+
+         <div class="command-args">
+            <p>Arguments: None.</p>
+         </div>
+         <div class="command-usage">
+            <p>Usage: /ping</p>
+         </div>
+   </div>
 
 </html>
