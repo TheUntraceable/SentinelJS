@@ -6,6 +6,7 @@
     "mongo_url" : "A-Valid-Mongo-URL-And-Not-This-Random-Mumbo-Jumbo",
     "cash_emoji": "An-Emoji-To-Use-For-Economy-System",
     "statcord-api-key": "statcord-api-key.",
-    "dev": "boolean, true or false. This will determine wether to deploy slash commands whenever launched",
-    "clientSecret": "A-Client-Secret-Here"
+    "dev": true/false // This will determine wether to deploy slash commands whenever launched",
+    "clientSecret": "A-Client-Secret-Here",
+    "port": 8080 // The port to run the dashboard on.
 }
