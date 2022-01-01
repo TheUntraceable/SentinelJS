@@ -8,5 +8,6 @@
     "statcord-api-key": "statcord-api-key.",
     "dev": true/false // This will determine wether to deploy slash commands whenever launched",
     "clientSecret": "A-Client-Secret-Here",
-    "port": 8080 // The port to run the dashboard on.
+    "port": 8080, // The port to run the dashboard on.
+    "redirect_uri": "https://localhost:PORT/auth/callback", // The redirect uri for the bot once authorized
 }
