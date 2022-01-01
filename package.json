@@ -13,10 +13,11 @@
   ],
   "scripts": {
     "generate-commands-page": "cd ./Bot Files/ && node generateCommandsPage.js",
-    "run": "cd ./Bot Files/ && node SecurityMain.js"
+    "run": "cd ./Bot Files/ && node SecurityMain.js",
+    "rpc": "node './Bot Files/rich_presence.js'"
   },
   "author": "TheUntraceable",
-  "license": "SEE LISENCE.MD",
+  "license": "SEE LICENSE.MD",
   "bugs": {
     "url": "https://github.com/TheUntraceable/SentinelJS/issues"
   },
@@ -24,15 +25,20 @@
   "dependencies": {
     "@discordjs/builders": "^0.8.2",
     "@discordjs/rest": "^0.1.0-canary.0",
+    "@oauth-everything/passport-discord": "^1.0.2",
     "axios": "^0.24.0",
     "bufferutil": "^4.0.5",
-    "chalk": "^5.0.0",
+    "chalk": "4.1.1",
     "discord-anti-spam": "^2.6.0",
     "discord-rpc": "^4.0.1",
     "discord.js": "^13.4.0",
     "erlpack": "github:discord/erlpack",
+    "express": "^4.17.2",
+    "marked": "^4.0.8",
     "mongodb": "^4.1.3",
     "ms": "^2.1.3",
+    "npm": "^8.3.0",
+    "passport": "^0.5.2",
     "statcord.js": "^3.3.0",
     "utf-8-validate": "^5.0.7"
   }
