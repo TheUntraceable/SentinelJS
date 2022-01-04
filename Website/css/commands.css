@@ -21136,14 +21136,19 @@ footer h3 {
 } */
 
 .command {
-    width: 300px;
-    height: 185px;
+    float: left
+}
+
+button {
+    width: 140px;
+    height: 75px;
     float: left;
     padding-right: 1.5em;
     padding-left: 1.5em;
+    text-align: center;
     padding-bottom: 1em;
     padding-top: 0.5em;
-    background-color: #141414;
+    background-color: #323234;
     color: #fff;
     border-radius: 50px;
     margin-left: 1em;
@@ -21152,18 +21157,32 @@ footer h3 {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.command:hover {
-    transform: scale(1.1);
-    transition: 0.2s ease-in;
-
+button:active .command-permissions,
+button:active .command-description,
+button:active .command-args,
+button:active .command-usage,
+button:active .command-category {
+    visibility: visible;
+    height: 100%;
+    width: 100%;
 }
 
+/* .command:hover:finished {
+    transition: height width, .5s;
+    transition: .5s;
+    width: 140px;
+    height: 75;
+} */
+.command-permissions,
+.command-description,
+.command-args,
+.command-usage,
+.command-category {
+    padding-top: 25px;
+    visibility: hidden;
+}
 .command-name {
-    text-align: center
-}
-
-.command-description {
-    text-align: left
+    text-align: center;
 }
 
 h1 {
@@ -21189,23 +21208,3 @@ Create CSS for class `command-name`
 When this class is hovered over, it should open,
 revealing the `command-description`, `command-usage`, `command-args`
 */
-
-/* .command-description,
-.command-args,
-.command-usage {
-    visibility: hidden;
-
-    transition: opacity .2s, visibility .2s;
-  }
-  
-.command-name:hover .command-description {
-    visibility: visible;
-}
-
-.command-name:hover .command-args {
-    visibility: visible;
-}
-
-.command-name:hover .command-usage {
-    visibility: visible
-} */

@@ -1152,7 +1152,7 @@ body[data-aos-easing=ease-in-out-quart] [data-aos] {
     transform: perspective(2500px) rotateX(0)
 }
 
-/* @charset "UTF-8"; */
+@charset "UTF-8";
 
 /*!
  * Bootstrap v5.1.1 (https://getbootstrap.com/)
@@ -21119,26 +21119,6 @@ footer h3 {
     border-radius: 1%
 }
 
-#commandsSearchButtons button,
-#faq button {
-    background: none;
-    border: none;
-    color: inherit;
-    cursor: pointer;
-    font: inherit;
-    outline: inherit;
-    padding: 0 0 3px
-}
-
-#commandsSearchButtons .collapse,
-#faq .collapse {
-    cursor: auto;
-    -webkit-user-select: text;
-    -moz-user-select: text;
-    -ms-user-select: text;
-    user-select: text
-}
-
 img {
     width: 100px;
     height: 100px;
@@ -21148,5 +21128,10 @@ img {
     margin-top: 20px;
 }
 
+h1 {
+    text-align: center;
+    float: left;
+
+}
 
 /*# sourceMappingURL=app.css.map
