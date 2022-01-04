@@ -24,7 +24,7 @@ module.exports = client => {
                         usage += `${command.data.name}`
                         if(!command.data.options != 0) {
                             for (option of command.data.options) {
-                                usage += `${option.name.required ? `<${option.name}>` : `[${option.name}]`}`
+                                usage += `${option.required ? `<${option.name}>` : `[${option.name}]`}`
                             }
                         }
                         command.usage = usage

@@ -14,7 +14,11 @@
   "scripts": {
     "generate-commands-page": "cd ./Bot Files/ && node generateCommandsPage.js",
     "run": "cd ./Bot Files/ && node SecurityMain.js",
-    "rpc": "node './Bot Files/rich_presence.js'"
+    "rpc": "node './Bot Files/rich_presence.js'",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "author": "TheUntraceable",
   "license": "SEE LICENSE.MD",
@@ -32,6 +36,7 @@
     "discord-anti-spam": "^2.6.0",
     "discord-rpc": "^4.0.1",
     "discord.js": "^13.4.0",
+    "ejs": "^3.1.6",
     "erlpack": "github:discord/erlpack",
     "express": "^4.17.2",
     "marked": "^4.0.8",
