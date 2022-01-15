@@ -15,9 +15,8 @@ class CommandsPageGenerator {
             base += `
 <div id = "${command.data.name}" class="command">
     <div class="command-name">
-        <button onclick="toggle('${command.data.name}')" type="button">${command.data.name}</button>
+        <p>${command.data.name}</p>
     </div>
-    <div id="${command.data.name}-description-category-args-permissions" class="command-description-category-args-permissions">
         <div id="${command.data.name}-description" class="command-description">
             <p>Description: ${command.data.description}</p>
         </div>
@@ -49,7 +48,6 @@ class CommandsPageGenerator {
         </div>`
                 }
             base += `
-    </div>
 </div>`
         }
 /* <script>
