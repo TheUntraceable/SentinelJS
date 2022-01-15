@@ -4,7 +4,7 @@ module.exports = {
     name: "channelUpdate",
     once: false,
     async execute(before,after) {
-        await before.client.openAccount(channel.guild)
+        await before.client.openAccount(before.guild)
 
         if(before.type != "GUILD_TEXT" || after.type != "GUILD_TEXT")  {
             return // I don't care if someone updates anything in my Dm's, I'll update them.

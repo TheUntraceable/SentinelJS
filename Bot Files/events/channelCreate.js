@@ -26,6 +26,6 @@ module.exports = {
             )
         }
 
-        channel.client.log()
+        // channel.client.log()
     }
 }
