@@ -2,7 +2,7 @@ const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const { token, clientId } = require('../config.json');
 
-const categories = ["Configuration","Fun","Invitelogger","Moderating","Status","TheUntraceableOnly"]
+const categories = ["Configuration","Fun","Moderating","Status","TheUntraceableOnly"]
 const fs = require('fs');
 
 const commands = [];

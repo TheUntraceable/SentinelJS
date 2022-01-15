@@ -1,6 +1,6 @@
 const fs = require("fs")
 
-const categories = ["Configuration","Fun","Invitelogger","Moderating","Status","TheUntraceableOnly"]
+const categories = ["Configuration","Fun","Moderating","Status","TheUntraceableOnly"]
 
 module.exports = client => {
 
