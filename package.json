@@ -32,7 +32,7 @@
     "@oauth-everything/passport-discord": "^1.0.2",
     "axios": "^0.24.0",
     "bufferutil": "^4.0.5",
-    "chalk": "4.1.1",
+    "chalk": "4.1.2",
     "discord-anti-spam": "^2.6.0",
     "discord-rpc": "^4.0.1",
     "discord.js": "^13.4.0",
