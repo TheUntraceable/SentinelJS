@@ -13,11 +13,11 @@
   ],
   "scripts": {
     "generate-commands-page": "cd ./Bot Files/ && node generateCommandsPage.js",
-    "run": "cd ./Bot Files/ && node SecurityMain.js",
+    "start": "cd ./Bot Files/ && node SecurityMain.js",
     "rpc": "node './Bot Files/rich_presence.js'",
     "dev": "cd Website && next dev",
     "build": "cd Website && next build",
-    "start": "cd Website && next start",
+    "next-start": "cd Website && next start",
     "lint": "cd Website && next lint"
   },
   "author": "TheUntraceable",
