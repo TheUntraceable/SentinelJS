@@ -49,6 +49,15 @@ fs.readdir(`${process.cwd()}/helpers/`, (err, files) => {
 	})
 });
 
+process.on("uncaughtException", (error, origin) => {
+	console.error(error)
+})
+
+process.on("unhandledRejection", (reason, promise) => {
+	console.error(reason)
+})
+
+
 
 
 client.login(client.config.token)

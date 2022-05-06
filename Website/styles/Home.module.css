@@ -1,0 +1,48 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    font-size: 0rem;
+  }
+
+  15% {
+    font-size: 1rem;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.title {
+    position: relative;
+    animation: fadeIn 1s;
+    font-size: 1.5rem;
+}
+
+.smallText {
+    position: relative;
+    animation: fadeIn 1s;
+    font-size: 0.5rem;
+}
+
+.paragraph {
+    padding-left: .5em;
+    border-radius: 1.5em;
+    background-color: #424549;
+    overflow: hidden;
+    position: relative;
+    width: 50%;
+    font-size: 1em;
+    height: 25%;
+    align-items: center;
+    align-self: center;
+}
