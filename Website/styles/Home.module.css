@@ -1,0 +1,37 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    margin-left: -100%;
+  }
+
+  to {
+    opacity: 1;
+    margin-left: 0;
+  }
+}
+
+.title {
+    position: relative;
+    animation: fadeIn 1.5s;
+}
+
+.paragraph {
+    padding-left: .5em;
+    border-radius: 1.5em;
+    background-color: #444444;
+    overflow: hidden;
+    position: relative;
+    width: 50%;
+    border: 1px solid #999999;
+    font-size: 1em;
+    height: 25%;
+}

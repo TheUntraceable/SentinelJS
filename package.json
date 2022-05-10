@@ -13,12 +13,12 @@
   ],
   "scripts": {
     "generate-commands-page": "cd ./Bot Files/ && node generateCommandsPage.js",
-    "run": "cd ./Bot Files/ && node SecurityMain.js",
+    "start": "cd ./Bot Files/ && node SecurityMain.js",
     "rpc": "node './Bot Files/rich_presence.js'",
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "cd Website && next dev",
+    "build": "cd Website && next build",
+    "next-start": "cd Website && next start",
+    "lint": "cd Website && next lint"
   },
   "author": "TheUntraceable",
   "license": "SEE LICENSE.MD",
@@ -36,15 +36,19 @@
     "discord-anti-spam": "^2.6.0",
     "discord-rpc": "^4.0.1",
     "discord.js": "^13.4.0",
-    "ejs": "^3.1.6",
     "erlpack": "github:discord/erlpack",
-    "express": "^4.17.2",
     "marked": "^4.0.8",
     "mongodb": "^4.1.3",
     "ms": "^2.1.3",
     "npm": "^8.3.0",
-    "passport": "^0.5.2",
     "statcord.js": "^3.3.0",
+    "next": "12.1.5",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
     "utf-8-validate": "^5.0.7"
+  },
+  "devDependencies": {
+    "eslint": "8.11.0",
+    "eslint-config-next": "12.1.0"
   }
 }

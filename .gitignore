@@ -2,4 +2,5 @@ Bot Files/config.json
 node_modules
 Dashboard
 package-lock.json
-moving-to-react/
+.next
+Website/README.md
