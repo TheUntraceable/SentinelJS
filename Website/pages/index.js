@@ -1,10 +1,11 @@
+import Image from "next/image"
 import styles from "../styles/Home.module.css"
 
 export default function Home() {
     return (
         <div className={styles.container}>
             <h1 className={styles.title}>Sentinel</h1>
-            <h2 className={styles.smallText}>The way to keep your server safe.</h2>
+            <Image src = "/../public/NotChristmasStill.png" width = "600" height = "240"/>
             <p className={styles.description}>Sentinel, a Discord Bot created to make sure your server is safe.</p>
             <div className={styles.content}>
                 <div className={styles.paragraph}>

@@ -10,39 +10,28 @@
 @keyframes fadeIn {
   from {
     opacity: 0;
-    font-size: 0rem;
-  }
-
-  15% {
-    font-size: 1rem;
+    margin-left: -100%;
   }
 
   to {
     opacity: 1;
+    margin-left: 0;
   }
 }
 
 .title {
     position: relative;
-    animation: fadeIn 1s;
-    font-size: 1.5rem;
-}
-
-.smallText {
-    position: relative;
-    animation: fadeIn 1s;
-    font-size: 0.5rem;
+    animation: fadeIn 1.5s;
 }
 
 .paragraph {
     padding-left: .5em;
     border-radius: 1.5em;
-    background-color: #424549;
+    background-color: #444444;
     overflow: hidden;
     position: relative;
     width: 50%;
+    border: 1px solid #999999;
     font-size: 1em;
     height: 25%;
-    align-items: center;
-    align-self: center;
 }
