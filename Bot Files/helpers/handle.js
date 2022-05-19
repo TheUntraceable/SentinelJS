@@ -62,7 +62,7 @@ module.exports = client => {
             }
 
             if(command.cooldowns.has(interaction.user.id)) {
-                    return await interaction.reply(`You are on cooldown. This cooldown will be gone <t:${Math.round(Date.now() / 1000) + command.cooldown}:R>, please try again later.`)
+                return await interaction.reply(`You are on cooldown. This cooldown will be gone <t:${Math.round(Date.now() / 1000) + command.cooldown}:R>, please try again later.`)
             }
 
             if(command.requiredPermissions != undefined) {
