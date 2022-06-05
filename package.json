@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/TheUntraceable/SentinelJS#readme",
   "dependencies": {
-    "@discordjs/builders": "^0.12.0",
+    "@discordjs/builders": "^0.13.0",
     "@discordjs/rest": "^0.4.1",
     "@oauth-everything/passport-discord": "^1.0.2",
     "axios": "^0.27.2",
