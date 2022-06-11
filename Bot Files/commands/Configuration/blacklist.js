@@ -2,8 +2,8 @@ const { SlashCommandBuilder } = require("@discordjs/builders")
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName("blacklist-word")
-    .setDescription("Blacklist/Whitelist a word from being used.")
+    .setName("blacklist")
+    .setDescription("Blacklist a word.")
     .addSubcommand(command =>
         command
         .setName("view")
@@ -12,7 +12,7 @@ module.exports = {
         
     .addSubcommand(command =>
         command
-        .setName("blacklist-or-whitelist")
+        .setName("add")
         .setDescription("Wether you would like to blacklist/whitelist a word.")
         
         .addStringOption(option => 
@@ -21,14 +21,16 @@ module.exports = {
             .setDescription("The word to blacklist/whitelist.")
             .setRequired(true)
             )
-    
+        )
+    .addSubcommand(command => 
+        command
+        .setName("remove")
+        .setDescription("Remove a word from the blacklist.")
         .addStringOption(option =>
             option
-            .setName("whitelist-or-blacklist")
-            .setDescription("Whether to whitelist or blacklist the word.")
+            .setName("word")
+            .setDescription("The word to remove from the blacklist.")
             .setRequired(true)
-            .addChoice("Whitelist", "whitelist")
-            .addChoice("Blacklist", "blacklist")
             )
         ),
     cooldown: 3,
@@ -36,22 +38,36 @@ module.exports = {
         
         const data = await interaction.client.db.guilds.findOne({guildId: interaction.guild.id})
         const command = interaction.options.getSubcommand()
+
         if(command == "view") {
             let m = "Here are all the blacklisted words.\n"
             for(word in data.badWords) {
                 m += `${word}\n`
             }
             return await interaction.reply({ephemeral: true, content: m})
-        } else {
-            // They want to add or remove a word from the blacklist
+
+        } else if(command == "add") {
+
             const word = interaction.options.getString("word")
-            if(interaction.options.getString("whitelist-or-blacklist") == "blacklist") {
-                data.badWords.add(word)
-            } else {
-                data.badWords.remove(word)
+
+            if(data.badWords.includes(word)) {
+                return await interaction.reply({ephemeral: true, content: `${word} is already blacklisted.`})
             }
+
+            data.badWords.add(word)
+
             await interaction.client.db.guilds.updateOne({guildId: interaction.guild.id}, {$set: {badWords: data.badWords}})
+
             return await interaction.reply(interaction.options.getString("whitelist-or-blacklist" == "whitelist"? `I have removed ${word} from the blacklist.` : `I have added ${word} to the blacklist.`))
+
+        } else if(command == "remove") {
+            const word = interaction.options.getString("word")
+            if(!data.badWords.includes(word)) {
+                return await interaction.reply({ephemeral: true, content: `${word} is not blacklisted.`})
+            }
+            data.badWords = data.badWords.filter(w => w != word)
+            await interaction.client.db.guilds.updateOne({guildId: interaction.guild.id}, {$set: {badWords: data.badWords}})
+            return await interaction.reply(`I have removed ${word} from the blacklist.`)
         }
     }
 }
