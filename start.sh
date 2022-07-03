@@ -3,7 +3,7 @@ echo "This will automatically start your bot which will use Sentinel's code."
 echo "This will open it in a docker container, meaning you have to have docker installed."
 echo "I will ask for sensitive information, I can promise it won't be shared, besides, if you really cared you would see the source code of this script."
 
-sleep 10
+sleep 5
 
 echo "What is your Client's Token?"
 read token
@@ -36,4 +36,4 @@ echo "What version of Sentinel are you using? This will show up in the botstats 
 
 echo -e "Starting Sentinel...\n\n" # 3 empty lines
 
-echo -e '{    \n"clientId": $clientId\n    "token": $token\n    }'
+echo -e '{    \n"clientId": $clientId,\n    "token": $token,\n    "version": "1.0",\n    "mongo_url": $mongoURI,\n    "cash_emoji": $cashEmoji,\n    "statcord-api-key": $statcordKey,\n    "dev": $devMode,\n    "redirect_uri": $redirectURI,\n    "secret": $secret\n}' > config.json

@@ -2,5 +2,5 @@ Bot Files/config.json
 node_modules
 Dashboard
 package-lock.json
-.next
+Website/.next
 Website/README.md
