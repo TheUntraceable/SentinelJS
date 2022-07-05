@@ -21,7 +21,7 @@
     "lint": "cd Website && next lint"
   },
   "author": "TheUntraceable",
-  "license": "CUSTOM",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/TheUntraceable/SentinelJS/issues"
   },
