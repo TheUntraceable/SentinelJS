@@ -1,5 +1,4 @@
-const { MessageEmbed } = require("discord.js")
-const { SlashCommandBuilder,time } = require("@discordjs/builders")
+const { SlashCommandBuilder, time, EmbedBuilder } = require("@discordjs/builders")
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -19,7 +18,7 @@ module.exports = {
         let roles = ""
         member.roles.cache.forEach(role => roles += `${role.name}\n`)
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
         .setTitle(`${member.user.tag}'s Info`)
         .setThumbnail(member.user.displayAvatarURL())
         .setAuthor(member.user.tag, member.user.displayAvatarURL())

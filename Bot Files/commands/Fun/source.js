@@ -15,9 +15,9 @@ module.exports = {
         .setName("type")
         .setDescription("The type of file this is.")
         .setRequired(false)
-        .addChoice('event','events')
-        .addChoice('helper','helpers')
-        .addChoice('command','commands')
+        .addChoices({name: 'event', value: 'events'})
+        .addChoices({name: 'helper', value: 'helpers'})
+        .addChoices({name: 'command', value: 'commands'})
         ),
     async execute(interaction) {
         const command = interaction.options.getString("command")

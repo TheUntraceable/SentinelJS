@@ -1,5 +1,4 @@
-const { MessageEmbed } = require("discord.js")
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { SlashCommandBuilder, EmbedBuilder } = require('@discordjs/builders');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -20,7 +19,7 @@ module.exports = {
 
         const user = interaction.options.getMember("user")
         const reason = interaction.options.getString("reason")
-        const embed = new MessageEmbed().setColor("#ff0000") // This is the error embed
+        const embed = new EmbedBuilder().setColor(0xFF0000) // This is the error embed
 
         if(!user) {
             await interaction.reply({content : "That is an invalid user."})
@@ -51,7 +50,7 @@ module.exports = {
         
         interaction.guild.members.ban(user.id,`Action by ${interaction.member.id}.`)
             .then(async banInfo =>
-                await interaction.reply({content : c, ephemeral: true ,embeds : [new MessageEmbed().setTitle("Banned!").setColor("RANDOM").setDescription(`I successfully have banned ${banInfo.user.toString()} from the server!\nReason: ${reason || "None"}`)]})
+                await interaction.reply({content : c, ephemeral: true ,embeds : [new EmbedBuilder().setTitle("Banned!").setColor("RANDOM").setDescription(`I successfully have banned ${banInfo.user.toString()} from the server!\nReason: ${reason || "None"}`)]})
             ).catch (
                 console.error()
             )

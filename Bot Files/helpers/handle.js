@@ -120,12 +120,9 @@ module.exports = client => {
  
                     
             } catch (error) {
-    
                 console.error(error);
-    
                 return interaction.reply({ content: `There was an error while executing this command!\nError:${error}`, ephemeral: true });
             }
-        } 
-
+        }
     }
 }

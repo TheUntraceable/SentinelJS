@@ -1,5 +1,4 @@
-const { MessageEmbed } = require("discord.js");
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { SlashCommandBuilder, EmbedBuilder } = require('@discordjs/builders');
 
 const getCommands = (client) => {
 
@@ -45,9 +44,9 @@ module.exports = {
 
     async execute(interaction) {
 
-        let embed = new MessageEmbed()
+        let embed = new EmbedBuilder()
             .setTitle("Here are a list of all the available commands!")
-            .setColor("#51ff00")
+            .setColor(0x51ff00)
             .setDescription("This is a list of all the commands that are available to be used by almost anyone! ||(Except for the ones under Moderating which you need the correct permissions for.)||")
 
         const dictionary = getCommands(interaction.client);
@@ -57,7 +56,7 @@ module.exports = {
                 name : "Configuration",
                 value : dictionary["configuration"] ? dictionary["configuration"] : "None.",
                 inline : false
-            },,{
+            },{
                 name : "Fun",
                 value : dictionary["fun"] ? dictionary["fun"] : "None.",
                 inline : false,

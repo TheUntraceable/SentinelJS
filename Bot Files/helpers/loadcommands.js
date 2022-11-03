@@ -20,9 +20,8 @@ module.exports = client => {
                     
                     if(command.data != undefined) {
                         command.category = category
-                        let usage = ""
-                        usage += `${command.data.name}`
-                        if(!command.data.options != 0) {
+                        let usage = command.data.name
+                        if(!command.data.options.length != 0) {
                             for (option of command.data.options) {
                                 usage += `${option.required ? `<${option.name}>` : `[${option.name}]`}`
                             }

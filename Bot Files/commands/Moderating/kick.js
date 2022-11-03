@@ -1,5 +1,4 @@
-const { MessageEmbed } = require("discord.js")
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { SlashCommandBuilder, EmbedBuilder } = require('@discordjs/builders');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -22,35 +21,36 @@ module.exports = {
 
         const user = interaction.options.getMember("member")
         const reason = interaction.options.getString("reason")
+        const embed = new EmbedBuilder().setColor(0xFF0000)
 
         if(!user) {
             return await interaction.reply({content : "That member is invalid."})
         
         } else if(user == interaction.guild.me) {
-            return await interaction.reply({embeds : [new MessageEmbed().setColor("#ff0000").setTitle("You can not kick me.").setDescription("I can't kick myself! You'll have to kick me manually.")]})
+            return await interaction.reply({embeds : [embed.setTitle("You can not kick me.").setDescription("I can't kick myself! You'll have to kick me manually.")]})
     
         } else if(!interaction.member.permissions.has("KICK_MEMBERS") && !interaction.guild.ownerId == interaction.member.id) {
-            return await interaction.reply({ephemeral : true,embeds : [new MessageEmbed().setColor("#ff0000").setTitle("You do not have the `KICK_MEMBERS` permission.").setDescription("You need `KICK_MEMBERS` to execute this command. Try again once you are sure you have this permission.")]})    
+            return await interaction.reply({ephemeral: true, embeds: [embed.setTitle("You do not have the `KICK_MEMBERS` permission.").setDescription("You need `KICK_MEMBERS` to execute this command. Try again once you are sure you have this permission.")]})    
        
         } else if(user.roles.highest >= interaction.member.roles.highest && !interaction.guild.ownerId == interaction.member.id) {
-            return await interaction.reply({ephemeral : true, embeds : [new MessageEmbed().setColor("#ff0000").setTitle("You can not kick them due to role hierarchy.").setDescription("They have a role that is the same/higher than your highest role.")]})
+            return await interaction.reply({ephemeral : true, embeds : [embed.setTitle("You can not kick them due to role hierarchy.").setDescription("They have a role that is the same/higher than your highest role.")]})
 
         } else if(user.roles.highest >= interaction.guild.me.roles.highest && !interaction.guild.ownerId == interaction.member.id) {
-            return await interaction.reply({ephemeral:true, embeds : [new MessageEmbed().setColor("#ff0000").setTitle("I can not kick them due to role hierarchy.").setDescription("They have a role that is the same/higher than my highest role.")]})
+            return await interaction.reply({ephemeral:true, embeds : [embed.setTitle("I can not kick them due to role hierarchy.").setDescription("They have a role that is the same/higher than my highest role.")]})
 
         }else if(interaction.guild.ownerId === user.id) {
-            return await interaction.reply({ephemeral:true,embeds: [new MessageEmbed().setColor("#ff0000").setTitle("You can not kick them because they own the server.").setDescription("They own the server meaning that I can not kick them.")]})
+            return await interaction.reply({ephemeral:true,embeds: [embed.setTitle("You can not kick them because they own the server.").setDescription("They own the server meaning that I can not kick them.")]})
       
         } else if(!interaction.guild.me.permissions.has("KICK_MEMBERS")) {
-            return await interaction.reply({ephemeral:true,embeds: [new MessageEmbed().setColor("#ff0000").setTitle("I do not have the `KICK_MEMBERS` permission.").setDescription("I do not have the `KICK_MEMBERS` permission.")]})
+            return await interaction.reply({ephemeral:true,embeds: [embed.setTitle("I do not have the `KICK_MEMBERS` permission.").setDescription("I do not have the `KICK_MEMBERS` permission.")]})
        
         } else if(!user.kickable) {
-            return await interaction.reply({ephemeral:true,embeds: [new MessageEmbed().setColor("#ff0000").setTitle("I cannot kick that member.").setDescription("For some odd reason, I cannot kick that person..")]})
+            return await interaction.reply({ephemeral:true,embeds: [embed.setTitle("I cannot kick that member.").setDescription("For some odd reason, I cannot kick that person..")]})
         }
         
         user.kick(`Action by ${interaction.member.id}.`)
             .then(async banInfo =>
-                await interaction.reply({content : c, ephemeral: true ,embeds : [new MessageEmbed().setTitle("Kicked!").setColor("RANDOM").setDescription(`I successfully have kicked ${banInfo.user.toString()} from the server!\nReason: ${reason || "None"}`)]})
+                await interaction.reply({content : c, ephemeral: true ,embeds : [new EmbedBuilder().setTitle("Kicked!").setColor("RANDOM").setDescription(`I successfully have kicked ${banInfo.user.toString()} from the server!\nReason: ${reason || "None"}`)]})
             ).catch (
                 console.error()
             )

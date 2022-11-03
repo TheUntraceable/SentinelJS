@@ -9,17 +9,17 @@ module.exports = {
         .setName("move")
         .setDescription("What move you would like to make.")
         .setRequired(true)
-        .addChoice("rock","rock")
-        .addChoice("paper","paper")
-        .addChoice("scissors","scissors")
+        .addChoices({name: "rock", value: "rock"})
+        .addChoices({name: "paper", value: "paper"})
+        .addChoices({name: "scissors", value: "scissors"})
     )
     .addStringOption(option =>
         option
         .setName("mode")
         .setDescription("What mode you would like to play.")
         .setRequired(true)
-        .addChoice("Standard","standard")
-        .addChoice("Impossible","impossible")
+        .addChoices({name: "Standard", value: "standard"})
+        .addChoices({name: "Impossible", value: "impossible"})
         ),
     cooldown: 5,
     async execute(interaction) {

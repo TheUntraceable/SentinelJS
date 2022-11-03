@@ -1,6 +1,5 @@
 const axios = require("axios");
-const { MessageEmbed } = require("discord.js");
-const { SlashCommandBuilder } = require("@discordjs/builders")
+const { SlashCommandBuilder, EmbedBuilder } = require("@discordjs/builders")
 
 const randomInt = (min, max) => {
     return Math.floor(Math.random() * (max - min)) + min;
@@ -31,7 +30,7 @@ module.exports = {
         const randomIndex = randomInt(0, subReddits.length);
         axios.get(`https://reddit.com/${subReddits[randomIndex]}/.json`).then(async resp => {
             const { title, url, subreddit_name_prefixed: subreddit } = getRandomPost(resp.data.data.children);
-            await interaction.reply({embeds : [new MessageEmbed().setTitle(title).setURL(url).setImage(url).setFooter(`from ${subreddit}`)]})
+            await interaction.reply({embeds : [new EmbedBuilder().setTitle(title).setURL(url).setImage(url).setFooter(`from ${subreddit}`)]})
         })
 
     }

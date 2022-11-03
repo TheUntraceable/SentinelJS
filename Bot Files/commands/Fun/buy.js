@@ -16,9 +16,9 @@ module.exports = {
         .setName("item")
         .setDescription("The item you would like to buy.")
         .setRequired(true)
-        .addChoice("kids","kids")
-        .addChoice("water gun","water gun")
-        .addChoice("durex","durex")
+        .addChoices({name: "kids", value: "kids"})
+        .addChoices({name: "water gun", value: "water gun"})
+        .addChoices({name: "durex", value: "durex"})
         )
     .addIntegerOption(option =>
         option

@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('@discordjs/builders');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -10,7 +9,7 @@ module.exports = {
 
 	async execute(interaction) {
 
-		const embed = new MessageEmbed()
+		const embed = new EmbedBuilder()
 		.setColor('RANDOM')
 		.setTitle("Invite Link!")
 		.addFields([

@@ -9,9 +9,11 @@ module.exports = {
         .setName("item")
         .setDescription("The item you would like to use. Make sure that this is in your ")
         .setRequired(true)
-        .addChoice("durex","durex")
-        .addChoice("kids","kids")
-        .addChoice("water gun","water gun")
+        .addChoices({name: "kids", value: "kids"})
+        .addChoices({name: "water gun", value: "water gun"})
+        .addChoices({name: "durex", value: "durex"})
         ),
-    // in 1.0.1.
+    async execute(interaction) {
+        await interaction.reply({content: "This command is not finished yet.", ephemeral: true})
+    }
 }

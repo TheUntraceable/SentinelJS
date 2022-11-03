@@ -1,6 +1,5 @@
 const AntiSpam = require('discord-anti-spam');
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { MessageEmbed } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("@discordjs/builders")
 
 module.exports = {
 
@@ -19,7 +18,7 @@ module.exports = {
     async execute(interaction) {
         
         if(!interaction.member.permissions.has("MANAGE_GUILD")) {
-            return await interaction.reply({ephemeral : true,embeds : [new MessageEmbed().setColor("#ff0000").setTitle("You do not have the `MANAGE_GUILD` permission.").setDescription("You need `MANAGE_GUILD` to execute this command. Try again once you are sure you have this permission.")]})
+            return await interaction.reply({ephemeral : true,embeds : [new EmbedBuilder().setColor(0xFF0000).setTitle("You do not have the `MANAGE_GUILD` permission.").setDescription("You need `MANAGE_GUILD` to execute this command. Try again once you are sure you have this permission.")]})
         }
         const data = await interaction.client.db.guilds.findOne({guildId: interaction.guild.id})
         await interaction.client.db.guilds.updateOne({

@@ -1,5 +1,4 @@
-const { MessageEmbed } = require("discord.js")
-const { SlashCommandBuilder } = require("@discordjs/builders")
+const { SlashCommandBuilder, EmbedBuilder } = require("@discordjs/builders")
 
 
 
@@ -16,11 +15,11 @@ module.exports = {
     
     async execute (interaction) {
         if(!interaction.client.commands.get(interaction.options.getString("command"))) {
-            await interaction.reply({embeds : [new MessageEmbed().setTitle("That command doesn't exist.").setColor("#ff0000").setDescription("That command wasn't found.")]})
+            await interaction.reply({embeds : [new EmbedBuilder().setTitle("That command doesn't exist.").setColor(0xFF0000).setDescription("That command wasn't found.")]})
             return
         } else {
             const command = interaction.client.commands.get(interaction.options.getString("command"))
-            const embed = new MessageEmbed()
+            const embed = new EmbedBuilder()
                 .setColor("RANDOM")
                 .setTitle("Command info.")
                 .setDescription(`**\`${command.data.name}\`** - ${command.data.description}`)

@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { MessageEmbed } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("@discordjs/builders")
 
 const mainshop = [
     {id : 1,name:"Durex",price:100,description:"Durex | Good Protection."},
@@ -16,13 +15,13 @@ module.exports = {
         .setName("item")
         .setDescription("The item you would like to view.")
         .setRequired(false)
-        .addChoice("kids","kids")
-        .addChoice("water gun","water gun")
-        .addChoice("durex","durex")
+        .addChoices({name: "kids", value: "kids"})
+        .addChoices({name: "water gun", value: "water gun"})
+        .addChoices({name: "durex", value: "durex"})
         ),
     cooldown: 15,
     async execute(interaction) {
-        const embed = new MessageEmbed().setTitle("Shop items").setDescription("This is the shop, you can buy many things here...").setColor("#51ff00")
+        const embed = new EmbedBuilder().setTitle("Shop items").setDescription("This is the shop, you can buy many things here...").setColor(0x2F3136)
         const wantedItem = interaction.options.getString("item")
         
         if(!wantedItem) {

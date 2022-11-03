@@ -1,6 +1,5 @@
 const axios = require("axios")
-const { SlashCommandBuilder, time } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+const { SlashCommandBuilder, time, EmbedBuilder } = require('@discordjs/builders');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -27,7 +26,7 @@ module.exports = {
             commit_messages += `[\`${sha}\`](https://github.com/TheUntraceable/SentinelJS/commit/${commit.sha}) - ${commit.commit.message} (${time(Math.floor(new Date(commit.commit.author.date).getTime() / 1000), "R")})\n`
         }
     
-        const embed = new MessageEmbed().setTitle("Bot stats").setColor("#2F3136").setDescription("This embed will contain stats regarding me.").addFields([
+        const embed = new EmbedBuilder().setTitle("Bot stats").setColor(0x2F3136).setDescription("This embed will contain stats regarding me.").addFields([
             {
                 name: "Recent commits: ",
                 value: commit_messages || "Error...",

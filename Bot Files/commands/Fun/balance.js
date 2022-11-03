@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders")
-const { MessageEmbed } = require("discord.js")
+const { SlashCommandBuilder, EmbedBuilder } = require("@discordjs/builders")
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -21,7 +20,7 @@ module.exports = {
 
         // Let's format this data
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setTitle(`${member.displayName}'s balance.`)
             .addFields([
                 {

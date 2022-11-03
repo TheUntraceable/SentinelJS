@@ -1,5 +1,4 @@
-const { MessageEmbed } = require("discord.js")
-const { SlashCommandBuilder } = require("@discordjs/builders")
+const { SlashCommandBuilder, EmbedBuilder } = require("@discordjs/builders")
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -19,7 +18,7 @@ module.exports = {
 
         if(!command) return interaction.reply("That command doesn't exist!")
 
-        const embed = new MessageEmbed().setTitle(`**${command.data.name}**`).setDescription("This embed will contain information to help you with this command!").addFields([
+        const embed = new EmbedBuilder().setTitle(`**${command.data.name}**`).setDescription("This embed will contain information to help you with this command!").addFields([
             {
                 name: "Description",
                 value: command.data.description,
